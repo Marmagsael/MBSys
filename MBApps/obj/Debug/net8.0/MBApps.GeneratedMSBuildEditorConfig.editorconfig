@@ -1,0 +1,124 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MBApps
+build_property.RootNamespace = MBApps
+build_property.ProjectDir = D:\Development\MBSys\MBApps\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Development\MBSys\MBApps
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Development/MBSys/MBApps/Applications/SampleModule/Blazor/_SampleComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXFNhbXBsZU1vZHVsZVxCbGF6b3JcX1NhbXBsZUNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_Mapper.razor]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF9NYXBwZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Authentication/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Sample/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FtcGxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_00HomeLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF8wMEhvbWVMZWZ0TWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_01MyProfileLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF8wMU15UHJvZmlsZUxlZnRNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_02EmployeeMgtLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF8wMkVtcGxveWVlTWd0TGVmdE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_03PayrollLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF8wM1BheXJvbGxMZWZ0TWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_04AccountingLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF8wNEFjY291bnRpbmdMZWZ0TWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_mainHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF9tYWluSGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_mainLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF9tYWluTGVmdE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/PartialView/_mainLMCompanySelector.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxWaWV3XF9tYWluTE1Db21wYW55U2VsZWN0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfSGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenu - Copy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnUgLSBDb3B5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenuDtl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVEdGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenuDtl1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVEdGwxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenuMain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVNYWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenuMainDtl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVNYWluRHRsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/ReportLayout/_ReportLeftMenuMainParentDtl.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVNYWluUGFyZW50RHRsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/_MainLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/_MainLayout1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0MS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/_MainLayoutBak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0QmFrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

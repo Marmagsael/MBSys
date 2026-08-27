@@ -1,0 +1,22 @@
+@* Sample Blazor component hosted inside an MVC View via RenderComponentAsync *@
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Sample Component</h5>
+        <p>Replace this with your module content.</p>
+    </div>
+</div>
+
+@code {
+    // Match the parameter name used in the MVC View:
+    // new { UserClaims = uc }
+    [Parameter] public object? UserClaims { get; set; }
+
+    // TODO: Replace object with your actual UserClaimsModel from MBApiLibrary
+    // [Parameter] public UserClaimsModel? UserClaims { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // Initialize component state here
+    }
+}

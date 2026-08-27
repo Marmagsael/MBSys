@@ -1,0 +1,18 @@
+@using HRMvc.StartupConfig
+@using MBApps.Applications.SampleModule.Blazor
+@using MBApps.StartupConfig
+
+@inject UserClaimsContextService _claimsContext
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Sample";
+    var uc = _claimsContext.Build(User);
+}
+
+<div>
+    @(await Html.RenderComponentAsync<_SampleComponent>(RenderMode.ServerPrerendered, new { UserClaims = uc }))
+</div>
+
+@section Scripts {
+    <script src="~/js/sample.js"></script>
+}

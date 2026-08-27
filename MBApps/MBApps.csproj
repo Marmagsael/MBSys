@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>mbapps-boilerplate-0000-0000-000000000000</UserSecretsId>
+
+    <!-- Suppressed Warnings (Temporary) -->
+    <NoWarn>
+      CS0168;
+      CS0169;
+      CS0219;
+      CS0414;
+      CS0649;
+      CS0162;
+      CS1998;
+      CS1591;
+      CS1573;
+      CS8600;
+      CS8601;
+      CS8602;
+      CS8604;
+      CS8618;
+      CS8622;
+      CS0618
+    </NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+    <PackageReference Include="Blazorise" Version="2.3.1" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="2.3.1" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Radzen.Blazor" Version="11.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Reference to shared library project -->
+    <ProjectReference Include="..\MBApiLibrary\MBApiLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
