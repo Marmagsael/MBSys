@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zSKIj+/QaCw=",
+  "dgSpecHash": "LRVbr4xuWwQ=",
   "success": true,
-  "projectFilePath": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
+  "projectFilePath": "D:\\Development\\MBSys\\mbapps\\MBApps.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marma\\.nuget\\packages\\blazored.localstorage\\4.5.0\\blazored.localstorage.4.5.0.nupkg.sha512",
     "C:\\Users\\marma\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",

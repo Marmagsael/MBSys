@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Development\\MBSys\\MBApps\\MBApps.csproj": {}
+    "D:\\Development\\MBSys\\mbapps\\MBApps.csproj": {}
   },
   "projects": {
     "D:\\Development\\MBSys\\MBApiLibrary\\MBApiLibrary.csproj": {
@@ -102,14 +102,14 @@
         }
       }
     },
-    "D:\\Development\\MBSys\\MBApps\\MBApps.csproj": {
+    "D:\\Development\\MBSys\\mbapps\\MBApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
+        "projectUniqueName": "D:\\Development\\MBSys\\mbapps\\MBApps.csproj",
         "projectName": "MBApps",
-        "projectPath": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
+        "projectPath": "D:\\Development\\MBSys\\mbapps\\MBApps.csproj",
         "packagesPath": "C:\\Users\\marma\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\MBSys\\MBApps\\obj\\",
+        "outputPath": "D:\\Development\\MBSys\\mbapps\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

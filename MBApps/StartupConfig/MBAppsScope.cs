@@ -1,4 +1,5 @@
 using MBApps.StartupConfig.Library;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MBApps.StartupConfig;
 

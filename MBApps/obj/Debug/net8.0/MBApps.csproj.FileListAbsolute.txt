@@ -280,3 +280,4 @@ D:\Development\MBSys\MBApps\obj\Debug\net8.0\refint\MBApps.dll
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\MBApps.pdb
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\MBApps.genruntimeconfig.cache
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\ref\MBApps.dll
+D:\Development\MBSys\MBApps\obj\Debug\net8.0\MBApps.sourcelink.json

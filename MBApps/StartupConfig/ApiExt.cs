@@ -11,11 +11,7 @@ namespace MBApps.StartupConfig;
 
 public static class ApiExt
 {
-    public static void AddApiServices(this WebApplicationBuilder builder)
-    {
-        builder.Services.AddSwaggerGen();
-    }
-
+    public static void AddApiServices(this WebApplicationBuilder builder)   {   builder.Services.AddSwaggerGen(); }
     public static void AddApiInjectionServices(this WebApplicationBuilder builder)
     {
         // Core

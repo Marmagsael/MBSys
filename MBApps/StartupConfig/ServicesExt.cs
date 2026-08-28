@@ -10,12 +10,10 @@ public static class ServicesExt
         builder.Services.AddSession();
         builder.Services.AddMemoryCache();
     }
-
     public static void AddInjectServices(this WebApplicationBuilder builder)
     {
         // TODO: Register shared injectable services
     }
-
     public static void AddHttpClient(this WebApplicationBuilder builder)
     {
         string apiAddress = builder.Configuration.GetSection("ApiAddress").Value ?? "https://localhost:22700/api/";
@@ -28,7 +26,6 @@ public static class ServicesExt
         builder.Services.AddScoped(sp =>
             sp.GetRequiredService<IHttpClientFactory>().CreateClient("MBAppsApi"));
     }
-
     public static void AddCors(this WebApplicationBuilder builder)
     {
         builder.Services.AddCors(options =>

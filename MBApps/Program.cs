@@ -1,20 +1,9 @@
 using Blazored.LocalStorage;
 using MBApps.StartupConfig;
 
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.AddServices();
-builder.Services.AddBlazoredLocalStorage();
-builder.AddInjectServices();
-builder.AddHttpClient();
-builder.AddCors();
-builder.AddAuthenticationServices();   // Cookie auth
-builder.Services.AddMBAppsScope();
-
-// API Injection
-builder.AddApiInjectionServices();
-builder.AddApiServices();
+builder.AddMBAppServices();
 
 var app = builder.Build();
 
