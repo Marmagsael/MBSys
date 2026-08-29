@@ -7,6 +7,7 @@ public static class ServicesExt
         builder.Services.AddControllersWithViews();
         builder.Services.AddRazorPages();
         builder.Services.AddServerSideBlazor();
+        builder.Services.AddTelerikBlazor();
         builder.Services.AddSession();
         builder.Services.AddMemoryCache();
     }

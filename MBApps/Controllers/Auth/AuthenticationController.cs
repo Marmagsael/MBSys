@@ -16,36 +16,36 @@ namespace MBApps.Controllers.Auth;
 
 public class AuthenticationController : Controller
 {
-    private readonly IConfiguration _config;
-    private readonly I_00UsersAccess _userAccess;
-    private readonly I_90_001_MySqlDataAccess _mysql;
-    private readonly I_00MainDA _mainDA;
-    private readonly I_00MainPisAccess _mainPis;
-    private readonly I_00MainPisTblMakerAccess _mainPisTblMaker;
-    private readonly I_20_002_PayTblMaker _payTblMaker;
+    private readonly IConfiguration             _config;
+    private readonly I_00UsersAccess            _userAccess;
+    private readonly I_90_001_MySqlDataAccess   _mysql;
+    private readonly I_00MainDA                 _mainDA;
+    private readonly I_00MainPisAccess          _mainPis;
+    private readonly I_00MainPisTblMakerAccess  _mainPisTblMaker;
+    private readonly I_20_002_PayTblMaker       _payTblMaker;
     private readonly I_00UserscompanyDataAccess _userCompany;
-    private readonly I_AcctgTableMaker _acctg;
+    private readonly I_AcctgTableMaker          _acctg;
 
     public AuthenticationController(
-        IConfiguration config,
-        I_00UsersAccess userAccess,
-        I_90_001_MySqlDataAccess mysql,
-        I_00MainDA mainDA,
-        I_00MainPisAccess mainPis,
-        I_00MainPisTblMakerAccess mainPisTblMaker,
-        I_20_002_PayTblMaker payTblMaker,
-        I_00UserscompanyDataAccess userCompany,
-        I_AcctgTableMaker acctg)
+        IConfiguration              config,
+        I_00UsersAccess             userAccess,
+        I_90_001_MySqlDataAccess    mysql,
+        I_00MainDA                  mainDA,
+        I_00MainPisAccess           mainPis,
+        I_00MainPisTblMakerAccess   mainPisTblMaker,
+        I_20_002_PayTblMaker        payTblMaker,
+        I_00UserscompanyDataAccess  userCompany,
+        I_AcctgTableMaker           acctg)
     {
-        _config = config;
-        _userAccess = userAccess;
-        _mysql = mysql;
-        _mainDA = mainDA;
-        _mainPis = mainPis;
+        _config          = config;
+        _userAccess      = userAccess;
+        _mysql           = mysql;
+        _mainDA          = mainDA;
+        _mainPis         = mainPis;
         _mainPisTblMaker = mainPisTblMaker;
-        _payTblMaker = payTblMaker;
-        _userCompany = userCompany;
-        _acctg = acctg;
+        _payTblMaker     = payTblMaker;
+        _userCompany     = userCompany;
+        _acctg           = acctg;
     }
 
 
@@ -96,8 +96,8 @@ public class AuthenticationController : Controller
 
         try
         {
-            var conn = _config.GetSection("Schema:DefConn").Value ?? "MySqlConn";
-            var schema = _config.GetSection("Schema:Main").Value ?? "Main";
+            var conn        = _config.GetSection("Schema:DefConn").Value ?? "MySqlConn";
+            var schema      = _config.GetSection("Schema:Main").Value ?? "Main";
             var isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
 
             // 1). Validate credentials
@@ -109,8 +109,16 @@ public class AuthenticationController : Controller
                 return View("Login", input);
             }
 
+
             // 2). Get User Company
             UserCompanyModel? uc = await _GetUserCompany(user, schema, conn);
+            if (uc is not null)
+            {
+                if(uc.OldPis.Length > 0)
+                {
+                    //var res = await
+                }
+            }
 
             // 3). Create schema/tables if needed
             _CreateSchemaAndTables(uc?.PisSchema, conn);
@@ -196,12 +204,12 @@ public class AuthenticationController : Controller
         var mainPisSchema = _config.GetSection("Schema:MainPis").Value ?? "MainPis";
         EmpmasModel empmas = new()
         {
-            Id = created.Id,
-            EmpLastNm = input.EmpLastNm,
-            EmpFirstNm = input.EmpFirstNm,
-            EmpMidNm = input.EmpMidNm,
-            Suffix = input.Suffix,
-            EmpAlias = input.EmpAlias
+            Id          = created.Id,
+            EmpLastNm   = input.EmpLastNm,
+            EmpFirstNm  = input.EmpFirstNm,
+            EmpMidNm    = input.EmpMidNm,
+            Suffix      = input.Suffix,
+            EmpAlias    = input.EmpAlias
         };
         await _mainPis._01Empmas(empmas, mainPisSchema, conn);
 
@@ -248,21 +256,21 @@ public class AuthenticationController : Controller
 
     public async Task CreateClaims(UsersModel user, UserCompanyModel? uc)
     {
-        var userId = user.Id.ToString() ?? "0";
-        var defCoId = user.DefaultCoId.ToString() ?? "0";
+        var userId          = user.Id.ToString() ?? "0";
+        var defCoId         = user.DefaultCoId.ToString() ?? "0";
 
-        var prefix = $"U{userId}C{uc?.Id ?? 1}";
-        var pisSchema = uc?.PisSchema ?? prefix + "Pis";
-        var paySchema = uc?.PaySchema ?? prefix + "Pay";
-        var acctgSchema = prefix + "Acctg";
-        var appSchema = uc?.ApplicantSchema ?? prefix + "App";
-        var amsSchema = uc?.AmsSchema ?? prefix + "Ams";
-        var coName = uc?.CompanyName ?? string.Empty;
+        var prefix          = $"U{userId}C{uc?.Id ?? 1}";
+        var pisSchema       = uc?.PisSchema ?? prefix + "Pis";
+        var paySchema       = uc?.PaySchema ?? prefix + "Pay";
+        var acctgSchema     = prefix + "Acctg";
+        var appSchema       = uc?.ApplicantSchema ?? prefix + "App";
+        var amsSchema       = uc?.AmsSchema ?? prefix + "Ams";
+        var coName          = uc?.CompanyName ?? string.Empty;
 
-        var schemaMain = _config.GetSection("Schema:Main").Value ?? "Main";
-        var schemaMainPis = _config.GetSection("Schema:MainPis").Value ?? "MainPis";
-        var isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
-        var conn = user.Domain ?? "MySqlConn";
+        var schemaMain      = _config.GetSection("Schema:Main").Value ?? "Main";
+        var schemaMainPis   = _config.GetSection("Schema:MainPis").Value ?? "MainPis";
+        var isExclusive     = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
+        var conn            = user.Domain ?? "MySqlConn";
 
         await HttpContext.SignOutAsync();
 
@@ -282,8 +290,8 @@ public class AuthenticationController : Controller
             new("SchemaUserApp",      appSchema),
             new("CoName",             coName),
             new("OempNumber",         user.Empnumber  ?? string.Empty),
-            new("OpisDb",             user.OldPis     ?? string.Empty),
-            new("OpayDb",             user.OldPay     ?? string.Empty),
+            new("OpisDb",             uc.OldPis       ?? string.Empty),
+            new("OpayDb",             uc.OldPay       ?? string.Empty),
             new("Conn",               conn),
             new("ConnNoDb",           "MySqlConnNoDb"),
             new("ConnPay",            conn),
@@ -291,7 +299,6 @@ public class AuthenticationController : Controller
             new("ConnAcctg",          conn),
             new("IsExclusiveCompany", isExclusive)
         };
-
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
         await HttpContext.SignInAsync(claimPrincipal);

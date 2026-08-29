@@ -4,7 +4,7 @@ using MBApiLibrary.Models._00_Main;
 using MBApps.StartupConfig;
 
 
-namespace HRMvc.StartupConfig;
+namespace MBApps.StartupConfig;
 
 public class UserClaimsContextService
 {

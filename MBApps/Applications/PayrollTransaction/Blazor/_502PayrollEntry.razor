@@ -1,0 +1,147 @@
+﻿@using MBApiLibrary.Models._00_Main
+@using MBApiLibrary.Models._20_Pay
+@using MBApiLibrary.DataAccess._90_Utils;
+@using MBApps.Applications.PayrollTransaction.Blazor._502
+@using MBApps.Applications._00GeneralComponents.BodyComponents
+@using Radzen
+@using MBApiLibrary.DataAccess._20_Pay.OPay
+
+@using MBApps.Applications.PayrollTransaction.Vars
+
+@inject NotificationService NotificationService
+
+<style>
+    .l-content { flex: 1; min-height: 0; overflow-y: auto; background-color: white; }
+    .r-content { width: 250px; flex-shrink: 0; }
+</style>
+
+<CascadingValue Value="Uc" IsFixed="true">
+    <CascadingValue Value="V0502">
+        <CascadingValue Value="NotifyV0502Changed">
+            <TelerikRootComponent>
+            
+        <div class="card body-content ">
+
+            @if(V0502.ShowNewTransaction==true) { <_502_NewTransaction /> }
+
+            <div>Show Transaction: @V0502.ShowNewTransaction</div>
+
+            <BodyHdr pageTitle="Payroll Entry" />
+
+            <_502_buttons />
+            <_502_shdr />
+
+            <div class="d-flex gap-1 w-100 p-1" style="max-width: 100%;">
+                @* --- Manhour Entry ------------------------------ *@
+                <div class="l-content bordered p-1">
+
+                    @* <GridSample /> *@
+                    <_502_manhour />
+
+                </div>
+
+                @* --- Figure Display ------------------------------ *@
+                <div class="r-content bordered p-1">
+                    <_502_figures />
+
+            
+                </div>
+            </div>
+
+
+    
+
+        </div>
+        </TelerikRootComponent>
+    </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+    
+@inject IOChartofacctDataAccess _coa; 
+
+
+@code {
+    [Parameter] public UserClaimsModel? Uc { get; set; }
+    private async Task NotifyV0502Changed() { await InvokeAsync(StateHasChanged); }
+
+    V0502 V0502 = new V0502();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // SetTestData();
+        await LoadInitialData();
+    }
+
+    private void SetTestData()
+    {
+        V0502.Paymaindtls = new List<PaymaindtlModel?>
+        {
+            new PaymaindtlModel { Empmasid = 1, EmpName = "Mar Lopez Magsael",   Daywrk = 20.5, Rot = 164.0 },
+            new PaymaindtlModel { Empmasid = 2, EmpName = "John Doe",            Daywrk = 18.0, Rot = 144.0 },
+            new PaymaindtlModel { Empmasid = 3, EmpName = "Jane Smith",          Daywrk = 22.0, Rot = 176.0 }
+        };
+    }
+
+    async Task LoadInitialData() {
+
+        // --- Years -----------------------------
+        var yrs = MsdsDataAccess.GetYears(3); 
+        if(V0502.Years.Count < 1) {
+            V0502.Years = []; 
+            foreach(var yr in yrs)  {   V0502.Years.Add( new(){Year=yr.Year, Name=yr.Name }); }
+        }
+
+        // --- Months-------------------------------
+        var mos = MsdsDataAccess.GetMonths(); 
+        if(V0502.Months.Count < 1) {
+            V0502.Months = []; 
+            foreach(var mo in mos)
+            {
+                int     id      = mo?.Month ?? 0 ; 
+                string  code    = id.ToString().Trim(); 
+
+                V0502.Months.Add(new()
+                {
+                    Id          = id, 
+                    Code        = code, 
+                    MonthName   = mo.Name ?? ""
+                }); 
+            }
+        }
+
+        //--- Periods -----------------------------------------------------------------------
+        if(V0502.Periods.Count < 1)
+        {
+            V0502.Periods = []; 
+            V0502.Periods.Add( new() {   Id = 1, PdNumber = "01", PdName = "Prd 1" } ); 
+            V0502.Periods.Add( new() {   Id = 2, PdNumber = "02", PdName = "Prd 2" } ); 
+            V0502.Periods.Add( new() {   Id = 3, PdNumber = "03", PdName = "Prd 3" } ); 
+            V0502.Periods.Add( new() {   Id = 4, PdNumber = "04", PdName = "Prd 4" } ); 
+            V0502.Periods.Add( new() {   Id = 5, PdNumber = "05", PdName = "Prd 5" } ); 
+
+        }
+
+        //--- COA --------------------------------------------------------------------------
+        int coaCnt = V0502.AccountsAll?.Count ?? 0; 
+        if( coaCnt < 1 )
+        {
+            V0502.AccountsAll = []; 
+            
+            var coas          = await _coa._02s(Uc.OpayDb, Uc.Conn); 
+            V0502.AccountsAll  = coas; 
+
+            int ctr = 0 ; 
+            foreach(var c in coas)
+            {
+                if ((c?.AcctType ?? "") == "E" && (c?.HasRateOverBasic ?? "") == "1" )
+                {
+                    ctr++; 
+                    V0502PayAccountModel coa = new() { No=ctr, IsSelected=false, AcctNumber=c.AcctNumber, AcctName= c.AcctName, ShortDesc = c.ShortDesc };
+                    V0502.AccountSelecteds.Add(coa); 
+                }
+            }
+        }
+    }
+
+ 
+}

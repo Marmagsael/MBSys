@@ -1,0 +1,43 @@
+@using MBApiLibrary.DataAccess._20_Pay.OPay
+@using MBApiLibrary.Models._00_Main
+@using MBApps.Applications.PayrollTransaction.Vars 
+
+
+<_00Modal ModuleCaption="New Payroll Entry" ChildAction="CloseModal" >
+    <Content>
+        
+        <_502_NewTransaction_Hdr /> 
+        <_502_NewTransaction_Details />
+
+        
+
+    </Content>
+</_00Modal>
+
+@inject IOPayrollgrpDataAccess _payrollgrp;
+
+@code {
+    [CascadingParameter] public UserClaimsModel         Uc                  { get; set; } = new();
+    [CascadingParameter] public V0502?                  V0502               { get; set; } = new();
+    [CascadingParameter] public Func<Task>?             NotifyV0502Changed  { get; set; }
+    
+    
+
+    
+    protected override async Task OnParametersSetAsync()     { await LoadInitialDatas(); }
+    async Task LoadInitialDatas()
+    {
+        if(V0502.Payrollgrps?.Count < 1)
+        {
+            var res = await _payrollgrp._02(Uc.OpayDb, Uc.Conn);
+            if (res.Count > 0) V0502.Payrollgrps = res!;
+        }
+    }
+
+    async Task CloseModal()
+    {
+        V0502.ShowNewTransaction = false;
+        await NotifyV0502Changed?.Invoke();
+    }
+
+}

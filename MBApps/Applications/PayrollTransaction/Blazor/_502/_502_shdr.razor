@@ -1,0 +1,14 @@
+@using MBApps.Applications.PayrollTransaction.Vars
+<div class="w-100 p-2  bg-white bordered-bottom ">
+    <div class=" d-flex gap-2 mt-2  ">
+        <div class="fw-bold small">PAYROLL CODE : </div> @V0502.TRN 
+        <div class="fw-bold small">PAYROLL GROUP : </div> @V0502.PayrollgrpCode - @V0502.PayrollgrpName
+        <div class="fw-bold small">PAYROLL PERIOD : </div> @V0502.Period
+    </div>
+</div>
+
+@code {
+    @* [Parameter] public UserClaimsModel? UserClaims { get; set; } *@
+    [CascadingParameter]    public  V0502? V0502 { get; set; } = new();
+
+}

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Development\\MBSys\\mbapps\\MBApps.csproj": {}
+    "D:\\Development\\MBSys\\MBApps\\MBApps.csproj": {}
   },
   "projects": {
     "D:\\Development\\MBSys\\MBApiLibrary\\MBApiLibrary.csproj": {
@@ -17,6 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\Development\\MBSys\\NuGet.Config",
           "C:\\Users\\marma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -27,12 +28,12 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\marma\\AppData\\Roaming\\Telerik\\Updates\\telerik.ui.for.blazor.hotfix.15.0.1": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -51,7 +52,6 @@
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Dapper": {
@@ -102,19 +102,20 @@
         }
       }
     },
-    "D:\\Development\\MBSys\\mbapps\\MBApps.csproj": {
+    "D:\\Development\\MBSys\\MBApps\\MBApps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\MBSys\\mbapps\\MBApps.csproj",
+        "projectUniqueName": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
         "projectName": "MBApps",
-        "projectPath": "D:\\Development\\MBSys\\mbapps\\MBApps.csproj",
+        "projectPath": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
         "packagesPath": "C:\\Users\\marma\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\MBSys\\mbapps\\obj\\",
+        "outputPath": "D:\\Development\\MBSys\\MBApps\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+          "D:\\Development\\MBSys\\NuGet.Config",
           "C:\\Users\\marma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -125,12 +126,12 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Users\\marma\\AppData\\Roaming\\Telerik\\Updates\\telerik.ui.for.blazor.hotfix.15.0.1": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.telerik.com/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
               "D:\\Development\\MBSys\\MBApiLibrary\\MBApiLibrary.csproj": {
@@ -153,9 +154,12 @@
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "Blazilla": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
             "Blazored.LocalStorage": {
               "target": "Package",
               "version": "[4.5.0, )"
@@ -195,6 +199,22 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "Telerik.Reporting.AI.Microsoft.Extensions.Abstractions": {
+              "target": "Package",
+              "version": "[20.2.26.812, )"
+            },
+            "Telerik.Reporting.OpenXmlRendering": {
+              "target": "Package",
+              "version": "[20.2.26.812, )"
+            },
+            "Telerik.Reporting.Services.AspNetCore": {
+              "target": "Package",
+              "version": "[20.2.26.812, )"
+            },
+            "Telerik.UI.for.Blazor": {
+              "target": "Package",
+              "version": "[15.0.1, )"
             }
           },
           "imports": [

@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Development\\MBSys\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\mbappserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\mbappserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\library\\_0502services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\library\\_0502services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 104,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -95,32 +86,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_0502Services.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T03:15:14.916Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MBAppServiceExtensions.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T02:46:00.851Z",
-              "EditorCaption": ""
             }
           ]
         },

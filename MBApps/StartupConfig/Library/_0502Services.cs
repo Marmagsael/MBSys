@@ -8,8 +8,7 @@ public static class _0502Services
     public static IServiceCollection Add0502Scope(this IServiceCollection services)
     {
 
-        services.AddScoped<IDeviationDataAccess, DeviationDataAccess>();
-
+        
 
         return services; 
     }

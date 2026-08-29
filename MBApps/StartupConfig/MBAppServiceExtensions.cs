@@ -1,11 +1,13 @@
 ﻿using Blazored.LocalStorage;
 using MBApps.StartupConfig.Library;
 
-namespace MBApps.StartupConfig; 
+namespace MBApps.StartupConfig;
 
 public static class MBAppServiceExtensions
 {
-    public static WebApplicationBuilder AddMBAppServices(this WebApplicationBuilder builder) 
+    public static WebApplicationBuilder AddMBAppServices(
+        this WebApplicationBuilder builder,
+        IWebHostEnvironment builderEnvironment)
     {
         builder.AddServices();
         builder.AddInjectServices();
@@ -28,9 +30,7 @@ public static class MBAppServiceExtensions
         //--- Library Service --------------------------
         builder.Services.Add0502Scope();
 
-
-
-
+        builder.Services.Add00000OtherScope(builderEnvironment);
         return builder;
     }
 }

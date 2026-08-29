@@ -1,0 +1,47 @@
+﻿@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using System.IO
+
+@using MBApiLibrary.Models._00_Main;
+@using MBApiLibrary.Models._00_MainPis;
+@using MBApiLibrary.DataAccess._00_Main;
+@using MBApiLibrary.DataAccess._00_Login;
+@using MBApiLibrary.Models._20_Pay.Report
+@using MBApiLibrary.DataAccess._10_Pis.OPis
+@using MBApiLibrary.DataAccess._20_Pay.Report
+@* @using MBApiLibrary.DataAccess._20_Pay_Report *@
+@using MBApiLibrary.Models._20_PayGeneric
+
+@* @using MBApps.Models.Report_Pay; *@
+@using MBApps.Applications.Vars
+@using MBApps.Applications._00GeneralComponents
+@using MBApps.Applications.PayrollReport.Views.Blazor.Components; 
+
+@* @using MBApps.Models.Report_PIS *@
+
+
+@*--------------HttpClient-----------------------*@
+@using Newtonsoft.Json;
+@using System.Net.Http.Headers;
+
+
+@*------------------ Radzen ---------------------*@
+@using Radzen
+@using Radzen.Blazor
+
+@*------------------ Telerik ---------------------*@
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using Telerik.FontIcons
+@using Telerik.DataSource
+
+@*------------------ Other ---------------------*@
+@using B = Blazorise @* Aliased to avoid tag collisions with Telerik. Use as <B.Card>, <B.Button>. *@
+@using FluentValidation
+@using Blazilla

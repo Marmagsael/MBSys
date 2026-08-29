@@ -30,8 +30,8 @@ D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.GeneratedMSBuild
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.AssemblyInfoInputs.cache
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.AssemblyInfo.cs
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.csproj.CoreCompileInputs.cache
+D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.sourcelink.json
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.dll
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\refint\MBApiLibrary.dll
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.pdb
 D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\ref\MBApiLibrary.dll
-D:\Development\MBSys\MBApiLibrary\obj\Debug\net8.0\MBApiLibrary.sourcelink.json

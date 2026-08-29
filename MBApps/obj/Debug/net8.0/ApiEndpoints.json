@@ -1,0 +1,136 @@
+[
+  {
+    "ContainingType": "MBApps.Controllers.PayrollTransactionController",
+    "Method": "Report",
+    "RelativePath": "13T/{reportCode}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportCode",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "ChangeCompany",
+    "RelativePath": "changingclaims/{userCompanyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCompanyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "Login",
+    "RelativePath": "login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "LoginPost",
+    "RelativePath": "login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LoginName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "Logout",
+    "RelativePath": "logout",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "Register",
+    "RelativePath": "register",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MBApps.Controllers.Auth.AuthenticationController",
+    "Method": "RegisterPost",
+    "RelativePath": "register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "LoginName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpLastNm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpFirstNm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpMidNm",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Suffix",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmpAlias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

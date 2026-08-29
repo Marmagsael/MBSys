@@ -1,9 +1,7 @@
-using Blazored.LocalStorage;
 using MBApps.StartupConfig;
 
-
 var builder = WebApplication.CreateBuilder(args);
-builder.AddMBAppServices();
+builder.AddMBAppServices(builder.Environment);
 
 var app = builder.Build();
 

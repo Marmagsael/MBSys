@@ -1,0 +1,91 @@
+@using MBApps.Applications.PayrollTransaction.Vars
+
+<div class="p-1 bordered-bottom d-flex gap-1 ">
+
+    <div @onclick="NewTransaction" class="card p-2 w-75p text-center h-35p mb-btn mb-btn-gray mb-tooltip">
+        <span class="tooltip-text">New Transaction</span>
+        <i class="fa-solid fa-file-circle-plus fa-lg txt-blue"></i> 
+    </div>
+
+    <div class="card p-2 w-65p text-center h-35p mb-btn mb-btn-gray mb-tooltip @cssSave">
+        <span class="tooltip-text">Save Transaction</span>
+        <i class="fa-solid fa-floppy-disk fa-lg txt-fcolor1"></i>
+    </div>
+    
+    <div class="bordered-right"></div>
+
+    <div class="card p-2 w-50p text-center h-35p mb-btn mb-btn-green mb-tooltip @cssProcess">
+        <span class="tooltip-text">Process Transaction</span>
+        <i class="fa-solid fa-gears fa-lg  txt-fcolor1"></i>
+    </div>
+
+    <div class="card p-2 w-50p text-center h-35p mb-btn mb-btn-gray mb-tooltip @cssLock">
+        <span class="tooltip-text">Lock Transaction</span>
+        <i class="fa-solid fa-lock txt-maroon"></i>
+    </div>
+
+    <div class="bordered-right"></div>
+
+    @* --- Employee -------------------------- *@
+    <div class="card p-2 w-50p text-center h-35p mb-btn mb-btn-gray mb-tooltip @cssAddEmployee ">
+        <span class="tooltip-text">Add Employee</span>
+        <i class="fa-solid fa-user-plus fa-lg txt-blue"></i>
+    </div>
+
+    <div class="card p-2 w-50p text-center h-35p mb-btn mb-btn-gray mb-tooltip @cssRemoveEmployee">
+        <span class="tooltip-text">Remove Selected Employee</span>
+        <i class="fa-solid fa-user-minus fa-lg txt-blue"></i>
+    </div>
+
+    <div class="bordered-right"></div>
+
+    @* --- Excel -------------------------- *@
+    <div class="card p-2 w-90p text-center h-35p mb-btn mb-btn-green d-flex mb-tooltip @cssCreateExcel">
+        <span class="tooltip-text">Create Excel File</span>
+        <div class="d-flex gap-1">
+            <div class="txt-green"><i class="fa-solid fa-file-excel fa-lg"></i></div>
+            <div> Create </div>
+        </div>
+    </div>
+
+    <div class="card p-2 w-90p text-center h-35p mb-btn mb-btn-green d-flex mb-tooltip">
+        <span class="tooltip-text">Upload Excel File</span>
+        <div class="d-flex gap-1">
+            <div class="txt-green"><i class="fa-solid fa-file-excel fa-lg"></i></div>
+            <div> Upload </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@code {
+    @* [Parameter] public UserClaimsModel? UserClaims { get; set; } *@
+    [CascadingParameter]    public  V0502?       V0502                { get; set; } = new();
+    [CascadingParameter]    public Func<Task>?  NotifyV0502Changed   { get; set; }
+
+    bool isProcessed    = false;
+    bool isLocked       = false;
+
+    string? cssSave             => V0502?.TRN=="YYMMPP-00000" ? " disabled-div " : " "; 
+    string? cssProcess          => V0502?.TRN == "YYMMPP-00000" ? " disabled-div " : "";
+    string? cssLock             => (isProcessed && V0502.TRN != "YYMMPP-00000" && V0502.Paymaindtls?.Any() == true) ? "" : "  disabled-div ";
+    string? cssAddEmployee      => (V0502.TRN != "YYMMPP-00000" && isLocked==false) ? "" : "  disabled-div ";
+    string? cssRemoveEmployee   => !(selectedEmployee > 0 || V0502.TRN != "YYMMPP-00000") ? " disabled-div " : "";
+    string? cssCreateExcel      => V0502?.TRN=="YYMMPP-00000" ? " disabled-div " : " "; 
+    @* selectedEmployee < 1 ||  *@
+    int? selectedEmployee => V0502.Paymaindtls?.Count(p => p.IsSelected == true);
+
+    async Task NewTransaction()
+    {
+        V0502.TRN = "YYMMPP-00000";
+        V0502.ShowNewTransaction = true;
+        V0502.Paymaindtls = []; 
+        await NotifyV0502Changed?.Invoke();
+        StateHasChanged();
+    }
+
+
+}

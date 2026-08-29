@@ -7,3 +7,26 @@
     <h2>MBApps</h2>
     <p>Welcome to MBApps — Hybrid MVC + Blazor Server</p>
 </div>
+
+
+
+
+
+<div>--------------------</div>
+
+<div class="mt-4">
+    <div class="card">
+
+        <div class="card-header bg-black text-white w-100 p-1">This is HOME Page</div>
+
+        <div class="card-body">
+            <ul>
+                @foreach (var user in User.Claims)
+                {
+                    <li>@user.Type : @user.Value </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>

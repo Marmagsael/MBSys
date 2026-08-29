@@ -595,8 +595,7 @@ public class _00MainDA : I_00MainDA
     }
     public async Task<UsersModel?> _02UsersLoginLoginName(string? loginName, string? password, string? schema = "Main", string? conn = "MySqlConn")
     {
-        string? sql = $@" select  * from {schema}.Users e 
-                         where e.LoginName = @LoginName and Password = sha2(@Password,512)";
+        string? sql = $@" select  * from {schema}.Users e where e.LoginName = @LoginName and Password = sha2(@Password,512)";
         var data = await _sql.FetchData<UsersModel?, dynamic>(sql, new { LoginName = loginName, Password = password }, conn);
         return data?.FirstOrDefault();
     }
