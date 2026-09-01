@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "Azure.AI.OpenAI/2.7.0-beta.2": {
@@ -11020,7 +11020,7 @@
       ]
     },
     "Telerik.AI.SmartComponents.Extensions/2.2.1": {
-      "sha512": "ZDJaD+b7ZHwRXxPmxZ3c/5qAD/s+hdsIS4XyPBddyOjpP2k90w2/B8gDeb3ZB35MhBk6ppkGt6UoAfS+Z1LHSA==",
+      "sha512": "Hy14NImw7yUTVw8sY377YvwSaYjaSg5FHFLyw1iA7unqxRrKrCzuF0fQHRTd7O9KG43x83vjwrcZx2+mGpYxjQ==",
       "type": "package",
       "path": "telerik.ai.smartcomponents.extensions/2.2.1",
       "files": [
@@ -11036,7 +11036,7 @@
       ]
     },
     "Telerik.DataSource/4.1.0": {
-      "sha512": "SADCCHerpomgkgqT1jxmpxqQAMDn8+vZMH+Ac/H264F6Afe2Ry8SzYtgCL2o1WnzAw7gzS5G0g8G/Va9tspgNQ==",
+      "sha512": "mQC7jT4/CBdNaLf2gO4JF2k21amuqN13DEEgB/Oad6ccNhgJ/i+85rHPZihJzgRsacal9FH5By1MMvCsY686ZQ==",
       "type": "package",
       "path": "telerik.datasource/4.1.0",
       "files": [
@@ -11053,7 +11053,7 @@
       ]
     },
     "Telerik.Documents.Core/2026.3.810": {
-      "sha512": "tGVEx4bszMpgIzLsugPMKQhlKl9Ggatml3kET7w/QLljx8UXOxfMdEXhc5PsP2Nqf+NVKbEn7lqoozW6NFXz7g==",
+      "sha512": "NDrS4HDCti2ylagZlW+dHccS1gVrjBcIJDxQ4XXTDU2wp6sO8jWjqRiPLn24oDuOVKR036gBoEuV5a9S4lB57A==",
       "type": "package",
       "path": "telerik.documents.core/2026.3.810",
       "files": [
@@ -11074,7 +11074,7 @@
       ]
     },
     "Telerik.Documents.Fixed/2026.3.810": {
-      "sha512": "jmkvB6nvXRRarj/S2RHUzQuPjkROM9cdRNFh4dRKfjkYiWvrZC7lHnWLgat2tCxU/IlX2x2kSzECRUzhvvWTAw==",
+      "sha512": "1nn1Nd0g9QQ2LeHl/KOkgkSb87O76HSk1sEcrwrIFR8fUARPq90BdNXYj0IIarA8Wm5Yq5a81gL02NksyTzLdw==",
       "type": "package",
       "path": "telerik.documents.fixed/2026.3.810",
       "files": [
@@ -11095,7 +11095,7 @@
       ]
     },
     "Telerik.Documents.Spreadsheet/2026.3.810": {
-      "sha512": "N0JM8EPt9f/Svd2my0bdHDmlkl08/njEK6da998K5UhRcoIBICiTFKoQTaINlWNvAQ0nSDN0Qn4deHmkbRaSdw==",
+      "sha512": "70fyi5P8o/3E3GpS0LkCJWD/Y2AHF6L2Depd5KqnXdHPXGoYI4j/dtz/x/eGxjSnfsTpkbY4MCagviC62Gb4rA==",
       "type": "package",
       "path": "telerik.documents.spreadsheet/2026.3.810",
       "files": [
@@ -11116,7 +11116,7 @@
       ]
     },
     "Telerik.Documents.Spreadsheet.FormatProviders.Pdf/2026.3.810": {
-      "sha512": "UoEEKt3bCz391/JzO/WsDpJGimyp+j8r4nXswP8K3ZFgJ85SzhSwMLfUaFn7TYpg/tYtJtIMMgkzOqwly6xSIg==",
+      "sha512": "tsp89MK7UIOTPhxX8TJ/RmAGusxF/bFQ36rYDSo8O/F/kxTPid3IEdcbeHP+sDihEdytAEN8vyCXrVQtXVpdzA==",
       "type": "package",
       "path": "telerik.documents.spreadsheet.formatproviders.pdf/2026.3.810",
       "files": [
@@ -11137,7 +11137,7 @@
       ]
     },
     "Telerik.Documents.SpreadsheetStreaming/2026.3.810": {
-      "sha512": "yUn6b3gI9CXClmH6fWZhMVBYD2xc5hpajLbJeWk/nRD/xsG29l6ZSM9nW/lnwRHbq8okohkEfrI33V90fICLNw==",
+      "sha512": "JPq2XhVwUFJgBYqHgeOKxaoDzPtrrCK1B/k3OwVroUjc2idpX64P5EY7yPzXxuRpwcqXNgkXNIyShyaQTSwIxQ==",
       "type": "package",
       "path": "telerik.documents.spreadsheetstreaming/2026.3.810",
       "files": [
@@ -11171,7 +11171,7 @@
       ]
     },
     "Telerik.Licensing/1.9.1": {
-      "sha512": "NqY1h9tKSiu5Sh3n/fXRdVrt5qog14RBMlDcrY1MPP7Ku/XvdqnSoKx6b23GV+K/iBPr3EnfSby/6qudyiqGFg==",
+      "sha512": "RWd+MqNaSzYowRbxQThj23n6mJFGiSOvGw1KgQnzzAT+aOjug8DLzCpvuo5KCqiookVICLZFuSaAGYLRZI+KrA==",
       "type": "package",
       "path": "telerik.licensing/1.9.1",
       "files": [
@@ -11240,7 +11240,7 @@
       ]
     },
     "Telerik.Pivot.Core/1.0.0": {
-      "sha512": "3+Zu8yafzViT3hni6YA4dvYxFSZ3LU0V+Ut3J5mCNGKocJb3asUmE1DkABi0HBakjTxGRE8HIcokXVFb7ynDwQ==",
+      "sha512": "qySZDDAyTEOH+XyokKduuRNperwWtTeducmsWwG1VCou/No8Prb7/nHyszhqIFlb6olwZI0E6dKS/ht37gUBgg==",
       "type": "package",
       "path": "telerik.pivot.core/1.0.0",
       "files": [
@@ -11255,7 +11255,7 @@
       ]
     },
     "Telerik.Pivot.DataProviders.Xmla/1.0.0": {
-      "sha512": "tMywP0STwlVzlCnSJycdNTVrEkyHVQ2Us9u3RK6Emk3IyUriejYN2Ptd9dSeqMhk3weqftbFulsqR10Q55KnDA==",
+      "sha512": "CH4Ln1dzZut2+rS1cuGrEfrnKcqMSDxPzwgoZnlJNF4r9eVrevOBqDAgjNjQTvzXucwuN+ZEFxe2nHt7itfpog==",
       "type": "package",
       "path": "telerik.pivot.dataproviders.xmla/1.0.0",
       "files": [
@@ -11271,7 +11271,7 @@
       ]
     },
     "Telerik.Recurrence/1.0.0": {
-      "sha512": "/eBwDTsXJePsTDXwwU4/mkBMoHuVGeC0CgLjS86r5OQ3UfpGkVg4XwNxdSX8LU7FzcRQzjuA2b/X+VvynPJMvw==",
+      "sha512": "I49uPCs0jmm5+dwVW1JwEBGiD0lb1LZ27NydZFUAWtQfV3bIuJKXoyjesyZaHconGroeZm6oaGXMJJoVseJUOw==",
       "type": "package",
       "path": "telerik.recurrence/1.0.0",
       "files": [
@@ -11385,7 +11385,7 @@
       ]
     },
     "Telerik.UI.for.Blazor/15.0.1": {
-      "sha512": "2TvgBk+8oreKG/mFC56FvdscCqhsx/KQbD+eSR3jSDXoHX9W6BHp5BpGU30guILkD+HtKVrW0DNUnZ15S3zMaw==",
+      "sha512": "e/uFohTGYd546Sh6ecJu3lQY11WcIGnljU3/eZ32NSB6owyUcxR+SHUvc3wfQKuufP9Ja8axz/NXX0QpbU4zDw==",
       "type": "package",
       "path": "telerik.ui.for.blazor/15.0.1",
       "files": [
@@ -11416,7 +11416,7 @@
       ]
     },
     "Telerik.Zip/2026.3.810": {
-      "sha512": "Q5XukOsMYw8lSsZ5Q1tzRM5FiVMXG91zMUefD6dHCE3pfXElEdL6HoLq+mU05NRUYQIbYKkXuu7nZeXluaba8g==",
+      "sha512": "6dv7Ap5m2uWOHdg+bTk1zg4ZzGamB71XODGHy3qSbolZ66r4fMB+cFtyX9/b380nAFs/oX1VlAOcahiO/jmgzw==",
       "type": "package",
       "path": "telerik.zip/2026.3.810",
       "files": [
@@ -11483,35 +11483,43 @@
     ]
   },
   "packageFolders": {
-    "/Users/marmagsael/.nuget/packages/": {}
+    "C:\\Users\\marma\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/marmagsael/Development/MBSys/MBApps/MBApps.csproj",
+      "projectUniqueName": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
       "projectName": "MBApps",
-      "projectPath": "/Users/marmagsael/Development/MBSys/MBApps/MBApps.csproj",
-      "packagesPath": "/Users/marmagsael/.nuget/packages/",
-      "outputPath": "/Users/marmagsael/Development/MBSys/MBApps/obj/",
+      "projectPath": "D:\\Development\\MBSys\\MBApps\\MBApps.csproj",
+      "packagesPath": "C:\\Users\\marma\\.nuget\\packages\\",
+      "outputPath": "D:\\Development\\MBSys\\MBApps\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/marmagsael/Development/MBSys/NuGet.Config",
-        "/Users/marmagsael/.nuget/NuGet/NuGet.Config"
+        "D:\\Development\\MBSys\\NuGet.Config",
+        "C:\\Users\\marma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.telerik.com/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/marmagsael/Development/MBSys/MBApiLibrary/MBApiLibrary.csproj": {
-              "projectPath": "/Users/marmagsael/Development/MBSys/MBApiLibrary/MBApiLibrary.csproj"
+            "D:\\Development\\MBSys\\MBApiLibrary\\MBApiLibrary.csproj": {
+              "projectPath": "D:\\Development\\MBSys\\MBApiLibrary\\MBApiLibrary.csproj"
             }
           }
         }
@@ -11526,10 +11534,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.400"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Blazilla": {
@@ -11604,20 +11613,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.osx-arm64",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11626,7 +11621,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

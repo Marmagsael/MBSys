@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "D:\\Development\\MBSys\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\controllers\\auth\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\controllers\\auth\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|d:\\development\\mbsys\\mbapilibrary\\dataaccess\\_00_main\\_00mainda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|solutionrelative:mbapilibrary\\dataaccess\\_00_main\\_00mainda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\mbappserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\mbappserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\library\\_0502services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\library\\_0502services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_11002stdworkinghoursschedule.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_11002stdworkinghoursschedule.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -107,39 +95,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Controllers\\Auth\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "MBApps\\Controllers\\Auth\\AuthenticationController.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Controllers\\Auth\\AuthenticationController.cs",
-              "RelativeToolTip": "MBApps\\Controllers\\Auth\\AuthenticationController.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAgwB4AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T10:21:33.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_0502Services.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\_0502Services.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\Library\\_0502Services.cs",
+              "Title": "_11002StdWorkingHoursSchedule.razor",
+              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11002StdWorkingHoursSchedule.razor",
+              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_11002StdWorkingHoursSchedule.razor",
+              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11002StdWorkingHoursSchedule.razor",
+              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_11002StdWorkingHoursSchedule.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T03:15:14.916Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MBAppServiceExtensions.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\MBAppServiceExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T02:46:00.851Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-01T08:20:16.571Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -178,40 +142,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f2777f1d-c528-410f-ba72-e6e2b0234020",
-        "Display": 0,
-        "X": -198,
-        "Y": 212,
-        "Width": 1681,
-        "Height": 950,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_00MainDA.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApiLibrary\\DataAccess\\_00_Main\\_00MainDA.cs",
-              "RelativeDocumentMoniker": "MBApiLibrary\\DataAccess\\_00_Main\\_00MainDA.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApiLibrary\\DataAccess\\_00_Main\\_00MainDA.cs",
-              "RelativeToolTip": "MBApiLibrary\\DataAccess\\_00_Main\\_00MainDA.cs",
-              "ViewState": "AgIAAEECAAAAAAAAAAAtwFUCAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T11:38:53.553Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -412,17 +412,17 @@
           "runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "6.2.0.0"
           },
           "runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "6.2.0.0"
           },
           "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "6.2.0.0"
           }
         }
       },
@@ -799,7 +799,7 @@
           "runtimes/win-arm64/native/onnxruntime.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-arm64/native/onnxruntime.lib": {
             "rid": "win-arm64",
@@ -809,7 +809,7 @@
           "runtimes/win-arm64/native/onnxruntime_providers_shared.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-arm64/native/onnxruntime_providers_shared.lib": {
             "rid": "win-arm64",
@@ -819,7 +819,7 @@
           "runtimes/win-x64/native/onnxruntime.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-x64/native/onnxruntime.lib": {
             "rid": "win-x64",
@@ -829,7 +829,7 @@
           "runtimes/win-x64/native/onnxruntime_providers_shared.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-x64/native/onnxruntime_providers_shared.lib": {
             "rid": "win-x64",
@@ -839,7 +839,7 @@
           "runtimes/win-x86/native/onnxruntime.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-x86/native/onnxruntime.lib": {
             "rid": "win-x86",
@@ -849,7 +849,7 @@
           "runtimes/win-x86/native/onnxruntime_providers_shared.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "1.20.24.1119"
           },
           "runtimes/win-x86/native/onnxruntime_providers_shared.lib": {
             "rid": "win-x86",
@@ -895,7 +895,7 @@
           "runtimes/win-arm64/native/onnxruntime-genai.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "0.5.2.0"
           },
           "runtimes/win-arm64/native/onnxruntime-genai.lib": {
             "rid": "win-arm64",
@@ -905,7 +905,7 @@
           "runtimes/win-x64/native/onnxruntime-genai.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "0.5.2.0"
           },
           "runtimes/win-x64/native/onnxruntime-genai.lib": {
             "rid": "win-x64",
@@ -1056,27 +1056,27 @@
           "runtimes/win-x64/native/comerr64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/gssapi64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/k5sprt64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/krb5_64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.3.0.1"
           },
           "runtimes/win-x64/native/krbcc64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.3.0.1"
           }
         }
       },
@@ -1141,7 +1141,7 @@
           "runtimes/win-arm64/native/sni.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.6.25512.1"
           }
         }
       },
@@ -1150,7 +1150,7 @@
           "runtimes/win-x64/native/sni.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.6.25512.1"
           }
         }
       },
@@ -1159,7 +1159,7 @@
           "runtimes/win-x86/native/sni.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.6.25512.1"
           }
         }
       },
@@ -1381,17 +1381,17 @@
           "runtimes/win-arm64/native/e_sqlite3.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "3.53.3.0"
           },
           "runtimes/win-x64/native/e_sqlite3.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "3.53.3.0"
           },
           "runtimes/win-x86/native/e_sqlite3.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "3.53.3.0"
           }
         }
       },
@@ -1533,7 +1533,7 @@
             "rid": "win",
             "assetType": "runtime",
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.1125.51716"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
             "rid": "win",
@@ -1900,7 +1900,7 @@
         "runtime": {
           "lib/netstandard2.0/Telerik.Reporting.AI.Microsoft.Extensions.Abstractions.dll": {
             "assemblyVersion": "20.2.26.812",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "20.2.26.812"
           }
         }
       },
@@ -1923,7 +1923,7 @@
           },
           "lib/net8.0/Telerik.Reporting.AI.RAG.dll": {
             "assemblyVersion": "20.2.26.812",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "20.2.26.812"
           }
         }
       },
@@ -2811,49 +2811,49 @@
     "Telerik.AI.SmartComponents.Extensions/2.2.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZDJaD+b7ZHwRXxPmxZ3c/5qAD/s+hdsIS4XyPBddyOjpP2k90w2/B8gDeb3ZB35MhBk6ppkGt6UoAfS+Z1LHSA==",
+      "sha512": "sha512-Hy14NImw7yUTVw8sY377YvwSaYjaSg5FHFLyw1iA7unqxRrKrCzuF0fQHRTd7O9KG43x83vjwrcZx2+mGpYxjQ==",
       "path": "telerik.ai.smartcomponents.extensions/2.2.1",
       "hashPath": "telerik.ai.smartcomponents.extensions.2.2.1.nupkg.sha512"
     },
     "Telerik.DataSource/4.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SADCCHerpomgkgqT1jxmpxqQAMDn8+vZMH+Ac/H264F6Afe2Ry8SzYtgCL2o1WnzAw7gzS5G0g8G/Va9tspgNQ==",
+      "sha512": "sha512-mQC7jT4/CBdNaLf2gO4JF2k21amuqN13DEEgB/Oad6ccNhgJ/i+85rHPZihJzgRsacal9FH5By1MMvCsY686ZQ==",
       "path": "telerik.datasource/4.1.0",
       "hashPath": "telerik.datasource.4.1.0.nupkg.sha512"
     },
     "Telerik.Documents.Core/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tGVEx4bszMpgIzLsugPMKQhlKl9Ggatml3kET7w/QLljx8UXOxfMdEXhc5PsP2Nqf+NVKbEn7lqoozW6NFXz7g==",
+      "sha512": "sha512-NDrS4HDCti2ylagZlW+dHccS1gVrjBcIJDxQ4XXTDU2wp6sO8jWjqRiPLn24oDuOVKR036gBoEuV5a9S4lB57A==",
       "path": "telerik.documents.core/2026.3.810",
       "hashPath": "telerik.documents.core.2026.3.810.nupkg.sha512"
     },
     "Telerik.Documents.Fixed/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jmkvB6nvXRRarj/S2RHUzQuPjkROM9cdRNFh4dRKfjkYiWvrZC7lHnWLgat2tCxU/IlX2x2kSzECRUzhvvWTAw==",
+      "sha512": "sha512-1nn1Nd0g9QQ2LeHl/KOkgkSb87O76HSk1sEcrwrIFR8fUARPq90BdNXYj0IIarA8Wm5Yq5a81gL02NksyTzLdw==",
       "path": "telerik.documents.fixed/2026.3.810",
       "hashPath": "telerik.documents.fixed.2026.3.810.nupkg.sha512"
     },
     "Telerik.Documents.Spreadsheet/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-N0JM8EPt9f/Svd2my0bdHDmlkl08/njEK6da998K5UhRcoIBICiTFKoQTaINlWNvAQ0nSDN0Qn4deHmkbRaSdw==",
+      "sha512": "sha512-70fyi5P8o/3E3GpS0LkCJWD/Y2AHF6L2Depd5KqnXdHPXGoYI4j/dtz/x/eGxjSnfsTpkbY4MCagviC62Gb4rA==",
       "path": "telerik.documents.spreadsheet/2026.3.810",
       "hashPath": "telerik.documents.spreadsheet.2026.3.810.nupkg.sha512"
     },
     "Telerik.Documents.Spreadsheet.FormatProviders.Pdf/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UoEEKt3bCz391/JzO/WsDpJGimyp+j8r4nXswP8K3ZFgJ85SzhSwMLfUaFn7TYpg/tYtJtIMMgkzOqwly6xSIg==",
+      "sha512": "sha512-tsp89MK7UIOTPhxX8TJ/RmAGusxF/bFQ36rYDSo8O/F/kxTPid3IEdcbeHP+sDihEdytAEN8vyCXrVQtXVpdzA==",
       "path": "telerik.documents.spreadsheet.formatproviders.pdf/2026.3.810",
       "hashPath": "telerik.documents.spreadsheet.formatproviders.pdf.2026.3.810.nupkg.sha512"
     },
     "Telerik.Documents.SpreadsheetStreaming/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yUn6b3gI9CXClmH6fWZhMVBYD2xc5hpajLbJeWk/nRD/xsG29l6ZSM9nW/lnwRHbq8okohkEfrI33V90fICLNw==",
+      "sha512": "sha512-JPq2XhVwUFJgBYqHgeOKxaoDzPtrrCK1B/k3OwVroUjc2idpX64P5EY7yPzXxuRpwcqXNgkXNIyShyaQTSwIxQ==",
       "path": "telerik.documents.spreadsheetstreaming/2026.3.810",
       "hashPath": "telerik.documents.spreadsheetstreaming.2026.3.810.nupkg.sha512"
     },
@@ -2867,28 +2867,28 @@
     "Telerik.Licensing/1.9.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NqY1h9tKSiu5Sh3n/fXRdVrt5qog14RBMlDcrY1MPP7Ku/XvdqnSoKx6b23GV+K/iBPr3EnfSby/6qudyiqGFg==",
+      "sha512": "sha512-RWd+MqNaSzYowRbxQThj23n6mJFGiSOvGw1KgQnzzAT+aOjug8DLzCpvuo5KCqiookVICLZFuSaAGYLRZI+KrA==",
       "path": "telerik.licensing/1.9.1",
       "hashPath": "telerik.licensing.1.9.1.nupkg.sha512"
     },
     "Telerik.Pivot.Core/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3+Zu8yafzViT3hni6YA4dvYxFSZ3LU0V+Ut3J5mCNGKocJb3asUmE1DkABi0HBakjTxGRE8HIcokXVFb7ynDwQ==",
+      "sha512": "sha512-qySZDDAyTEOH+XyokKduuRNperwWtTeducmsWwG1VCou/No8Prb7/nHyszhqIFlb6olwZI0E6dKS/ht37gUBgg==",
       "path": "telerik.pivot.core/1.0.0",
       "hashPath": "telerik.pivot.core.1.0.0.nupkg.sha512"
     },
     "Telerik.Pivot.DataProviders.Xmla/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tMywP0STwlVzlCnSJycdNTVrEkyHVQ2Us9u3RK6Emk3IyUriejYN2Ptd9dSeqMhk3weqftbFulsqR10Q55KnDA==",
+      "sha512": "sha512-CH4Ln1dzZut2+rS1cuGrEfrnKcqMSDxPzwgoZnlJNF4r9eVrevOBqDAgjNjQTvzXucwuN+ZEFxe2nHt7itfpog==",
       "path": "telerik.pivot.dataproviders.xmla/1.0.0",
       "hashPath": "telerik.pivot.dataproviders.xmla.1.0.0.nupkg.sha512"
     },
     "Telerik.Recurrence/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/eBwDTsXJePsTDXwwU4/mkBMoHuVGeC0CgLjS86r5OQ3UfpGkVg4XwNxdSX8LU7FzcRQzjuA2b/X+VvynPJMvw==",
+      "sha512": "sha512-I49uPCs0jmm5+dwVW1JwEBGiD0lb1LZ27NydZFUAWtQfV3bIuJKXoyjesyZaHconGroeZm6oaGXMJJoVseJUOw==",
       "path": "telerik.recurrence/1.0.0",
       "hashPath": "telerik.recurrence.1.0.0.nupkg.sha512"
     },
@@ -2937,14 +2937,14 @@
     "Telerik.UI.for.Blazor/15.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2TvgBk+8oreKG/mFC56FvdscCqhsx/KQbD+eSR3jSDXoHX9W6BHp5BpGU30guILkD+HtKVrW0DNUnZ15S3zMaw==",
+      "sha512": "sha512-e/uFohTGYd546Sh6ecJu3lQY11WcIGnljU3/eZ32NSB6owyUcxR+SHUvc3wfQKuufP9Ja8axz/NXX0QpbU4zDw==",
       "path": "telerik.ui.for.blazor/15.0.1",
       "hashPath": "telerik.ui.for.blazor.15.0.1.nupkg.sha512"
     },
     "Telerik.Zip/2026.3.810": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Q5XukOsMYw8lSsZ5Q1tzRM5FiVMXG91zMUefD6dHCE3pfXElEdL6HoLq+mU05NRUYQIbYKkXuu7nZeXluaba8g==",
+      "sha512": "sha512-6dv7Ap5m2uWOHdg+bTk1zg4ZzGamB71XODGHy3qSbolZ66r4fMB+cFtyX9/b380nAFs/oX1VlAOcahiO/jmgzw==",
       "path": "telerik.zip/2026.3.810",
       "hashPath": "telerik.zip.2026.3.810.nupkg.sha512"
     },

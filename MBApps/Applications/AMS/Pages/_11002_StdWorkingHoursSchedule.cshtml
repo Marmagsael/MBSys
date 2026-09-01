@@ -1,0 +1,21 @@
+@using MBApps.Applications.AMS.Blazor
+@using MBApps.Applications.PayrollTransaction.Vars
+@using MBApps.StartupConfig
+
+
+@inject UserClaimsContextService    _claimsContext
+@{
+    Layout = "~/Views/Shared/_MainLayout1.cshtml";
+    var uc = PayClaimsHelper.UserToClaims(User);     
+    @* ---------------------------------- *@
+}
+
+
+
+<div>
+
+    @(await Html.RenderComponentAsync<_11002StdWorkingHoursSchedule>(RenderMode.ServerPrerendered, new { Uc = uc }))
+  
+</div>
+
+

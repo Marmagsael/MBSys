@@ -23,6 +23,54 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11002StdWorkingHoursSchedule.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAyU3RkV29ya2luZ0hvdXJzU2NoZWR1bGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003EmployeeSchedule.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzRW1wbG95ZWVTY2hlZHVsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11004DailyScheduleTemplate.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA0RGFpbHlTY2hlZHVsZVRlbXBsYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11005WeeklyScheduleTemplate.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA1V2Vla2x5U2NoZWR1bGVUZW1wbGF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11006OtherScheduleAssignment.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA2T3RoZXJTY2hlZHVsZUFzc2lnbm1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11007AdvanceScheduleAssignment.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA3QWR2YW5jZVNjaGVkdWxlQXNzaWdubWVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11008OvertimeSettings.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA4T3ZlcnRpbWVTZXR0aW5ncy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002AttendanceProcessing.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyQXR0ZW5kYW5jZVByb2Nlc3NpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12003OTEntry.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAzT1RFbnRyeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12004OBDirectAssignment.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDA0T0JEaXJlY3RBc3NpZ25tZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12005PunchManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDA1UHVuY2hNYW5hZ2VtZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/MBApps/Applications/PayrollReport/Views/Blazor/Components/IframeReportRenderer.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXFBheXJvbGxSZXBvcnRcVmlld3NcQmxhem9yXENvbXBvbmVudHNcSWZyYW1lUmVwb3J0UmVuZGVyZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -253,6 +301,62 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/MBApps/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS1/Index1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNUzFcSW5kZXgxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11002_StdWorkingHoursSchedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDJfU3RkV29ya2luZ0hvdXJzU2NoZWR1bGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11003_EmployeeSchedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDNfRW1wbG95ZWVTY2hlZHVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11004_DailyScheduleTemplate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDRfRGFpbHlTY2hlZHVsZVRlbXBsYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11005_WeeklyScheduleTemplate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDVfV2Vla2x5U2NoZWR1bGVUZW1wbGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11006_OtherScheduleAssignment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDZfT3RoZXJTY2hlZHVsZUFzc2lnbm1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11007_AdvanceScheduleAssignment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDdfQWR2YW5jZVNjaGVkdWxlQXNzaWdubWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_11008_OvertimeSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTEwMDhfT3ZlcnRpbWVTZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_12002_AttendanceProcessing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTIwMDJfQXR0ZW5kYW5jZVByb2Nlc3NpbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_12003_OTEntry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTIwMDNfT1RFbnRyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_12004_OBDirectAssignment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTIwMDRfT0JEaXJlY3RBc3NpZ25tZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_12005_PunchManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfMTIwMDVfUHVuY2hNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Pages/_502_PayrollEntry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfNTAyX1BheXJvbGxFbnRyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/PayrollTransaction/Pages/_0000_ClaimsDetails.cshtml]
