@@ -11,8 +11,8 @@
     <div class="w-60">
         <TelerikDropDownList Data="@V0502.Payrollgrps"
                              TItem="MBApiLibrary.Models._20_Pay.PayrollgrpModel"
-                             TValue="string" TextField="Name" ValueField="Code"
-                             @bind-Value="V0502.PayrollgrpCode"
+                             TValue="int?" TextField="Name" ValueField="Id"
+                             @bind-Value="V0502.Payrollgrp.Id"
                              DefaultText="-- Select Payroll Group --" Width="100%">
 
             <DropDownListSettings>
@@ -89,6 +89,7 @@
             <div>
                 <div class="p-2 ">Period</div>
                 <div class=" w-120p ">
+                    
                     <TelerikDropDownList Data="@V0502.Periods"
                                          TItem="PeriodModel"
                                          TValue="string?"
@@ -154,19 +155,38 @@
 
 </div>
 
-
+@inject IODeprecDataAccess _deprec; 
 
 
 
 @code {
 
     [CascadingParameter] public UserClaimsModel     Uc                  { get; set; } = new();
-    [CascadingParameter] public V0502?               V0502                { get; set; } = new();
-    [CascadingParameter] public Func<Task>?         NotifyV0502Changed   { get; set; }
+    [CascadingParameter] public V0502?               V0502              { get; set; } = new();
+    [CascadingParameter] public Func<Task>?         NotifyV0502Changed  { get; set; }
 
     async Task FetchData()
     {
+        var res = await _deprec._02ByFieldId("PayrollgrpId", V0502.Payrollgrp.Id, Uc.OpisDb, Uc.Conn);
+        V0502.PayEmpmass = [];
+        
+        Console.WriteLine($"Fetch Data * Count {res.Count} * Payrollgrp Id : {V0502.Payrollgrp.Id}");
 
+        if (res.Count > 0)
+        {
+            int ctr = 0; 
+            foreach (var r in res)
+            {
+                ctr++;
+                V0502PayEmpmasModel pEmpmas = new() { No = ctr, IsSelected = true, EmpNumber = r.EmpNumber ?? "", 
+                    EmpName = r.EmpName, Status = r.EmpStatusId.ToString()}; 
+                V0502.PayEmpmass.Add(pEmpmas);
+            }
+
+            await NotifyV0502Changed.Invoke(); 
+            StateHasChanged();
+        }
+        
     }
 
     async Task LoadData()
@@ -174,7 +194,7 @@
 
     }
 
-    bool dFT => ((V0502.PayrollgrpCode=="XXXXX") || (V0502.Year.Trim().Length < 4) || 
+    bool dFT => (((V0502.Payrollgrp.Id??0)<1) || (V0502.Year.Trim().Length < 4) || 
                  (V0502.Month == "XX") || (V0502.Period == "XX") || (V0502.AttStart >= V0502.AttEnd));
     bool dLT => ((V0502.PayrollgrpCode == "XXXXX") || (V0502.Year.Trim().Length < 4) ||
                  (V0502.Month == "XX") || (V0502.Period == "XX") || (V0502.AttStart >= V0502.AttEnd) || 

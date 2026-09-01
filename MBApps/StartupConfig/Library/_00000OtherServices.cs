@@ -1,5 +1,6 @@
 using MBApiLibrary.DataAccess._00_Main;
 using MBApiLibrary.DataAccess._00_Main.Interface;
+using MBApiLibrary.DataAccess._10_Pis.OPis;
 using MBApiLibrary.DataAccess._20_Pay.OPay;
 using Microsoft.AspNetCore.DataProtection;
 using Radzen;
@@ -28,6 +29,7 @@ public static class _00000OtherServices
         services.AddScoped<IOChartofacctDataAccess, OChartofacctDataAccess>();
         services.AddScoped<I_00MainDataMakerAccess, _00MainDataMakerAccess>();
         services.AddScoped<IOPayrollgrpDataAccess, OPayrollgrpDataAccess>();
+        services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();
 
         return services;
     }

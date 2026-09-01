@@ -33,19 +33,19 @@ public class V0502
     //*** New Payroll Entry ******************************************************************
 
     public CoaModel?                        Coa                 { get; set; } = new() ; 
-    public List<YearsModel>                 Years               { get; set; } = [] ;
-    public List<MonthModel>                 Months              { get; set; } = [] ;
-    public List<PeriodModel>                Periods             { get; set; } = [] ;
-    public List<PayrollgrpModel>            Payrollgrps         { get; set; } = [] ;
-    public PayrollgrpModel?                 Payrollgrp          { get; set; } = new() ;
-    public List<CoaModel?>?                 Coas                { get; set; } = [] ;
+    public List<YearsModel>                Years               { get; set; } = [] ;
+    public List<MonthModel>                Months              { get; set; } = [] ;
+    public List<PeriodModel>               Periods             { get; set; } = [] ;
+    public List<PayrollgrpModel>           Payrollgrps         { get; set; } = [] ;
+    public PayrollgrpModel?                Payrollgrp          { get; set; } = new() ;
+    public List<CoaModel?>?                Coas                { get; set; } = [] ;
     public List<GChartofacctModel?>?       AccountsAll          { get; set; } = [] ;
-    public List<V0502PayAccountModel?>?          AccountSelecteds    { get; set; } = [] ;
-    public List<V0502PayAccountModel?>?          AccountEarnings     { get; set; } = [] ;
-    public List<V0502PayAccountModel?>?          AccountDeductions   { get; set; } = [] ;
+    public List<V0502PayAccountModel?>?    AccountSelecteds    { get; set; } = [] ;
+    public List<V0502PayAccountModel?>?    AccountEarnings     { get; set; } = [] ;
+    public List<V0502PayAccountModel?>?    AccountDeductions   { get; set; } = [] ;
     
-    public List<PaymaindtlModel?>?          Paymaindtls         { get; set; } = [] ;
-    public List<V0502PayEmpmasModel>             PayEmpmass          { get; set; } = [];
+    public List<PaymaindtlModel?>?         Paymaindtls         { get; set; } = [] ;
+    public List<V0502PayEmpmasModel>       PayEmpmass          { get; set; } = [];
 
 
 }

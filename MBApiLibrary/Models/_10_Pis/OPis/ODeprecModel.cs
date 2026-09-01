@@ -34,5 +34,6 @@
     public int? IdInvestigate { get; set; }
 
     //ADDITIONAL
-    public string? EmpName { get; set; }
+    public string? EmpName  { get; set; }
+    public string? EmpStatus { get; set; }
 }

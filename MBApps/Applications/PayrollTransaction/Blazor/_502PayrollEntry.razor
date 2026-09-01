@@ -98,7 +98,7 @@
             foreach(var mo in mos)
             {
                 int     id      = mo?.Month ?? 0 ; 
-                string  code    = id.ToString().Trim(); 
+                string  code    = id.ToString().Trim().PadLeft(2,'0'); 
 
                 V0502.Months.Add(new()
                 {
