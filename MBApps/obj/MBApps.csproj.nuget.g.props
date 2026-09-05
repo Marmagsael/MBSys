@@ -17,7 +17,7 @@
     <Import Project="$(NuGetPackageRoot)telerik.ui.for.blazor\15.0.1\buildTransitive\Telerik.UI.for.Blazor.props" Condition="Exists('$(NuGetPackageRoot)telerik.ui.for.blazor\15.0.1\buildTransitive\Telerik.UI.for.Blazor.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server\3.0.0\build\Microsoft.Extensions.ApiDescription.Server.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server\3.0.0\build\Microsoft.Extensions.ApiDescription.Server.props')" />
     <Import Project="$(NuGetPackageRoot)swashbuckle.aspnetcore\6.2.3\build\Swashbuckle.AspNetCore.props" Condition="Exists('$(NuGetPackageRoot)swashbuckle.aspnetcore\6.2.3\build\Swashbuckle.AspNetCore.props')" />
-    <Import Project="$(NuGetPackageRoot)radzen.blazor\11.2.8\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\11.2.8\buildTransitive\Radzen.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)radzen.blazor\11.3.1\buildTransitive\Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor\11.3.1\buildTransitive\Radzen.Blazor.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise\2.3.1\buildTransitive\Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise\2.3.1\buildTransitive\Blazorise.props')" />
     <Import Project="$(NuGetPackageRoot)blazorise.bootstrap5\2.3.1\buildTransitive\Blazorise.Bootstrap5.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap5\2.3.1\buildTransitive\Blazorise.Bootstrap5.props')" />
   </ImportGroup>

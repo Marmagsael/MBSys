@@ -1,0 +1,17 @@
+/* MOBILE ONLY */
+.mobile-menu { display: none; }
+
+@media (max-width: 768px) {
+    .floating-panel {display: none;}
+
+    .mobile-menu {
+        display: block;
+        position: fixed;
+        top: 35px;
+        right: 2px;
+        z-index: 9999;
+    }
+}
+
+
+

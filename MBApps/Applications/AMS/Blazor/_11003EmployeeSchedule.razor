@@ -1,7 +1,86 @@
-﻿<_00UnderDevelopment Module="_11003EmployeeSchedule" />
+﻿@using MBApiLibrary.Models._10_Pis
+@using MBApps.Applications.AMS.Vars
+@using MBApps.Applications.AMS.Blazor._11003
+
+@* <_00UnderDevelopment Module="_11003EmployeeSchedule" /> *@
+
+<div class="p-2">
+    <TelerikRootComponent>
+        <TelerikNotification @ref="@NotificationRef" HorizontalPosition="@NotificationHorizontalPosition.Right"
+                             VerticalPosition="@NotificationVerticalPosition.Top" AnimationType="@AnimationType.SlideLeft" />
+
+        <CascadingValue Value="@v">
+        <TelerikTabStrip ActiveTabId="@tab" ActiveTabIdChanged="@OnTabChanged" Height="calc(100vh - 120px)" Class="border rounded shadow-sm">
+            @* =================================================
+                ADVANCE SCHEDULING
+            ================================================= *@
+            <TabStripTab Id="advancescheduling" Title="Advance Scheduling">
+                <div>
+                    <_11003_AS />>
+                </div>
+            </TabStripTab>
+
+
+            @* =================================================
+                MANUAL EDITING
+            ================================================= *@
+            <TabStripTab Id="manualediting" Title="Attendance Manual Editing">
+                <div>
+                    <_11003_AME />
+                </div>
+            </TabStripTab>
+
+            @* =================================================
+                MANUAL EDITING
+            ================================================= *@
+            <TabStripTab Id="changeschedule" Title="Attendance Change Schedule">
+                <div> <_11003_ACS /> </div>
+                
+            </TabStripTab>
+
+        </TelerikTabStrip>
+        </CascadingValue>
+
+
+    </TelerikRootComponent>
+
+</div>
+
+
+
+
+
 
 @code {
-
     [Parameter] public UserClaimsModel? Uc { get; set; }
+    private V11003Model v = new V11003Model();
+
+    private TelerikNotification NotificationRef;
+    private string tab = "changeschedule";
+    private async Task OnTabChanged(string id)
+    {
+        tab = id;
+
+        if (id == "advancescheduling")
+        {
+
+        }
+
+
+        if (id == "manualediting")
+        {
+
+        }
+
+        if (id == "changeschedule")
+        {
+            v.SelectedPayrollGroup      = 0;
+            v.SelectedAssignedEmployees = [];
+            v.AssignedEmployees         = [];
+            v.SelectedEmployee          = string.Empty;
+            v.CurrentAttendance         = new AtttemplateModel();
+        }
+    }
+
 
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MBApiLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74525c79ab730e5c39373d6d6d5fcc3efa1a4430")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98b27d45a7384330e3e11aa566ce9409c63bfdb1")]
 [assembly: System.Reflection.AssemblyProductAttribute("MBApiLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MBApiLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

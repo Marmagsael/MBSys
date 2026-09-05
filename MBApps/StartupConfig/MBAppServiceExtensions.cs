@@ -28,6 +28,7 @@ public static class MBAppServiceExtensions
         builder.AddApiServices();
 
         //--- Library Service --------------------------
+        builder.Services.AddAMSScope();
         builder.Services.Add0502Scope();
 
         builder.Services.Add00000OtherScope(builderEnvironment);

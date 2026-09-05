@@ -1,3 +1,4 @@
+using MBApiLibrary.DataAccess._11_AMS;
 using MBApps.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +11,21 @@ namespace MBApps.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _config;
+        private readonly IAMSTableMaker _tblMaker; 
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, IAMSTableMaker tblMaker)
         {
-            _logger = logger;
-            _config = config;
+            _logger     = logger;
+            _config     = config;
+            _tblMaker   = tblMaker;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            bool isCommercial = _config.GetSection("CompanyInfo:CommercialUse").Value == "true";
+            await CreateTable();
 
-            if (isCommercial)
-                return View("Marketing");
+            bool isCommercial = _config.GetSection("CompanyInfo:CommercialUse").Value == "true";
+            if (isCommercial)   return View("Marketing");
 
             return View();
         }
@@ -36,6 +39,21 @@ namespace MBApps.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        private async Task CreateTable()
+        {
+            var pisDb = User.Claims.Where(c => c.Type == "SchemaUserPis")?.FirstOrDefault();
+            if (string.IsNullOrEmpty(pisDb?.Value)) return;
+
+            var connName = User.Claims.Where(c => c.Type == "Conn")?.FirstOrDefault();
+            if (string.IsNullOrEmpty(connName?.Value)) return;
+
+            await _tblMaker._01AMSTable(pisDb.Value??"", connName.Value??"");
+
+            Console.WriteLine($"Creating table for PIS DB: {pisDb.Value}, Connection: {connName.Value}"); 
+
         }
     }
 }

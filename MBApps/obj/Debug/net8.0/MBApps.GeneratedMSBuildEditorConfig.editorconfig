@@ -31,6 +31,38 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzRW1wbG95ZWVTY2hlZHVsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS_01_EmployeeList.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1NfMDFfRW1wbG95ZWVMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS_01_Schedule.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1NfMDFfU2NoZWR1bGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS_Desktop.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1NfRGVza3RvcC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS_Mobile.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1NfTW9iaWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_ACS_Tablet.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BQ1NfVGFibGV0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AME.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BTUUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AS.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BUy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11004DailyScheduleTemplate.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA0RGFpbHlTY2hlZHVsZVRlbXBsYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -69,6 +101,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/Menus/Blazor/_1000Menus.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXE1lbnVzXEJsYXpvclxfMTAwME1lbnVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/Menus/Blazor/_1000_menus_payroll.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXE1lbnVzXEJsYXpvclxfMTAwMF9tZW51c19wYXlyb2xsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/Menus/Blazor/_1000_menus_pis.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXE1lbnVzXEJsYXpvclxfMTAwMF9tZW51c19waXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/PayrollReport/Views/Blazor/Components/IframeReportRenderer.razor]
@@ -303,10 +347,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Development/MBSys/MBApps/Applications/AMS1/Index1.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNUzFcSW5kZXgxLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Development/MBSys/MBApps/Applications/AMS/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -357,6 +397,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Pages/_502_PayrollEntry.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfNTAyX1BheXJvbGxFbnRyeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/Menus/Pages/_1000_Menus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXE1lbnVzXFBhZ2VzXF8xMDAwX01lbnVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/PayrollTransaction/Pages/_0000_ClaimsDetails.cshtml]
@@ -493,4 +537,8 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/MBApps/Views/Shared/_MainLayoutBak.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0QmFrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Views/Shared/_MainLayoutMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluTGF5b3V0TWVudS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
