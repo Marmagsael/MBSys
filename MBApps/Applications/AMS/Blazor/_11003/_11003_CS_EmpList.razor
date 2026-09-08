@@ -1,0 +1,84 @@
+@using MBApiLibrary.Models._00_Main
+@using MBApiLibrary.Modules._11003O
+@using MBApps.Applications.AMS.Vars
+@using Telerik.Blazor.Components
+
+<TelerikGrid Data="@V!.Employees"
+             Pageable="true"
+             PageSize="25"
+             Sortable="true"
+             SelectionMode="GridSelectionMode.None"
+             Height="500px">
+    <GridToolBarTemplate>
+        <TelerikButton Icon="@("check-circle")"
+                       ThemeColor="primary"
+                       FillMode="ButtonFillMode.Flat"
+                       Title="Select All"
+                       OnClick="@SelectAll" />
+        <TelerikButton Icon="@("cancel")"
+                       ThemeColor="secondary"
+                       FillMode="ButtonFillMode.Flat"
+                       Title="Unselect All"
+                       OnClick="@UnselectAll" />
+        @if (V!.Employees.Any(x => x.IsSelected))
+        {
+            <TelerikButton ThemeColor="warning" OnClick="@OpenModal">
+                Show Change Schedule
+            </TelerikButton>
+        }
+    </GridToolBarTemplate>
+    <GridColumns>
+        <GridColumn Width="50px" Sortable="false">
+            <Template>
+                @{ var row = (M11003CS_Atttemplate)context; }
+                <TelerikCheckBox Value="@row.IsSelected"
+                                 ValueChanged="@((bool val) => OnCheckChanged(row, val))" />
+            </Template>
+        </GridColumn>
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.EmpName)"              Title="Name" />
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.CurrentScheduleName)"  Title="Curr Schedule" />
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.AdvanceScheduleName)"  Title="New Schedule" />
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.Changeschedeffectivity)" Title="Effectivity" Width="120px">
+            <Template>
+                @{ var row = (M11003CS_Atttemplate)context; }
+                @(row.Changeschedeffectivity == default ? "-" : row.Changeschedeffectivity.ToString("MM/dd/yyyy"))
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</TelerikGrid>
+
+@code {
+
+    [CascadingParameter] public UserClaimsModel?  Uc            { get; set; }
+    [CascadingParameter] public V11003CSModel?     V             { get; set; }
+    [CascadingParameter] public Func<Task>?        NotifyChanged { get; set; }
+
+    private async Task OnCheckChanged(M11003CS_Atttemplate row, bool val)
+    {
+        row.IsSelected = val;
+        await NotifyChanged!.Invoke();
+    }
+
+    private async Task SelectAll()
+    {
+        V!.Employees.ForEach(x => x.IsSelected = true);
+        await NotifyChanged!.Invoke();
+    }
+
+    private async Task UnselectAll()
+    {
+        V!.Employees.ForEach(x => x.IsSelected = false);
+        await NotifyChanged!.Invoke();
+    }
+
+    private async Task OpenModal()
+    {
+        V!.SelectedEmployees    = V.Employees.Where(x => x.IsSelected).ToList();
+        V!.SelectedTemplateId   = null;
+        V!.SelectedTemplateName = null;
+        V!.SelectedDtl          = null;
+        V!.Effectivity          = DateTime.Today;
+        V!.IsModalVisible       = true;
+        await NotifyChanged!.Invoke();
+    }
+}

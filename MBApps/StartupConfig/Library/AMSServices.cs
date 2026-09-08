@@ -1,6 +1,7 @@
 ﻿using MBApiLibrary.DataAccess._10_Pis;
 using MBApiLibrary.DataAccess._10_Pis.Interface;
 using MBApiLibrary.DataAccess._11_AMS;
+using MBApiLibrary.Modules._11003O;
 
 namespace MBApps.StartupConfig.Library;
 
@@ -11,11 +12,13 @@ public static class AMSServices
 
         services.AddScoped<IAMSTableMaker, AMSTableMaker>();
         services.AddScoped<IAtttemplateDataAccess, AtttemplateDataAccess>();
+        services.AddScoped<IAttscheddefaultDataAccess, AttscheddefaultDataAccess>();
+        services.AddScoped<IAttscheddailyDataAccess, AttscheddailyDataAccess>();
+        services.AddScoped<IAttschedweeklydtlDataAccess, AttschedweeklydtlDataAccess>();
+        services.AddScoped<IAttschedweeklyhdrDataAccess, AttschedweeklyhdrDataAccess>();
+        services.AddScoped<IAttadvancescheduleDataAccess, AttadvancescheduleDataAccess>();
+        services.AddScoped<IDA_11003O, DA_11003O>();
 
-
-        // Register your scoped services here
-        // Example:
-        // services.AddScoped<IYourService, YourServiceImplementation>();
         return services;
     }
 }

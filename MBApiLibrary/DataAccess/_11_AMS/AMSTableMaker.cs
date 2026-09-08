@@ -1,5 +1,6 @@
 ﻿using MBApiLibrary.DataAccess._90_Utils.Interface;
 using Microsoft.AspNetCore.Http.HttpResults;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ public class AMSTableMaker : IAMSTableMaker
             await _01AttSchedDefault(schema, connName);
             await _01AttSchedWeeklyHdr(schema, connName);
             await _01AttSchedWeeklyDtl(schema, connName);
+            await _01AttSchedDaily(schema, connName);
+            await _01AttAdvanceSchedule(schema, connName);
+            await _01Atttemplate_Schedule(schema, connName);
+
+
+
+
+            await _03Atttemplate_Schedule(schema, connName);
         }
 
         catch (Exception ex)    {   Console.WriteLine($"Error in _01AttSchedDefault: {ex}"); }
@@ -38,16 +47,16 @@ public class AMSTableMaker : IAMSTableMaker
                           D1_HrsLength          int             DEFAULT 0,
                           D1_DutyType           char(2)         DEFAULT 'RD',
                           D2_In                 int             DEFAULT 800,
-                          D2_HrsLength          int             DEFAULT 9,
+                          D2_HrsLength          int             DEFAULT 900,
                           D2_DutyType           char(2)         DEFAULT 'R',
                           D3_In                 int             DEFAULT 800,
-                          D3_HrsLength          int             DEFAULT 9,
+                          D3_HrsLength          int             DEFAULT 900,
                           D3_DutyType           char(2)         DEFAULT 'R',
                           D4_In                 int             DEFAULT 800,
-                          D4_HrsLength          int             DEFAULT 9,
+                          D4_HrsLength          int             DEFAULT 900,
                           D4_DutyType           char(2)         DEFAULT 'R',
                           D5_In                 int             DEFAULT 800,
-                          D5_HrsLength          int             DEFAULT 9,
+                          D5_HrsLength          int             DEFAULT 900,
                           D5_DutyType           char(2)         DEFAULT 'R',
                           D6_In                 int             DEFAULT 800,
                           D6_HrsLength          int             DEFAULT 9,
@@ -72,35 +81,138 @@ public class AMSTableMaker : IAMSTableMaker
     }
     private async Task _01AttSchedWeeklyDtl(string schema, string connName)
     {
-        var sql = $@"CREATE TABLE if not exists {schema}.AttSchedWeeklyDtl (
-                          Id                    INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-                          D1_In                 int             DEFAULT 0,
-                          D1_HrsLength          int             DEFAULT 0,
-                          D1_DutyType           char(2)         DEFAULT 'RD',
-                          D2_In                 int             DEFAULT 800,
-                          D2_HrsLength          int             DEFAULT 9,
-                          D2_DutyType           char(2)         DEFAULT 'R',
-                          D3_In                 int             DEFAULT 800,
-                          D3_HrsLength          int             DEFAULT 9,
-                          D3_DutyType           char(2)         DEFAULT 'R',
-                          D4_In                 int             DEFAULT 800,
-                          D4_HrsLength          int             DEFAULT 9,
-                          D4_DutyType           char(2)         DEFAULT 'R',
-                          D5_In                 int             DEFAULT 800,
-                          D5_HrsLength          int             DEFAULT 9,
-                          D5_DutyType           char(2)         DEFAULT 'R',
-                          D6_In                 int             DEFAULT 800,
-                          D6_HrsLength          int             DEFAULT 9,
-                          D6_DutyType           char(2)         DEFAULT 'R',
-                          D7_In                 int             DEFAULT 0,
-                          D7_HrsLength          int             DEFAULT 0,
-                          D7_DutyType           char(2)         DEFAULT 'RN',
-                          PRIMARY KEY(`Id`)
+        var sql = $@"CREATE TABLE IF NOT EXISTS {schema}.AttSchedWeeklyDtl (
+                            Id                      INTEGER UNSIGNED    NOT NULL AUTO_INCREMENT,
+                            AttSchedWeeklyHdrId     INTEGER UNSIGNED    NOT NULL DEFAULT 0,
+                            D1_DutyType             char(2)             DEFAULT 'RD',
+                            D1_In                   int                 DEFAULT 0,
+                            D1_HrsLength            int                 DEFAULT 0,
+                            D1_Out                  int                 DEFAULT 0,
+                            D2_DutyType             char(2)             DEFAULT 'R',
+                            D2_In                   int                 DEFAULT 800,
+                            D2_HrsLength            int                 DEFAULT 900,
+                            D2_Out                  int                 DEFAULT 0,
+                            D3_DutyType             char(2)             DEFAULT 'R',
+                            D3_In                   int                 DEFAULT 800,
+                            D3_HrsLength            int                 DEFAULT 900,
+                            D3_Out                  int                 DEFAULT 0,
+                            D4_DutyType             char(2)             DEFAULT 'R',
+                            D4_In                   int                 DEFAULT 800,
+                            D4_HrsLength            int                 DEFAULT 900,
+                            D4_Out                  int                 DEFAULT 0,
+                            D5_DutyType             char(2)             DEFAULT 'R',
+                            D5_In                   int                 DEFAULT 800,
+                            D5_HrsLength            int                 DEFAULT 900,
+                            D5_Out                  int                 DEFAULT 0,
+                            D6_DutyType             char(2)             DEFAULT 'R',
+                            D6_In                   int                 DEFAULT 800,
+                            D6_HrsLength            int                 DEFAULT 900,
+                            D6_Out                  int                 DEFAULT 0,
+                            D7_DutyType             char(2)             DEFAULT 'RN',
+                            D7_In                   int                 DEFAULT 0,
+                            D7_HrsLength            int                 DEFAULT 0,
+                            D7_Out                  int                 DEFAULT 0,
+                            PRIMARY KEY (`Id`),
+                            KEY `idx_AttSchedWeeklyHdrId` (`AttSchedWeeklyHdrId`)
                         ) ENGINE = InnoDB DEFAULT CHARSET = latin1;";
         await _sql.ExecuteCmd(sql, new { }, connName);
     }
 
+    private async Task _01AttSchedDaily(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE if not exists {schema}.AttSchedDaily (
+                      Id            INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+                      Name          VARCHAR(45),
+                      DutyType      CHAR(2)         DEFAULT 'R' COMMENT 'R, RD,RN',
+                      PIn           INTEGER         DEFAULT 0,
+                      Duration      INTEGER         DEFAULT 0,
+                      POut          INTEGER         DEFAULT 0,
+                      Nd            DOUBLE(5,2)     DEFAULT 0,
+                      PRIMARY KEY (`Id`)
+                    ) ENGINE = InnoDB;";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+    
+    private async Task _01AttAdvanceSchedule(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE if not exists {schema}.`AttAdvanceSchedule` (
+                        `Id`                INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+                        `Empnumber`         CHAR(5),
+                        Date                DATE,
+                        `attscheddailyId`   INTEGER         UNSIGNED,
+                        `DutyType`          CHAR(2),
+                        `PIn`               INTEGER         UNSIGNED,
+                        `Duration`          INTEGER         UNSIGNED,
+                        `Pout`              INTEGER         UNSIGNED,
+                        `ND`                DOUBLE(5,2),
+                        PRIMARY KEY (`Id`) ) ENGINE = InnoDB;";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+    private async Task _01Atttemplate_Schedule(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE if not exists  {schema}.`Atttemplate_Schedule` (
+                        EmpmasId                int NOT NULL,
+                        Effectivity             date,
+                        IsImplemented           int         DEFAULT 0,
+                        AttendanceTypeId        int         DEFAULT '1',
+                        D1_In                   int         DEFAULT '8000',
+                        D1_HrsLength            int         DEFAULT '8',
+                        D1_DutyType             char(2)     DEFAULT 'R',
+                        D2_In                   int         DEFAULT '8000',
+                        D2_HrsLength            int         DEFAULT '8',
+                        D2_DutyType             char(2)     DEFAULT 'R',
+                        D3_In                   int         DEFAULT '8000',
+                        D3_HrsLength            int         DEFAULT '8',
+                        D3_DutyType             char(2)     DEFAULT 'R',
+                        D4_In                   int         DEFAULT '8000',
+                        D4_HrsLength            int         DEFAULT '8',
+                        D4_DutyType             char(2)     DEFAULT 'R',
+                        D5_In                   int         DEFAULT '8000',
+                        D5_HrsLength            int         DEFAULT '8',
+                        D5_DutyType             char(2)     DEFAULT 'R',
+                        D6_In                   int         DEFAULT '0',
+                        D6_HrsLength            int         DEFAULT '0',
+                        D6_DutyType             char(2)     DEFAULT 'RD',
+                        D7_In                   int         DEFAULT '0',
+                        D7_HrsLength            int         DEFAULT '0',
+                        D7_DutyType             char(2)     DEFAULT 'RD',
+                        PRIMARY KEY (`EmpmasId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private async Task _03Atttemplate_Schedule(string schema, string connName)
+    {
+        var sqls = new[]
+        {
+            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN AttschedweeklyhdrId      INT Default 0 ",
+            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN AttschedweeklyhdrIdAdv   INT Default 0 ",
+            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN ChangeSchedEffectivity   DATE "
+        };
+
+        foreach (var sql in sqls)
+        {
+            try {   await _sql.ExecuteCmd(sql, new { }, connName); }
+            catch (MySqlException ex) when (ex.Number == 1060) 
+            {   
+                // Existing column — ignore
+            }
+        }
+    }
 }
 
 public interface IAMSTableMaker

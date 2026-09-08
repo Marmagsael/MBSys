@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "D:\\Development\\MBSys\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\library\\amsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\library\\amsservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|d:\\development\\mbsys\\mbapilibrary\\dataaccess\\_11_ams\\amstablemaker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|solutionrelative:mbapilibrary\\dataaccess\\_11_ams\\amstablemaker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\startupconfig\\apiext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\startupconfig\\apiext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_11003\\_11003_cs_modal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_11003\\_11003_cs_modal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 104,
-          "SelectedChildIndex": 21,
+          "SelectedChildIndex": 19,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AMSTableMaker.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApiLibrary\\DataAccess\\_11_AMS\\AMSTableMaker.cs",
-              "RelativeDocumentMoniker": "MBApiLibrary\\DataAccess\\_11_AMS\\AMSTableMaker.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApiLibrary\\DataAccess\\_11_AMS\\AMSTableMaker.cs",
-              "RelativeToolTip": "MBApiLibrary\\DataAccess\\_11_AMS\\AMSTableMaker.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAiwDIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-05T05:42:08.557Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -120,27 +95,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AMSServices.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\AMSServices.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\Library\\AMSServices.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\Library\\AMSServices.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\Library\\AMSServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-05T06:35:56.688Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "MBApps\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "MBApps\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAywDQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-05T04:50:28.465Z",
+              "Title": "_11003_CS_Modal.razor",
+              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
+              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
+              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
+              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI8AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T05:53:40.558Z",
               "EditorCaption": ""
             }
           ]
@@ -180,40 +142,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "25865224-191f-459a-aeb2-bf8878563395",
-        "Display": 0,
-        "X": 342,
-        "Y": 121,
-        "Width": 1236,
-        "Height": 950,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApiExt.cs",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\ApiExt.cs",
-              "RelativeDocumentMoniker": "MBApps\\StartupConfig\\ApiExt.cs",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\StartupConfig\\ApiExt.cs",
-              "RelativeToolTip": "MBApps\\StartupConfig\\ApiExt.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-05T00:39:43.878Z",
-              "EditorCaption": ""
             }
           ]
         }

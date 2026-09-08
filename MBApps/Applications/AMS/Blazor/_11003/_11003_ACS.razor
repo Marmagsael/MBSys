@@ -2,7 +2,10 @@
 <TelerikMediaQuery Media="(max-width: 768px)" OnChange="@((bool matches) => { IsMobile = matches; StateHasChanged(); })" />
 <TelerikMediaQuery Media="(max-width: 991.98px)" OnChange="@((bool matches) => { IsNarrow = matches; StateHasChanged(); })" />
 
+<TelerikNotification @ref="@NotificationRef" HorizontalPosition="@NotificationHorizontalPosition.Right"
+                     VerticalPosition="@NotificationVerticalPosition.Top" AnimationType="@AnimationType.SlideLeft" />
 
+        
 <CascadingValue Value="NotifyV11003Changed">
 <TelerikCard Class="csm-card d-flex flex-column w-100 h-100">
     @if (IsMobile)      { <div> <_11003_ACS_Mobile  /> </div> }

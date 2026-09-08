@@ -108,8 +108,17 @@ public class OPayrollgrpDataAccess : IOPayrollgrpDataAccess
 
     public async Task<List<PayrollgrpModel>?> _02ByName(string name,  string schema, string conn)
     {
-        string sql = $@" SELECT Id, Code, ClNumber, Name, RatePerHr, RatePerDay, RatePerMonth, RatePerYr, MinDailyRate, Status, PayRateId FROM {schema}.Payrollgrp  WHERE UPPER(TRIM(Name)) = UPPER(TRIM(@Name)) LIMIT 1";
+        string sql = $@" SELECT Id, Code, ClNumber, Name, RatePerHr, RatePerDay, RatePerMonth, RatePerYr, MinDailyRate, Status, PayRateId 
+                            FROM {schema}.Payrollgrp  WHERE UPPER(TRIM(Name)) = UPPER(TRIM(@Name)) LIMIT 1";
         var data = await _sql.FetchData<PayrollgrpModel, dynamic>(sql, new { Name = name}, conn);
+        return data ?? new List<PayrollgrpModel>();
+    }
+    
+    public async Task<List<PayrollgrpModel>?> _02Active(string schema, string conn)
+    {
+        string sql = $@" SELECT Id, Code, ClNumber, Name, RatePerHr, RatePerDay, RatePerMonth, RatePerYr, MinDailyRate, Status, PayRateId 
+                            FROM {schema}.Payrollgrp  WHERE Status = 'A' ";
+        var data = await _sql.FetchData<PayrollgrpModel, dynamic>(sql, new { }, conn);
         return data ?? new List<PayrollgrpModel>();
     }
 
@@ -163,6 +172,7 @@ public interface IOPayrollgrpDataAccess
     Task<PayrollgrpModel?>                  _02(int id, string schema, string conn);
     Task<List<PayrollgrpModel>?>            _02(string schemapay, string conn);
     Task<List<PayrollgrpModel>?>            _02ByName(string name, string schema, string conn);
+    Task<List<PayrollgrpModel>?>            _02Active(string schema, string conn); 
     Task<List<OTbltranModel?>?>             _02CheckToTblTran(string? clNumber, string? schema, string? conn);
     Task<List<ODeprecModel?>?>              _02CheckToDeprec(int? payrollgrpId, string? schema, string? conn);
     Task<GridResultModel<PayrollgrpModel>> _02Grid(GridRequestModel request, string schemapay, string schemapis, string conn);

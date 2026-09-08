@@ -1,5 +1,7 @@
 using MBApiLibrary.DataAccess._00_Main;
 using MBApiLibrary.DataAccess._00_Main.Interface;
+using MBApiLibrary.DataAccess._10_Pis;
+using MBApiLibrary.DataAccess._10_Pis.Interface;
 using MBApiLibrary.DataAccess._10_Pis.OPis;
 using MBApiLibrary.DataAccess._20_Pay.OPay;
 using Microsoft.AspNetCore.DataProtection;
@@ -26,11 +28,17 @@ public static class _00000OtherServices
         services.AddScoped<TooltipService>();
         services.AddScoped<ContextMenuService>();
 
-        services.AddScoped<IOChartofacctDataAccess, OChartofacctDataAccess>();
-        services.AddScoped<I_00MainDataMakerAccess, _00MainDataMakerAccess>();
-        services.AddScoped<IOPayrollgrpDataAccess, OPayrollgrpDataAccess>();
+        // --- PIS ------------------------------------------------
+        services.AddScoped<IEmpmasInternalDataAccess, EmpmasInternalDataAccess>();
         services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();
 
+        // --- Payrol ------------------------------------------------
+        services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();      
+        services.AddScoped<IOChartofacctDataAccess, OChartofacctDataAccess>();
+        services.AddScoped<IOPayrollgrpDataAccess, OPayrollgrpDataAccess>();
+        
+        services.AddScoped<I_00MainDataMakerAccess, _00MainDataMakerAccess>();
+        
         return services;
     }
 }
