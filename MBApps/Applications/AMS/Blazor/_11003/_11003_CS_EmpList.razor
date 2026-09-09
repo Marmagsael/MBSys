@@ -31,13 +31,32 @@
         <GridColumn Width="50px" Sortable="false">
             <Template>
                 @{ var row = (M11003CS_Atttemplate)context; }
-                <TelerikCheckBox Value="@row.IsSelected"
-                                 ValueChanged="@((bool val) => OnCheckChanged(row, val))" />
+                <div class="d-flex w-100 justify-content-center">
+                    <TelerikCheckBox Value="@row.IsSelected"
+                                     ValueChanged="@((bool val) => OnCheckChanged(row, val))"
+                                     Enabled="@(row.Empmasid != 0)" />
+                </div>
             </Template>
         </GridColumn>
-        <GridColumn Field="@nameof(M11003CS_Atttemplate.EmpName)"              Title="Name" />
-        <GridColumn Field="@nameof(M11003CS_Atttemplate.CurrentScheduleName)"  Title="Curr Schedule" />
-        <GridColumn Field="@nameof(M11003CS_Atttemplate.AdvanceScheduleName)"  Title="New Schedule" />
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.EmpName)" Title="Name">
+            <Template>
+                @{ var row = (M11003CS_Atttemplate)context; }
+                <div style="color: @GetNameColor(row)">@row.EmpName</div>
+                @if (row.Empmasid == 0)
+                {
+                    <div style="font-size:0.8em; color: blue;">Not portal user</div>
+                }
+            </Template>
+        </GridColumn>
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.CurrentScheduleName)" Title="Curr Schedule" />
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.AdvanceScheduleName)" Title="New Schedule">
+            <Template>
+                @{ var row = (M11003CS_Atttemplate)context; }
+                <span style="@(row.AdvanceScheduleName != row.CurrentScheduleName ? "color: darkcyan; font-weight: bold;" : "")">
+                    @row.AdvanceScheduleName
+                </span>
+            </Template>
+        </GridColumn>
         <GridColumn Field="@nameof(M11003CS_Atttemplate.Changeschedeffectivity)" Title="Effectivity" Width="120px">
             <Template>
                 @{ var row = (M11003CS_Atttemplate)context; }
@@ -47,11 +66,26 @@
     </GridColumns>
 </TelerikGrid>
 
+<!-- Color Legend -->
+<div style="margin-top: 8px; font-size: 0.85em; display: flex; gap: 16px;">
+    <span><span style="color: darkcyan; font-weight: bold;">■</span> Schedule changed</span>
+    <span><span style="color: blue;">■</span> Not portal user</span>
+    <span><span style="color: gray;">■</span> No schedule set</span>
+</div>
+
 @code {
 
     [CascadingParameter] public UserClaimsModel?  Uc            { get; set; }
     [CascadingParameter] public V11003CSModel?     V             { get; set; }
     [CascadingParameter] public Func<Task>?        NotifyChanged { get; set; }
+
+    private string GetNameColor(M11003CS_Atttemplate row)
+    {
+        if (row.Empmasid == 0) return "txt-gray";
+        if (row.Attschedweeklyhdrid == 0) return "txt-orange";
+        if (row.AdvanceScheduleName != row.CurrentScheduleName) return "darkcyan";
+        return "rgba(0,0,0,0.9)";
+    }
 
     private async Task OnCheckChanged(M11003CS_Atttemplate row, bool val)
     {

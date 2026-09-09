@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_11003\\_11003_cs_modal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_11003\\_11003_cs_modal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|d:\\development\\mbsys\\mbapilibrary\\modules\\_11003o\\m11003cs_atttemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1000002-0000-0000-0000-000000000002}|MBApiLibrary\\MBApiLibrary.csproj|solutionrelative:mbapilibrary\\modules\\_11003o\\m11003cs_atttemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -100,7 +104,7 @@
               "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
               "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
               "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_11003\\_11003_CS_Modal.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI8AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAKEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-09-08T05:53:40.558Z",
               "EditorCaption": ""
@@ -142,6 +146,40 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "e9cf04bc-d460-4922-986e-76161087ca42",
+        "Display": 0,
+        "X": 63,
+        "Y": 117,
+        "Width": 1232,
+        "Height": 950,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "M11003CS_Atttemplate.cs",
+              "DocumentMoniker": "D:\\Development\\MBSys\\MBApiLibrary\\Modules\\_11003O\\M11003CS_Atttemplate.cs",
+              "RelativeDocumentMoniker": "MBApiLibrary\\Modules\\_11003O\\M11003CS_Atttemplate.cs",
+              "ToolTip": "D:\\Development\\MBSys\\MBApiLibrary\\Modules\\_11003O\\M11003CS_Atttemplate.cs",
+              "RelativeToolTip": "MBApiLibrary\\Modules\\_11003O\\M11003CS_Atttemplate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T10:01:19.932Z",
+              "EditorCaption": ""
             }
           ]
         }

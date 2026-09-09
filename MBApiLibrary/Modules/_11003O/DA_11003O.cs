@@ -24,7 +24,7 @@ public class DA_11003O : IDA_11003O
                     D4_In, D4_HrsLength, D4_DutyType, D5_In, D5_HrsLength, D5_DutyType, D6_In, D6_HrsLength, D6_DutyType,
                     D7_In, D7_HrsLength, D7_DutyType, 
                     @AttschedweeklyhdrIdAdv, @AttschedweeklyhdrIdAdv, @ChangeSchedEffectivity 
-        FROM {pisdb}.attschedweeklydtl where AttSchedWeeklyHdrId = @Id limit 1
+        FROM {pisdb}.attschedweeklydtl where AttSchedWeeklyHdrId = @Attschedweeklyhdrid limit 1
         ON DUPLICATE KEY UPDATE AttschedweeklyhdrIdAdv = @AttschedweeklyhdrIdAdv, ChangeSchedEffectivity = @ChangeSchedEffectivity; ";
 
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
@@ -64,7 +64,7 @@ public class DA_11003O : IDA_11003O
 
     public async Task<List<M11003CS_Atttemplate>?> _02CS_EmplistPerPayrollgrp(int payrollgrpId, string pisdb, string opisdb, string conn)
     {
-        string? sql = $@"SELECT COALESCE(e1.systemid, 0) AS Systemid, 
+        string? sql = $@"SELECT COALESCE(e1.systemid, 0) AS Systemid, COALESCE(e1.systemid, 0) AS Empmasid, 
                             d.Empnumber, d.PayrollgrpId, d.IdDeployment,
                             h.Description AS CurrentScheduleName,
                             ha.Description AS AdvanceScheduleName,
@@ -80,7 +80,6 @@ public class DA_11003O : IDA_11003O
                             WHERE d.PayrollgrpId = @PayrollgrpId ORDER BY e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm ";
 
         var data = await _sql.FetchData<M11003CS_Atttemplate, dynamic>(sql, new { PayrollgrpId = payrollgrpId }, conn);
-
         return data ?? [];
     }
     

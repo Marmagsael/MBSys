@@ -18,7 +18,7 @@
           "Microsoft.AspNetCore.Authentication.Google": "6.0.10",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "6.0.10",
           "Newtonsoft.Json": "13.0.3",
-          "Radzen.Blazor": "11.3.1",
+          "Radzen.Blazor": "11.3.2",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Telerik.Reporting.AI.Microsoft.Extensions.Abstractions": "20.2.26.812",
           "Telerik.Reporting.OpenXmlRendering": "20.2.26.812",
@@ -1100,15 +1100,15 @@
           }
         }
       },
-      "Radzen.Blazor/11.3.1": {
+      "Radzen.Blazor/11.3.2": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "8.0.30",
           "Microsoft.AspNetCore.Components.Web": "8.0.30"
         },
         "runtime": {
           "lib/net8.0/Radzen.Blazor.dll": {
-            "assemblyVersion": "11.3.1.0",
-            "fileVersion": "11.3.1.0"
+            "assemblyVersion": "11.3.2.0",
+            "fileVersion": "11.3.2.0"
           }
         },
         "resources": {
@@ -2549,12 +2549,12 @@
       "path": "openai/2.7.0",
       "hashPath": "openai.2.7.0.nupkg.sha512"
     },
-    "Radzen.Blazor/11.3.1": {
+    "Radzen.Blazor/11.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-WC8RDAl4tw3TEofxIyXmPNLwX762HjivHhkVcJe+dAg75bCqc12VUV4c/sWQ9vOCNhaEXapiCoGZtTP7qtIFOA==",
-      "path": "radzen.blazor/11.3.1",
-      "hashPath": "radzen.blazor.11.3.1.nupkg.sha512"
+      "sha512": "sha512-QtTy0/MZ5QFt50yDprnP2sBzCZWbqXpcYrdTHyX/DzSuOpdPUVw5m/zWzp6ZAdbfaWIAXHJhv7M4pEFCzLideg==",
+      "path": "radzen.blazor/11.3.2",
+      "hashPath": "radzen.blazor.11.3.2.nupkg.sha512"
     },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",

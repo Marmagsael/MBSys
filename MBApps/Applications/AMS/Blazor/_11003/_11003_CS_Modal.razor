@@ -15,6 +15,10 @@
     </WindowActions>
     <WindowContent>
         <div class="row g-3">
+            
+            <div class="col-12">
+                V!.SelectedTemplateId : @V!.SelectedTemplateId 
+            </div>
 
             <div class="col-12">
                 <label class="form-label fw-bold txt-fcolor1">Template</label>
@@ -24,14 +28,14 @@
                                      TextField="Description"
                                      ValueField="Id"
                                      DefaultText="-- Select Template --"
-                                     Width="100%" />
+                                     Width="100%"/>
             </div>
 
             <div class="col-12">
                 <label class="form-label fw-bold">Effectivity</label>
                 <TelerikDatePicker @bind-Value="@V!.Effectivity"
                                    Format="MM/dd/yyyy"
-                                   Width="200px" />
+                                   Width="200px"/>
             </div>
 
             @if (V!.SelectedDtl is not null)
@@ -39,56 +43,56 @@
                 <div class="col-12">
                     <table class="table table-bordered align-middle mb-0 small">
                         <thead>
-                            <tr class="text-center">
-                                <th>Day</th>
-                                <th>Duty Type</th>
-                                <th>In</th>
-                                <th>Out</th>
-                            </tr>
+                        <tr class="text-center">
+                            <th>Day</th>
+                            <th>Duty Type</th>
+                            <th>In</th>
+                            <th>Out</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-danger">Sunday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D1_dutytype)?.Name ?? V.SelectedDtl.D1_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D1_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D1_dutytype, V.SelectedDtl.D1_in, V.SelectedDtl.D1_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td>Monday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D2_dutytype)?.Name ?? V.SelectedDtl.D2_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D2_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D2_dutytype, V.SelectedDtl.D2_in, V.SelectedDtl.D2_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td>Tuesday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D3_dutytype)?.Name ?? V.SelectedDtl.D3_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D3_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D3_dutytype, V.SelectedDtl.D3_in, V.SelectedDtl.D3_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td>Wednesday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D4_dutytype)?.Name ?? V.SelectedDtl.D4_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D4_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D4_dutytype, V.SelectedDtl.D4_in, V.SelectedDtl.D4_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td>Thursday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D5_dutytype)?.Name ?? V.SelectedDtl.D5_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D5_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D5_dutytype, V.SelectedDtl.D5_in, V.SelectedDtl.D5_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td class="text-warning">Friday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D6_dutytype)?.Name ?? V.SelectedDtl.D6_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D6_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D6_dutytype, V.SelectedDtl.D6_in, V.SelectedDtl.D6_hrslength)</td>
-                            </tr>
-                            <tr>
-                                <td class="text-primary">Saturday</td>
-                                <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D7_dutytype)?.Name ?? V.SelectedDtl.D7_dutytype)</td>
-                                <td>@VamsHelper.FormatTime(V.SelectedDtl.D7_in)</td>
-                                <td>@VamsHelper.FormatOut(V.SelectedDtl.D7_dutytype, V.SelectedDtl.D7_in, V.SelectedDtl.D7_hrslength)</td>
-                            </tr>
+                        <tr>
+                            <td class="text-danger">Sunday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D1_dutytype)?.Name ?? V.SelectedDtl.D1_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D1_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D1_dutytype, V.SelectedDtl.D1_in, V.SelectedDtl.D1_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td>Monday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D2_dutytype)?.Name ?? V.SelectedDtl.D2_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D2_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D2_dutytype, V.SelectedDtl.D2_in, V.SelectedDtl.D2_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D3_dutytype)?.Name ?? V.SelectedDtl.D3_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D3_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D3_dutytype, V.SelectedDtl.D3_in, V.SelectedDtl.D3_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D4_dutytype)?.Name ?? V.SelectedDtl.D4_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D4_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D4_dutytype, V.SelectedDtl.D4_in, V.SelectedDtl.D4_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D5_dutytype)?.Name ?? V.SelectedDtl.D5_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D5_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D5_dutytype, V.SelectedDtl.D5_in, V.SelectedDtl.D5_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-warning">Friday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D6_dutytype)?.Name ?? V.SelectedDtl.D6_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D6_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D6_dutytype, V.SelectedDtl.D6_in, V.SelectedDtl.D6_hrslength)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-primary">Saturday</td>
+                            <td>@(Vars.AttDutyTypes.FirstOrDefault(x => x.Code == V.SelectedDtl.D7_dutytype)?.Name ?? V.SelectedDtl.D7_dutytype)</td>
+                            <td>@VamsHelper.FormatTime(V.SelectedDtl.D7_in)</td>
+                            <td>@VamsHelper.FormatOut(V.SelectedDtl.D7_dutytype, V.SelectedDtl.D7_in, V.SelectedDtl.D7_hrslength)</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -146,29 +150,34 @@
 
         // try
         // {
+            int ctr = 0;
+            Console.WriteLine(@$"=====> V.SelectedTemplateId : {V.SelectedTemplateId} ==================");
+            Console.WriteLine(@$"<================================================================ ");
             foreach (var emp in V.SelectedEmployees)
             {
+                
                 var model = new M11003CS_Atttemplate
                 {
-                    Empmasid = emp.Empmasid,
-                    Attschedweeklyhdrid = V.SelectedTemplateId ?? 0,
-                    Attschedweeklyhdridadv = V.SelectedTemplateId ?? 0,
-                    Changeschedeffectivity = V.Effectivity
+                    Empmasid                = emp.Empmasid,
+                    Attschedweeklyhdrid     = V.SelectedTemplateId ?? 0,
+                    Attschedweeklyhdridadv  = V.SelectedTemplateId ?? 0,
+                    Changeschedeffectivity  = V.Effectivity
                 };
+            ctr++;
+            Console.WriteLine(@$" empmas id : {model.Empmasid} *  ctr : {ctr} * model.Attschedweeklyhdrid : {model.Attschedweeklyhdrid} * Effectivity : {model.Changeschedeffectivity} ");
 
-                if (emp.Attschedweeklyhdrid == 0)
+
+
+                // if (emp.Attschedweeklyhdrid == 0)
                     await _da._01CS_AtttemplateAtt(model, Uc.SchemaUserPis!, Uc.Conn!);
-                else
-                    await _da._03CS_AtttemplateAttAdvOnly(model, Uc.SchemaUserPis!, Uc.Conn!);
+                // else
+                    // await _da._03CS_AtttemplateAttAdvOnly(model, Uc.SchemaUserPis!, Uc.Conn!);
             }
 
             // Refresh employee list
             var count = V.SelectedEmployees.Count;
-            V.Employees = await _da._02CS_EmplistPerPayrollgrp(
-                              V.SelectedPayrollGrpId!.Value,
-                              Uc.SchemaUserPis!,
-                              Uc.OpisDb!,
-                              Uc.Conn!) ?? [];
+            V.Employees = await _da._02CS_EmplistPerPayrollgrp( V.SelectedPayrollGrpId!.Value, Uc.SchemaUserPis!, 
+                              Uc.OpisDb!, Uc.Conn!) ?? [];
 
             V.SelectedEmployees = [];
             V.Notification = ("success", $"Schedule applied to {count} employee(s).");
