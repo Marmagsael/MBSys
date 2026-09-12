@@ -1,0 +1,28 @@
+﻿@using MBApiLibrary.Models._11_AMS
+@using MBApps.Applications.AMS.Vars
+@using Telerik.Blazor.Components
+
+<TelerikGrid Data="@v.Employees" Pageable="true" Height="600px" Width="100%" Class="">
+    <GridColumns>
+        <GridColumn Field="Empname" Title="Name" Width="300px" />
+
+        <GridColumn Field="NeedsotfilingBool" Title="Needs OT Filing" Width="150px">
+            <Template>
+                <div style="text-align:center;">
+                    <TelerikCheckBox @bind-Value="@((context as Ams_otsettingsModel).NeedsotfilingBool)" />
+                </div>
+            </Template>
+        </GridColumn>
+
+        <GridColumn Field="Maxothour" Title="Maxim OT Hours">
+            <Template>
+                <TelerikNumericTextBox @bind-Value="@((context as Ams_otsettingsModel).Maxothour)" Width="120px" />
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</TelerikGrid>
+
+@code {
+    [CascadingParameter] public V11008OTModel v { get; set; } = new();
+    [CascadingParameter] public Func<Task> NotifyChanged { get; set; } = default!;
+}

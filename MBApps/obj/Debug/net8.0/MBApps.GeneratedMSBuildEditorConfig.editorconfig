@@ -63,6 +63,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BTUUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AME_EmpList.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BTUVfRW1wTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AME_Modal.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BTUVfTW9kYWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AME_Punches.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BTUVfUHVuY2hlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_AS.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19BUy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -85,6 +97,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_CS.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19DUy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_CSModal_CurrentSchedule.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDAzXF8xMTAwM19DU01vZGFsX0N1cnJlbnRTY2hlZHVsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11003/_11003_CS_EmpList.razor]
@@ -115,8 +131,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA4T3ZlcnRpbWVTZXR0aW5ncy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_11008/_11008_OT_Grid.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzExMDA4XF8xMTAwOF9PVF9HcmlkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002AttendanceProcessing.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyQXR0ZW5kYW5jZVByb2Nlc3NpbmcucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002/_12002_LoadAttendanceModal.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyXF8xMjAwMl9Mb2FkQXR0ZW5kYW5jZU1vZGFsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12003OTEntry.razor]

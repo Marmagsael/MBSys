@@ -41,14 +41,8 @@
                         </div>
                     </div>
 
-                    @*<!-- Color Legend -->
-                    <div style="margin-top: 8px; font-size: 0.85em; display: flex; gap: 16px;">
-                        <span><span style="color: darkcyan; font-weight: bold;">■</span> Schedule changed</span>
-                        <span><span style="color: orange;">■</span> Not portal user</span>
-                        <span><span style="color: gray;">■</span> No schedule set</span>
-                    </div>*@
-
                     <_11003_CS_Modal />
+                    <_11003_CSModal_CurrentSchedule />
 
                 </CascadingValue>
             </CascadingValue>
@@ -129,6 +123,7 @@
             try
             {
                 v.Employees = await _da._02CS_EmplistPerPayrollgrp(val.Value, Uc!.SchemaUserPis!, Uc!.OpisDb!, Uc.Conn!) ?? [];
+
             }
             catch (Exception ex)
             {

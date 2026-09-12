@@ -31,6 +31,7 @@ public static class _00000OtherServices
         // --- PIS ------------------------------------------------
         services.AddScoped<IEmpmasInternalDataAccess, EmpmasInternalDataAccess>();
         services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();
+        services.AddScoped<IAttpunches1DataAccess, Attpunches1DataAccess>();
 
         // --- Payrol ------------------------------------------------
         services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();      

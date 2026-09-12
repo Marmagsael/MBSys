@@ -18,14 +18,15 @@ public class DA_11003O : IDA_11003O
                     D1_In, D1_HrsLength, D1_DutyType, D2_In, D2_HrsLength, D2_DutyType, D3_In, D3_HrsLength, D3_DutyType,
                     D4_In, D4_HrsLength, D4_DutyType, D5_In, D5_HrsLength, D5_DutyType, D6_In, D6_HrsLength, D6_DutyType,
                     D7_In, D7_HrsLength, D7_DutyType, 
-                    AttschedweeklyhdrId, AttschedweeklyhdrIdAdv, ChangeSchedEffectivity ) 
+                    AttschedweeklyhdrId, AttschedweeklyhdrIdAdv, ChangeSchedEffectivity, ChangeSchedEnd ) 
         SELECT @Empmasid, 1, 
                     D1_In, D1_HrsLength, D1_DutyType, D2_In, D2_HrsLength, D2_DutyType, D3_In, D3_HrsLength, D3_DutyType, 
                     D4_In, D4_HrsLength, D4_DutyType, D5_In, D5_HrsLength, D5_DutyType, D6_In, D6_HrsLength, D6_DutyType,
                     D7_In, D7_HrsLength, D7_DutyType, 
-                    @AttschedweeklyhdrIdAdv, @AttschedweeklyhdrIdAdv, @ChangeSchedEffectivity 
+                    @AttschedweeklyhdrIdAdv, @AttschedweeklyhdrIdAdv, @ChangeSchedEffectivity, @ChangeSchedEnd
         FROM {pisdb}.attschedweeklydtl where AttSchedWeeklyHdrId = @Attschedweeklyhdrid limit 1
-        ON DUPLICATE KEY UPDATE AttschedweeklyhdrIdAdv = @AttschedweeklyhdrIdAdv, ChangeSchedEffectivity = @ChangeSchedEffectivity; ";
+        ON DUPLICATE KEY UPDATE AttschedweeklyhdrIdAdv = @AttschedweeklyhdrIdAdv, ChangeSchedEffectivity = @ChangeSchedEffectivity, 
+                ChangeSchedEnd = @ChangeSchedEnd; ";
 
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
     }
@@ -65,12 +66,16 @@ public class DA_11003O : IDA_11003O
     public async Task<List<M11003CS_Atttemplate>?> _02CS_EmplistPerPayrollgrp(int payrollgrpId, string pisdb, string opisdb, string conn)
     {
         string? sql = $@"SELECT COALESCE(e1.systemid, 0) AS Systemid, COALESCE(e1.systemid, 0) AS Empmasid, 
-                            d.Empnumber, d.PayrollgrpId, d.IdDeployment,
+                            d.Empnumber, 
+                            d.PayrollgrpId, 
+                            d.IdDeployment,
                             h.Description AS CurrentScheduleName,
                             ha.Description AS AdvanceScheduleName,
                             CONCAT(TRIM(COALESCE(e.EmpLastNm, '')), ', ', 
                             TRIM(COALESCE(e.EmpFirstNm, '')), ' ', 
-                            TRIM(COALESCE(e.EmpMidNm, ''))) AS EmpName
+                            TRIM(COALESCE(e.EmpMidNm, ''))) AS EmpName,
+                            at.ChangeSchedEffectivity,
+                            at.ChangeSchedEnd 
                             FROM {opisdb}.Deprec d 
                             LEFT JOIN {opisdb}.Empmas             e   ON e.Empnumber    = d.Empnumber 
                             left join {pisdb}.empmas              e1  on e1.EmpNumber   = e.empnumber
@@ -101,6 +106,13 @@ public class DA_11003O : IDA_11003O
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
     }
     
+    public async Task _03CS_Atttemplate_CurrentSchedule(int systemid, int attschedweeklyhdrid, string pisdb, string conn)
+    {
+        string? sql = $@"update {pisdb}.atttemplate set Attschedweeklyhdrid  = @Attschedweeklyhdrid where empmasId = @Empmasid";
+        await _sql.ExecuteCmd<dynamic>(sql, new { EmpmasId = systemid, Attschedweeklyhdrid = attschedweeklyhdrid }, conn);
+    }
+
+    
 
 }
 
@@ -114,5 +126,5 @@ public interface IDA_11003O
     Task<List<M11003_Payrollgrp>?>      _02Payrollgrps(string schema, string conn);
     Task                                _03CS_AtttemplateAtt(M11003CS_Atttemplate atttemplate, string pisdb, string conn);
     Task                                _03CS_AtttemplateAttAdvOnly(M11003CS_Atttemplate atttemplate, string pisdb, string conn);
-
+    Task                                _03CS_Atttemplate_CurrentSchedule(int systemid, int attschedweeklyhdrid, string pisdb, string conn);
 }

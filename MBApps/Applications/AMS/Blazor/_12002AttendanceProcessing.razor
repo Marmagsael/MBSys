@@ -1,6 +1,141 @@
-﻿<_00UnderDevelopment Module="_12002AttendanceProcessing" />
+@using MBApiLibrary.Models._00_Main
+@using MBApiLibrary.Modules._11003O
+@using MBApps.Applications.AMS.Blazor._12002
+@using MBApps.Applications.AMS.Vars
+@using MBApps.Applications._00GeneralComponents.BodyComponents
+@using Telerik.Blazor.Components
+
+<TelerikNotification @ref="@NotificationRef"
+                     HorizontalPosition="NotificationHorizontalPosition.Center"
+                     VerticalPosition="NotificationVerticalPosition.Top" />
+<TelerikRootComponent>
+<div class="card w-100 p-1">
+    <BodyHdr pageTitle="Attendance Processing" />
+    <div class="card-body p-1 w-100">
+
+        <CascadingValue Value="@v">
+            <CascadingValue Value="@Uc">
+                <CascadingValue Value="@NotifyChanged">
+
+                    <!-- Payroll Group -->
+                    <div class="row mb-2 align-items-center border-bottom">
+                        <div class="col-auto">
+                            <label class="form-label fw-bold txt-fcolor1 mb-0">Payroll Group</label>
+                        </div>
+                        <div class="col-auto p-1">
+                            <TelerikDropDownList Data="@v.PayrollGrps"
+                                                 Value="@v.SelectedPayrollGrpId"
+                                                 ValueChanged="@((int? val) => OnPayrollGrpChanged(val))"
+                                                 TextField="Name" ValueField="Id" Width="400px">
+                                <DropDownListSettings>
+                                    <DropDownListPopupSettings Height="400px" />
+                                </DropDownListSettings>
+                            </TelerikDropDownList>
+                        </div>
+                    </div>
+
+                    <!-- Coverage Date Range + Load Attendance -->
+                    <div class="row mb-2 align-items-center border-bottom">
+                        <div class="col-auto">
+                            <label class="form-label fw-bold mb-0">Coverage</label>
+                        </div>
+                        <div class="col-auto">
+                            <label class="form-label mb-0 me-1">Start</label>
+                            <TelerikDatePicker Value="@v.CoverageStart"
+                                               ValueChanged="@((DateTime? val) => { v.CoverageStart = val; })"
+                                               Width="160px" />
+                        </div>
+                        <div class="col-auto">
+                            <label class="form-label mb-0 me-1 txt-orange">End</label>
+                            <TelerikDatePicker Value="@v.CoverageEnd"
+                                               ValueChanged="@((DateTime? val) => { v.CoverageEnd = val; })"
+                                               Width="160px" />
+                        </div>
+                        <div class="col-auto">
+                            <TelerikButton OnClick="OnLoadAttendance"
+                                           ThemeColor="primary">Load Attendance</TelerikButton>
+                        </div>
+                    </div>
+
+                    <_12002_LoadAttendanceModal />
+
+                </CascadingValue>
+            </CascadingValue>
+        </CascadingValue>
+
+    </div>
+</div>
+</TelerikRootComponent>
+
+@inject IDA_11003O _daO
+
 @code {
+    [Parameter] public UserClaimsModel? Uc        { get; set; }
+    private TelerikNotification NotificationRef   { get; set; } = new();
+    private V12002Model         v                 { get; set; } = new();
+    private bool                _initialized      = false;
 
-    [Parameter] public UserClaimsModel? Uc { get; set; }
+    private Func<Task>? _notifyChanged;
+    private Func<Task> NotifyChanged => _notifyChanged ??= async () =>
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(v.Notification.Type))
+            {
+                NotificationRef.Show(new NotificationModel
+                {
+                    Text       = v.Notification.Message,
+                    ThemeColor = v.Notification.Type,
+                    CloseAfter = 4000
+                });
+                v.Notification = (string.Empty, string.Empty);
+            }
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (ObjectDisposedException) { }
+    };
 
+    protected async override Task OnParametersSetAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        if (_initialized) return;
+        _initialized = true;
+
+        if (Uc is null) return;
+        try
+        {
+            v.PayrollGrps = await _daO._02Payrollgrps(Uc.OpayDb!, Uc.Conn!) ?? [];
+        }
+        catch (Exception ex)
+        {
+            NotificationRef.Show(new NotificationModel
+            {
+                Text       = $"Load failed: {ex.Message}",
+                ThemeColor = "error",
+                CloseAfter = 4000
+            });
+        }
+    }
+
+    private async Task OnPayrollGrpChanged(int? val)
+    {
+        v.SelectedPayrollGrpId = val;
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnLoadAttendance()
+    {
+        if (v.CoverageStart is null || v.CoverageEnd is null)
+        {
+            v.Notification = ("warning", "Please set Coverage Start and End date.");
+            await NotifyChanged.Invoke();
+            return;
+        }
+        v.IsLoadModalOpen = true;
+        await NotifyChanged.Invoke();
+    }
 }

@@ -28,6 +28,7 @@ public class AMSTableMaker : IAMSTableMaker
             await _01AttSchedDaily(schema, connName);
             await _01AttAdvanceSchedule(schema, connName);
             await _01Atttemplate_Schedule(schema, connName);
+            await Ams_OTSettings(schema, connName);
 
 
 
@@ -68,6 +69,28 @@ public class AMSTableMaker : IAMSTableMaker
                         ) ENGINE = InnoDB DEFAULT CHARSET = latin1;";
         await _sql.ExecuteCmd(sql, new { }, connName);
     }
+    
+    private async Task _01Biolog(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE if not exists {schema}.Biolog (
+                        Id              BIGINT          NOT NULL AUTO_INCREMENT,
+                        DeviceNo        VARCHAR(20)     NOT NULL,
+                        BiometricEmpNo  VARCHAR(10)     NOT NULL,
+                        LogDatetime     DATETIME        NOT NULL,
+                        PunchDate       DATE            NOT NULL,
+                        VerifyMode      TINYINT         NOT NULL DEFAULT 1,
+                        AttState        TINYINT         NOT NULL DEFAULT 0,
+                        WorkCode        VARCHAR(20)     NULL,
+                        ImportBatch     VARCHAR(50)     NOT NULL,
+                        ImportedOn      DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        IsProcessed     TINYINT(1)      NOT NULL DEFAULT 0,
+                        PRIMARY KEY (Id),
+                        UNIQUE INDEX uidx_biolog_emp_datetime  (BiometricEmpNo, LogDatetime),
+                        INDEX idx_biolog_emp_date              (BiometricEmpNo, PunchDate),
+                        INDEX idx_biolog_processed             (IsProcessed));";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
     
     private async Task _01AttSchedWeeklyHdr(string schema, string connName)
     {
@@ -179,6 +202,15 @@ public class AMSTableMaker : IAMSTableMaker
                         PRIMARY KEY (`EmpmasId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         await _sql.ExecuteCmd(sql, new { }, connName);
     }
+    private async Task Ams_OTSettings(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE if not exists {schema}.Ams_OTSettings (
+                          Empnumber        CHAR(5) NOT NULL,
+                          NeedsOTFiling    INTEGER UNSIGNED DEFAULT 1,
+                          MaxOTHour        DOUBLE(8,2) DEFAULT 0,
+                          PRIMARY KEY (`Empnumber`)) ENGINE = InnoDB; ";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
 
 
 
@@ -201,7 +233,8 @@ public class AMSTableMaker : IAMSTableMaker
         {
             $@"ALTER TABLE {schema}.atttemplate ADD COLUMN AttschedweeklyhdrId      INT Default 0 ",
             $@"ALTER TABLE {schema}.atttemplate ADD COLUMN AttschedweeklyhdrIdAdv   INT Default 0 ",
-            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN ChangeSchedEffectivity   DATE "
+            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN ChangeSchedEffectivity   DATE ",
+            $@"ALTER TABLE {schema}.atttemplate ADD COLUMN ChangeSchedEnd           DATE "
         };
 
         foreach (var sql in sqls)

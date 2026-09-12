@@ -18,9 +18,11 @@ public class V11003CSModel
 
     // Change Schedule Modal
     public bool                             IsModalVisible       { get; set; } = false;
+    public bool                             IsModalVisible1      { get; set; } = false;
     public int?                             SelectedTemplateId   { get; set; } = null;
     public string?                          SelectedTemplateName { get; set; } = null;
     public DateTime                         Effectivity          { get; set; } = DateTime.Today;
+    public DateTime                         EffectivityEnd       { get; set; } = DateTime.Today.AddDays(7);
     public AttschedweeklydtlModel?          SelectedDtl          { get; set; } = null;
 
     // UI Flags

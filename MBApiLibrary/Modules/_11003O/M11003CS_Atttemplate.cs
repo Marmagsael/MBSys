@@ -8,6 +8,7 @@ public class M11003CS_Atttemplate
     public int      Attschedweeklyhdrid             { get; set; }
     public int      Attschedweeklyhdridadv          { get; set; }
     public DateTime Changeschedeffectivity          { get; set; }
+    public DateTime Changeschedend                  { get; set; }
     
     //--- Others -------------------------------------------------
     public bool     IsSelected                      { get; set; } = false; 

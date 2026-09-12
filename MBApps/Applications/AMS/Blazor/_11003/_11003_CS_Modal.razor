@@ -8,17 +8,20 @@
 @inject IDA_11003O _da
 @inject IAttschedweeklydtlDataAccess _weeklyDtl
 
-<TelerikWindow @bind-Visible="@V!.IsModalVisible" Modal="true" Width="550px">
-    <WindowTitle><div class="fw-bold">Change Schedule</div></WindowTitle>
+<style>
+    .cs-modal .k-window-titlebar {
+        background-color: rgb(49, 134, 219) !important;
+        color: white !important;
+    }
+</style>
+
+<TelerikWindow @bind-Visible="@V!.IsModalVisible" Modal="true" Width="550px" Class="cs-modal">
+    <WindowTitle><div class="fw-bold">Change New Schedule</div></WindowTitle>
     <WindowActions>
         <WindowAction Name="Close" OnClick="@Close" />
     </WindowActions>
     <WindowContent>
         <div class="row g-3">
-            
-            <div class="col-12">
-                V!.SelectedTemplateId : @V!.SelectedTemplateId 
-            </div>
 
             <div class="col-12">
                 <label class="form-label fw-bold txt-fcolor1">Template</label>
@@ -32,8 +35,14 @@
             </div>
 
             <div class="col-12">
-                <label class="form-label fw-bold">Effectivity</label>
+                <label class="form-label w-150p">Effectivity</label>
                 <TelerikDatePicker @bind-Value="@V!.Effectivity"
+                                   Format="MM/dd/yyyy"
+                                   Width="200px"/>
+            </div>
+            <div class="col-12">
+                <label class="form-label w-150p">Effectivity End</label>
+                <TelerikDatePicker @bind-Value="@V!.EffectivityEnd"
                                    Format="MM/dd/yyyy"
                                    Width="200px"/>
             </div>
@@ -145,14 +154,11 @@
 
     private async Task ApplyToSelected()
     {
-        // if (Uc is null || V!.SelectedDtl is null || !V.SelectedEmployees.Any()) return;
-        // V.IsBusy = true;
-
-        // try
-        // {
+         if (Uc is null || V!.SelectedDtl is null || !V.SelectedEmployees.Any()) return;
+         V.IsBusy = true;
+         try
+         {
             int ctr = 0;
-            Console.WriteLine(@$"=====> V.SelectedTemplateId : {V.SelectedTemplateId} ==================");
-            Console.WriteLine(@$"<================================================================ ");
             foreach (var emp in V.SelectedEmployees)
             {
                 
@@ -161,17 +167,12 @@
                     Empmasid                = emp.Empmasid,
                     Attschedweeklyhdrid     = V.SelectedTemplateId ?? 0,
                     Attschedweeklyhdridadv  = V.SelectedTemplateId ?? 0,
-                    Changeschedeffectivity  = V.Effectivity
+                    Changeschedeffectivity  = V.Effectivity, 
+                    Changeschedend          = V.EffectivityEnd
+
                 };
-            ctr++;
-            Console.WriteLine(@$" empmas id : {model.Empmasid} *  ctr : {ctr} * model.Attschedweeklyhdrid : {model.Attschedweeklyhdrid} * Effectivity : {model.Changeschedeffectivity} ");
-
-
-
-                // if (emp.Attschedweeklyhdrid == 0)
-                    await _da._01CS_AtttemplateAtt(model, Uc.SchemaUserPis!, Uc.Conn!);
-                // else
-                    // await _da._03CS_AtttemplateAttAdvOnly(model, Uc.SchemaUserPis!, Uc.Conn!);
+            
+                    await _da._01CS_AtttemplateAtt(model, Uc.SchemaUserPis!, Uc.Conn!);    
             }
 
             // Refresh employee list
@@ -182,15 +183,15 @@
             V.SelectedEmployees = [];
             V.Notification = ("success", $"Schedule applied to {count} employee(s).");
             Close();
-        // }
-        // catch (Exception ex)
-        // {
-        //     V!.Notification = ("error", $"Apply failed: {ex.Message} | Inner: {ex.InnerException?.Message} | {ex.InnerException?.InnerException?.Message}");
-        // }
-        // finally
-        // {
-        //     V!.IsBusy = false;
-        //     await NotifyChanged!.Invoke();
-        // }
+         }
+         catch (Exception ex)
+         {
+             V!.Notification = ("error", $"Apply failed: {ex.Message} | Inner: {ex.InnerException?.Message} | {ex.InnerException?.InnerException?.Message}");
+         }
+         finally
+         {
+             V!.IsBusy = false;
+             await NotifyChanged!.Invoke();
+         }
     }
 }

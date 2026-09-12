@@ -22,9 +22,13 @@
                        OnClick="@UnselectAll" />
         @if (V!.Employees.Any(x => x.IsSelected))
         {
-            <TelerikButton ThemeColor="warning" OnClick="@OpenModal">
-                Show Change Schedule
+            <TelerikButton ThemeColor="primary" OnClick="@OpenModalCurrentSchedule">
+                Change Current Schedule
             </TelerikButton>
+            <TelerikButton ThemeColor="secondary" OnClick="@OpenModalNewSchedule">
+                Change New Schedule
+            </TelerikButton>
+
         }
     </GridToolBarTemplate>
     <GridColumns>
@@ -57,12 +61,21 @@
                 </span>
             </Template>
         </GridColumn>
+
         <GridColumn Field="@nameof(M11003CS_Atttemplate.Changeschedeffectivity)" Title="Effectivity" Width="120px">
             <Template>
                 @{ var row = (M11003CS_Atttemplate)context; }
                 @(row.Changeschedeffectivity == default ? "-" : row.Changeschedeffectivity.ToString("MM/dd/yyyy"))
             </Template>
         </GridColumn>
+        
+        <GridColumn Field="@nameof(M11003CS_Atttemplate.Changeschedend)" Title="Effectivity End" Width="120px">
+            <Template>
+                @{ var row = (M11003CS_Atttemplate)context; }
+                @(row.Changeschedend == default ? "-" : row.Changeschedend.ToString("MM/dd/yyyy"))
+            </Template>
+        </GridColumn>
+
     </GridColumns>
 </TelerikGrid>
 
@@ -75,16 +88,16 @@
 
 @code {
 
-    [CascadingParameter] public UserClaimsModel?  Uc            { get; set; }
-    [CascadingParameter] public V11003CSModel?     V             { get; set; }
-    [CascadingParameter] public Func<Task>?        NotifyChanged { get; set; }
+    [CascadingParameter] public UserClaimsModel?  Uc                { get; set; }
+    [CascadingParameter] public V11003CSModel?     V                { get; set; }
+    [CascadingParameter] public Func<Task>?        NotifyChanged    { get; set; }
 
     private string GetNameColor(M11003CS_Atttemplate row)
     {
-        if (row.Empmasid == 0) return "txt-gray";
-        if (row.Attschedweeklyhdrid == 0) return "txt-orange";
+        if (row.Empmasid == 0) return "gray";
+        if (row.Attschedweeklyhdrid == 0) return "rgba(0,0,0,0.70)";
         if (row.AdvanceScheduleName != row.CurrentScheduleName) return "darkcyan";
-        return "rgba(0,0,0,0.9)";
+        return "rgba(0,0,0,0.90)";
     }
 
     private async Task OnCheckChanged(M11003CS_Atttemplate row, bool val)
@@ -95,7 +108,10 @@
 
     private async Task SelectAll()
     {
-        V!.Employees.ForEach(x => x.IsSelected = true);
+        V!.Employees.ForEach(x =>
+        {
+            if (x.Empmasid != 0) x.IsSelected = true;
+        });
         await NotifyChanged!.Invoke();
     }
 
@@ -105,7 +121,7 @@
         await NotifyChanged!.Invoke();
     }
 
-    private async Task OpenModal()
+    private async Task OpenModalNewSchedule()
     {
         V!.SelectedEmployees    = V.Employees.Where(x => x.IsSelected).ToList();
         V!.SelectedTemplateId   = null;
@@ -115,4 +131,18 @@
         V!.IsModalVisible       = true;
         await NotifyChanged!.Invoke();
     }
+    
+    private async Task OpenModalCurrentSchedule()
+    {
+
+        V!.SelectedEmployees    = V.Employees.Where(x => x.IsSelected).ToList();
+        V!.SelectedTemplateId   = null;
+        V!.SelectedTemplateName = null;
+        V!.SelectedDtl          = null;
+        V!.Effectivity          = DateTime.Today;
+        V!.IsModalVisible1      = true;
+        await NotifyChanged!.Invoke();
+
+    }
+
 }
