@@ -1,73 +1,122 @@
 @using MBApiLibrary.Models._00_Main
+@using MBApiLibrary.Models._11_AMS
 @using MBApiLibrary.Modules._11003O
 @using MBApps.Applications.AMS.Blazor._12002
 @using MBApps.Applications.AMS.Vars
 @using MBApps.Applications._00GeneralComponents.BodyComponents
 @using Telerik.Blazor.Components
 
-<TelerikNotification @ref="@NotificationRef"
-                     HorizontalPosition="NotificationHorizontalPosition.Center"
-                     VerticalPosition="NotificationVerticalPosition.Top" />
 <TelerikRootComponent>
-<div class="card w-100 p-1">
-    <BodyHdr pageTitle="Attendance Processing" />
-    <div class="card-body p-1 w-100">
 
-        <CascadingValue Value="@v">
-            <CascadingValue Value="@Uc">
-                <CascadingValue Value="@NotifyChanged">
+    <TelerikNotification @ref="@NotificationRef"
+                         HorizontalPosition="NotificationHorizontalPosition.Center"
+                         VerticalPosition="NotificationVerticalPosition.Top" />
 
-                    <!-- Payroll Group -->
-                    <div class="row mb-2 align-items-center border-bottom">
-                        <div class="col-auto">
-                            <label class="form-label fw-bold txt-fcolor1 mb-0">Payroll Group</label>
-                        </div>
-                        <div class="col-auto p-1">
-                            <TelerikDropDownList Data="@v.PayrollGrps"
-                                                 Value="@v.SelectedPayrollGrpId"
-                                                 ValueChanged="@((int? val) => OnPayrollGrpChanged(val))"
-                                                 TextField="Name" ValueField="Id" Width="400px">
-                                <DropDownListSettings>
-                                    <DropDownListPopupSettings Height="400px" />
-                                </DropDownListSettings>
-                            </TelerikDropDownList>
-                        </div>
-                    </div>
+    <div class="card w-100 p-1">
+        <BodyHdr pageTitle="Attendance Processing" />
+        <div class="card-body p-1 w-100">
 
-                    <!-- Coverage Date Range + Load Attendance -->
-                    <div class="row mb-2 align-items-center border-bottom">
-                        <div class="col-auto">
-                            <label class="form-label fw-bold mb-0">Coverage</label>
-                        </div>
-                        <div class="col-auto">
-                            <label class="form-label mb-0 me-1">Start</label>
-                            <TelerikDatePicker Value="@v.CoverageStart"
-                                               ValueChanged="@((DateTime? val) => { v.CoverageStart = val; })"
-                                               Width="160px" />
-                        </div>
-                        <div class="col-auto">
-                            <label class="form-label mb-0 me-1 txt-orange">End</label>
-                            <TelerikDatePicker Value="@v.CoverageEnd"
-                                               ValueChanged="@((DateTime? val) => { v.CoverageEnd = val; })"
-                                               Width="160px" />
-                        </div>
-                        <div class="col-auto">
-                            <TelerikButton OnClick="OnLoadAttendance"
-                                           ThemeColor="primary">Load Attendance</TelerikButton>
-                        </div>
-                    </div>
+            <CascadingValue Value="@v">
+                <CascadingValue Value="@Uc">
+                    <CascadingValue Value="@NotifyChanged">
 
-                    <_12002_LoadAttendanceModal />
+                        <!-- Top Buttons -->
+                        <div class="row mb-2">
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnSave" ThemeColor="primary">Save</TelerikButton>
+                            </div>
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnPostToPayroll">Post to Payroll</TelerikButton>
+                            </div>
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnPrint">Print</TelerikButton>
+                            </div>
+                        </div>
 
+                        <!-- Payroll Group -->
+                        <div class="row mb-2 align-items-center border-bottom">
+                            <div class="col-auto">
+                                <label class="form-label fw-bold txt-fcolor1 mb-0">Payroll Group</label>
+                            </div>
+                            <div class="col-auto p-1">
+                                <TelerikDropDownList Data="@v.PayrollGrps"
+                                                     Value="@v.SelectedPayrollGrpId"
+                                                     ValueChanged="@((int? val) => OnPayrollGrpChanged(val))"
+                                                     TextField="Name" ValueField="Id" Width="400px">
+                                    <DropDownListSettings>
+                                        <DropDownListPopupSettings Height="400px" />
+                                    </DropDownListSettings>
+                                </TelerikDropDownList>
+                            </div>
+                        </div>
+
+                        <!-- Coverage + Load Button -->
+                        <div class="row mb-2 align-items-center border-bottom">
+                            <div class="col-auto">
+                                <label class="form-label fw-bold mb-0">Coverage :</label>
+                            </div>
+                            <div class="col-auto">
+                                <label class="form-label mb-0 me-1">Start</label>
+                                <TelerikDatePicker Value="@v.Hdr.CoverageStart"
+                                                   ValueChanged="@((DateOnly val) => { v.Hdr.CoverageStart = val; })"
+                                                   Width="160px" />
+                            </div>
+                            <div class="col-auto">
+                                <label class="form-label mb-0 me-1 txt-orange">End</label>
+                                <TelerikDatePicker Value="@v.Hdr.CoverageEnd"
+                                                   ValueChanged="@((DateOnly val) => { v.Hdr.CoverageEnd = val; })"
+                                                   Width="160px" />
+                            </div>
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnLoad"
+                                               ThemeColor="info"
+                                               Enabled="@(!v.IsBusy)">
+                                    @(v.IsBusy ? "Loading..." : "Load")
+                                </TelerikButton>
+                            </div>
+                        </div>
+
+                        <!-- BioManHour Grid -->
+                        <_12002_ManHourGrid />
+
+                        <!-- Bottom Buttons -->
+                        <div class="row mt-2 mb-1">
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnLoadAttendance" ThemeColor="primary">Load Attendance</TelerikButton>
+                            </div>
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnProcessData">Process Data</TelerikButton>
+                            </div>
+                            <div class="col-auto">
+                                <TelerikButton OnClick="OnSaveDailyPunches">Save</TelerikButton>
+                            </div>
+                        </div>
+
+                        <!-- Daily Transaction Label -->
+                        <div class="row mb-1">
+                            <div class="col-auto">
+                                <label class="fw-bold txt-fcolor1">Daily Transaction</label>
+                            </div>
+                        </div>
+
+                        <!-- BioDailyPunches Grid -->
+                        <_12002_DailyTransactionGrid />
+
+                        <!-- Load Attendance Modal -->
+                        <_12002_LoadAttendanceModal />
+
+                    </CascadingValue>
                 </CascadingValue>
             </CascadingValue>
-        </CascadingValue>
 
+        </div>
     </div>
-</div>
+
 </TelerikRootComponent>
 
-@inject IDA_11003O _daO
+@inject IDA_11003O              _daO
+@inject IBioManHourHdrDataAccess _hdrDa
+@inject IBioManHourDataAccess    _manHourDa
 
 @code {
     [Parameter] public UserClaimsModel? Uc        { get; set; }
@@ -124,18 +173,108 @@
     private async Task OnPayrollGrpChanged(int? val)
     {
         v.SelectedPayrollGrpId = val;
+        v.ManHours             = [];
+        v.DailyPunches         = [];
+        v.Hdr                  = new();
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnLoad()
+    {
+        if (Uc is null) return;
+
+        if (v.SelectedPayrollGrpId is null)
+        {
+            v.Notification = ("warning", "Please select a Payroll Group.");
+            await NotifyChanged.Invoke();
+            return;
+        }
+
+        if (v.Hdr.CoverageStart == default || v.Hdr.CoverageEnd == default)
+        {
+            v.Notification = ("warning", "Please set Coverage Start and End date.");
+            await NotifyChanged.Invoke();
+            return;
+        }
+
+        v.IsBusy = true;
+        await NotifyChanged.Invoke();
+
+        try
+        {
+            // Check if BioManHourHdr exists
+            var hdrs = await _hdrDa._02sByPayrollGrp(v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
+            var existing = hdrs.FirstOrDefault(x => x is not null && x.CoverageStart == v.Hdr.CoverageStart);
+
+            if (existing is not null)
+            {
+                // Fetch existing BioManHour records
+                v.Hdr      = existing;
+                var detail = await _manHourDa._02sByHdr(existing.Id, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
+                v.ManHours = detail.Where(x => x is not null).Cast<BioManHourModel>().ToList();
+            }
+            else
+            {
+                // Populate from Deprec
+                v.Hdr.PayrollGrpId = v.SelectedPayrollGrpId.Value;
+                var emps = await _daO._02Deprec_ByFieldId("PayrollgrpId", v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.OpisDb!, Uc.Conn!) ?? [];
+                v.ManHours = emps.Where(x => x is not null).Select(x => new BioManHourModel
+                {
+                    EmpNumber = x!.Empnumber ?? string.Empty,
+                    EmpName   = x.EmpName   ?? string.Empty
+                }).ToList();
+            }
+
+            v.Notification = ("success", $"{v.ManHours.Count} employee(s) loaded.");
+        }
+        catch (Exception ex)
+        {
+            v.Notification = ("error", $"Load failed: {ex.Message}");
+        }
+
+        v.IsBusy = false;
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnSave()
+    {
+        // TODO: Save BioManHour
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnPostToPayroll()
+    {
+        // TODO: Post to Payroll
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnPrint()
+    {
+        // TODO: Print
         await NotifyChanged.Invoke();
     }
 
     private async Task OnLoadAttendance()
     {
-        if (v.CoverageStart is null || v.CoverageEnd is null)
+        if (v.Hdr.CoverageStart == default || v.Hdr.CoverageEnd == default)
         {
             v.Notification = ("warning", "Please set Coverage Start and End date.");
             await NotifyChanged.Invoke();
             return;
         }
         v.IsLoadModalOpen = true;
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnProcessData()
+    {
+        // TODO: Process Data
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnSaveDailyPunches()
+    {
+        // TODO: Save Daily Punches
         await NotifyChanged.Invoke();
     }
 }

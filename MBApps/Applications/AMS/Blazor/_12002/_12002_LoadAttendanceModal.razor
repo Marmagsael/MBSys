@@ -47,12 +47,12 @@
                                  Pageable="true"
                                  PageSize="20">
                         <GridColumns>
-                            <GridColumn Field="@nameof(BiologModel.DeviceNo)" Title="Device" Width="100px" />
-                            <GridColumn Field="@nameof(BiologModel.BiometricEmpNo)" Title="Biometric Emp#" Width="120px" />
-                            <GridColumn Field="@nameof(BiologModel.LogDatetime)" Title="Log Datetime" Width="160px" DisplayFormat="{0:yyyy-MM-dd HH:mm:ss}" />
-                            <GridColumn Field="@nameof(BiologModel.VerifyModeLabel)" Title="Verify Mode" Width="130px" />
-                            <GridColumn Field="@nameof(BiologModel.AttStateLabel)" Title="Att State" Width="110px" />
-                            <GridColumn Field="@nameof(BiologModel.WorkCode)" Title="Work Code" Width="100px" />
+                            <GridColumn Field="@nameof(BiologModel.DeviceNo)"         Title="Device"         Width="100px" />
+                            <GridColumn Field="@nameof(BiologModel.BiometricEmpNo)"   Title="Biometric Emp#" Width="120px" />
+                            <GridColumn Field="@nameof(BiologModel.LogDatetime)"      Title="Log Datetime"   Width="160px" DisplayFormat="{0:yyyy-MM-dd HH:mm:ss}" />
+                            <GridColumn Field="@nameof(BiologModel.VerifyModeLabel)"  Title="Verify Mode"    Width="130px" />
+                            <GridColumn Field="@nameof(BiologModel.AttStateLabel)"    Title="Att State"      Width="110px" />
+                            <GridColumn Field="@nameof(BiologModel.WorkCode)"         Title="Work Code"      Width="100px" />
                         </GridColumns>
                     </TelerikGrid>
                 </div>
@@ -76,14 +76,14 @@
 @inject IBiologDataAccess _biolog
 
 @code {
-    [CascadingParameter] public V12002Model? v { get; set; }
-    [CascadingParameter] public UserClaimsModel? Uc { get; set; }
-    [CascadingParameter] public Func<Task>? NotifyChanged { get; set; }
+    [CascadingParameter] public V12002Model?     v             { get; set; }
+    [CascadingParameter] public UserClaimsModel? Uc            { get; set; }
+    [CascadingParameter] public Func<Task>?      NotifyChanged { get; set; }
 
     private async Task OnFileSelected(FileSelectEventArgs args)
     {
         if (v is null) return;
-        v.ParsedLogs = [];
+        v.ParsedLogs    = [];
         v.AttlogContent = null;
 
         var file = args.Files.Count > 0 ? args.Files[0] : null;
@@ -129,11 +129,11 @@
 
     private List<BiologModel> ParseAttlog(string content)
     {
-        var result = new List<BiologModel>();
-        var lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-        var dateFrom = v!.CoverageStart ?? DateTime.MinValue;
-        var dateTo = v!.CoverageEnd?.AddDays(1) ?? DateTime.MaxValue;
-        var batch = $"{v.DeviceNo}_{DateTime.Now:yyyyMMdd_HHmmss}";
+        var result   = new List<BiologModel>();
+        var lines    = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var dateFrom = v!.Hdr.CoverageStart == default ? DateTime.MinValue : v.Hdr.CoverageStart.ToDateTime(TimeOnly.MinValue);
+        var dateTo   = v!.Hdr.CoverageEnd == default   ? DateTime.MaxValue : v.Hdr.CoverageEnd.ToDateTime(TimeOnly.MinValue).AddDays(1);
+        var batch    = $"{v.DeviceNo}_{DateTime.Now:yyyyMMdd_HHmmss}";
 
         foreach (var line in lines)
         {
@@ -148,45 +148,19 @@
 
             result.Add(new BiologModel
             {
-                DeviceNo = v.DeviceNo,
+                DeviceNo       = v.DeviceNo,
                 BiometricEmpNo = parts[0].Trim(),
-                LogDatetime = logDt,
-                PunchDate = DateOnly.FromDateTime(logDt),
-                AttState = attState,
-                VerifyMode = verifyMode,
-                WorkCode = parts.Length > 4 ? parts[4].Trim() : null,
-                ImportBatch = batch
+                LogDatetime    = logDt,
+                PunchDate      = DateOnly.FromDateTime(logDt),
+                AttState       = attState,
+                VerifyMode     = verifyMode,
+                WorkCode       = parts.Length > 4 ? parts[4].Trim() : null,
+                ImportBatch    = batch
             });
         }
 
         return result;
     }
-
-    // private async Task OnSave()
-    // {
-    //     if (v is null || Uc is null || v.ParsedLogs.Count == 0) return;
-
-    //     v.IsBusy = true;
-    //     await NotifyChanged!.Invoke();
-
-    //     try
-    //     {
-    //         await _biolog._01Batch(v.ParsedLogs, Uc.SchemaUserPis!, Uc.Conn!);
-
-    //         v.Notification = ("success", $"{v.ParsedLogs.Count} record(s) saved successfully.");
-    //         v.ParsedLogs = [];
-    //         v.AttlogContent = null;
-    //         v.DeviceNo = "1";
-    //         v.IsLoadModalOpen = false;
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         v.Notification = ("error", $"Save failed: {ex.Message}");
-    //     }
-
-    //     v.IsBusy = false;
-    //     await NotifyChanged!.Invoke();
-    // }
 
     private async Task OnSave()
     {
@@ -199,15 +173,15 @@
         {
             await _biolog._01Batch(v.ParsedLogs, Uc.SchemaUserPis!, Uc.Conn!);
 
-            v.Notification = ("success", $"{v.ParsedLogs.Count} record(s) saved successfully.");
-            v.ParsedLogs = [];
-            v.AttlogContent = null;
-            v.DeviceNo = "1";
+            v.Notification    = ("success", $"{v.ParsedLogs.Count} record(s) saved successfully.");
+            v.ParsedLogs      = [];
+            v.AttlogContent   = null;
+            v.DeviceNo        = "1";
             v.IsLoadModalOpen = false;
         }
         catch (Exception ex)
         {
-            v.Notification = ("error", $"Save failed: {ex.Message} | Inner: {ex.InnerException?.Message}");
+            v.Notification = ("error", $"Save failed: {ex.Message}");
         }
 
         v.IsBusy = false;
@@ -217,9 +191,9 @@
     private async Task OnCancel()
     {
         if (v is null) return;
-        v.ParsedLogs = [];
-        v.AttlogContent = null;
-        v.DeviceNo = "1";
+        v.ParsedLogs      = [];
+        v.AttlogContent   = null;
+        v.DeviceNo        = "1";
         v.IsLoadModalOpen = false;
         await NotifyChanged!.Invoke();
     }

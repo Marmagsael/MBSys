@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Development\\MBSys\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_12002\\_12002_loadattendancemodal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_12002\\_12002_loadattendancemodal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_12002attendanceprocessing.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_12002attendanceprocessing.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_12002_LoadAttendanceModal.razor",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
-              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
-              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAmwNcAAAAAAAAAAAAAAA==",
+              "Title": "_12002AttendanceProcessing.razor",
+              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002AttendanceProcessing.razor",
+              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_12002AttendanceProcessing.razor",
+              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002AttendanceProcessing.razor",
+              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_12002AttendanceProcessing.razor",
+              "ViewState": "AgIAAPsAAAAAAAAAAAA0wBgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-12T07:20:34.126Z",
+              "WhenOpened": "2026-09-13T02:22:39.823Z",
               "EditorCaption": ""
             }
           ]

@@ -139,8 +139,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyQXR0ZW5kYW5jZVByb2Nlc3NpbmcucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002/_12002_DailyTransactionGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyXF8xMjAwMl9EYWlseVRyYW5zYWN0aW9uR3JpZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002/_12002_LoadAttendanceModal.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyXF8xMjAwMl9Mb2FkQXR0ZW5kYW5jZU1vZGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12002/_12002_ManHourGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xCbGF6b3JcXzEyMDAyXF8xMjAwMl9NYW5Ib3VyR3JpZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/MBApps/Applications/AMS/Blazor/_12003OTEntry.razor]

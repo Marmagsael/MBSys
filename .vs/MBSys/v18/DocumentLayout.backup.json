@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "D:\\Development\\MBSys\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_11008\\_11008_ot_grid.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_11008\\_11008_ot_grid.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_11008overtimesettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_11008overtimesettings.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|d:\\development\\mbsys\\mbapps\\applications\\ams\\blazor\\_12002\\_12002_loadattendancemodal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A1000003-0000-0000-0000-000000000003}|MBApps\\MBApps.csproj|solutionrelative:mbapps\\applications\\ams\\blazor\\_12002\\_12002_loadattendancemodal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_11008_OT_Grid.razor",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11008\\_11008_OT_Grid.razor",
-              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_11008\\_11008_OT_Grid.razor",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11008\\_11008_OT_Grid.razor",
-              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_11008\\_11008_OT_Grid.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABNAAAAAAAAAA==",
+              "Title": "_12002_LoadAttendanceModal.razor",
+              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
+              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
+              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
+              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_12002\\_12002_LoadAttendanceModal.razor",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAmwNcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-11T13:53:03.343Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_11008OvertimeSettings.razor",
-              "DocumentMoniker": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11008OvertimeSettings.razor",
-              "RelativeDocumentMoniker": "MBApps\\Applications\\AMS\\Blazor\\_11008OvertimeSettings.razor",
-              "ToolTip": "D:\\Development\\MBSys\\MBApps\\Applications\\AMS\\Blazor\\_11008OvertimeSettings.razor",
-              "RelativeToolTip": "MBApps\\Applications\\AMS\\Blazor\\_11008OvertimeSettings.razor",
-              "ViewState": "AgIAACsAAAAAAAAAAAApwDwAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-11T13:26:08.121Z",
+              "WhenOpened": "2026-09-12T07:20:34.126Z",
               "EditorCaption": ""
             }
           ]

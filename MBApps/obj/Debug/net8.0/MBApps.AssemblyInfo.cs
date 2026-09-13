@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MBApps")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+453d2611e8f6afa8a92aea235890189bd2a7801a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+901ea464393c052466c359ec97ca171b2e7d4103")]
 [assembly: System.Reflection.AssemblyProductAttribute("MBApps")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MBApps")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

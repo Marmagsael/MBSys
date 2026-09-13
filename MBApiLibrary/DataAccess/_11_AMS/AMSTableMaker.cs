@@ -29,7 +29,11 @@ public class AMSTableMaker : IAMSTableMaker
             await _01AttAdvanceSchedule(schema, connName);
             await _01Atttemplate_Schedule(schema, connName);
             await Ams_OTSettings(schema, connName);
-
+            await _01BioDailyPunches(schema, connName);
+            await _01BioManHourHdr(schema, connName);
+            await _01BioManHour(schema, connName);
+            await _01BioManHourMapping(schema, connName);
+            
 
 
 
@@ -211,6 +215,103 @@ public class AMSTableMaker : IAMSTableMaker
                           PRIMARY KEY (`Empnumber`)) ENGINE = InnoDB; ";
         await _sql.ExecuteCmd(sql, new { }, connName);
     }
+
+    private async Task _01BioDailyPunches(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE IF NOT EXISTS {schema}.BioDailyPunches (
+                    EmpNumber       VARCHAR(5)      NOT NULL,
+                    Date            DATE            NOT NULL,
+                    PayrollGrpId    INT             NULL,
+                    DutyType        VARCHAR(2)      NULL,
+                    DayType         VARCHAR(2)      NULL,
+                    InSchedule      INT             NULL,
+                    OutSchedule     INT             NULL,
+                    PunchIn         DATETIME        NULL,
+                    PunchOut        DATETIME        NULL,
+                    DayWork         DOUBLE(8,2)     NULL,
+                    Overtime        DOUBLE(8,2)     NULL,
+                    DutyStatus      VARCHAR(10)     NULL,
+                    ND              DOUBLE(8,2)     NULL,
+                    Late            DOUBLE(8,2)     NULL,
+                    Undertime       DOUBLE(8,2)     NULL,
+                    Absent          DOUBLE(8,2)     NULL,
+                    PRIMARY KEY (EmpNumber, Date),
+                    INDEX idx_biodailypunches_payrollgrp (PayrollGrpId),
+                    INDEX idx_biodailypunches_date       (Date));";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
+    private async Task _01BioManHourHdr(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE IF NOT EXISTS {schema}.BioManHourHdr (
+                    Id              BIGINT          NOT NULL AUTO_INCREMENT,
+                    PayrollGrpId    INT             NOT NULL,
+                    CoverageStart   DATE            NOT NULL,
+                    CoverageEnd     DATE            NOT NULL,
+                    Remarks         VARCHAR(200)    NULL,
+                    PRIMARY KEY (Id),
+                    UNIQUE INDEX uidx_biomanhourHdr (PayrollGrpId, CoverageStart));";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
+    private async Task _01BioManHour(string schema, string connName)
+    {
+        var sql = $@"CREATE TABLE IF NOT EXISTS {schema}.BioManHour (
+                    Id                  BIGINT          NOT NULL AUTO_INCREMENT,
+                    BioManHourHdrId     BIGINT          NOT NULL,
+                    EmpNumber           VARCHAR(5)      NOT NULL,
+                    RdDays              DOUBLE(8,2)     NULL,
+                    RdRd                DOUBLE(8,2)     NULL,
+                    RdTardiness         DOUBLE(8,2)     NULL,
+                    RdOt                DOUBLE(8,2)     NULL,
+                    LhDays              DOUBLE(8,2)     NULL,
+                    LhRd                DOUBLE(8,2)     NULL,
+                    LhTardiness         DOUBLE(8,2)     NULL,
+                    LhOt                DOUBLE(8,2)     NULL,
+                    ShDays              DOUBLE(8,2)     NULL,
+                    ShRd                DOUBLE(8,2)     NULL,
+                    ShTardiness         DOUBLE(8,2)     NULL,
+                    ShOt                DOUBLE(8,2)     NULL,
+                    DhDays              DOUBLE(8,2)     NULL,
+                    DhRd                DOUBLE(8,2)     NULL,
+                    DhTardiness         DOUBLE(8,2)     NULL,
+                    DhOt                DOUBLE(8,2)     NULL,
+                    PRIMARY KEY (Id),
+                    UNIQUE INDEX uidx_biomanhour (BioManHourHdrId, EmpNumber),
+                    INDEX idx_biomanhour_hdr (BioManHourHdrId));";
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
+    private async Task _01BioManHourMapping(string schema, string connName)
+    {
+        var sql = $@"
+        CREATE TABLE IF NOT EXISTS {schema}.BioManHourMapping (
+            Id              INT         NOT NULL AUTO_INCREMENT,
+            RdDays          CHAR(5)     NULL,
+            RdRd            CHAR(5)     NULL,
+            RdTardiness     CHAR(5)     NULL,
+            RdOt            CHAR(5)     NULL,
+            LhDays          CHAR(5)     NULL,
+            LhRd            CHAR(5)     NULL,
+            LhTardiness     CHAR(5)     NULL,
+            LhOt            CHAR(5)     NULL,
+            ShDays          CHAR(5)     NULL,
+            ShRd            CHAR(5)     NULL,
+            ShTardiness     CHAR(5)     NULL,
+            ShOt            CHAR(5)     NULL,
+            DhDays          CHAR(5)     NULL,
+            DhRd            CHAR(5)     NULL,
+            DhTardiness     CHAR(5)     NULL,
+            DhOt            CHAR(5)     NULL,
+            PRIMARY KEY (Id)
+        );
+
+        INSERT INTO {schema}.BioManHourMapping (Id)
+        SELECT 1 WHERE NOT EXISTS (SELECT 1 FROM {schema}.BioManHourMapping WHERE Id = 1 ); ";
+
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
 
 
 

@@ -1,0 +1,73 @@
+@using MBApiLibrary.Models._11_AMS
+@using MBApps.Applications.AMS.Vars
+@using Telerik.Blazor.Components
+
+<style>
+    .rd-header .k-cell-inner { background-color: #dbeafe !important; }
+    .lh-header .k-cell-inner { background-color: #dcfce7 !important; }
+    .sh-header .k-cell-inner { background-color: #fef9c3 !important; }
+    .dh-header .k-cell-inner { background-color: #ffedd5 !important; }
+</style>
+
+<TelerikGrid Data="@v!.ManHours"
+             Height="300px"
+             Pageable="false">
+    <GridColumns>
+        <GridColumn Width="40px">
+            <HeaderTemplate>Mrk</HeaderTemplate>
+            <Template>
+                @{
+                    var row = (BioManHourModel)context;
+                }
+                <input type="checkbox" @bind="row.IsSelected" />
+            </Template>
+        </GridColumn>
+        <GridColumn Field="@nameof(BioManHourModel.EmpName)" Title="Name" Width="160px" />
+
+        <!-- Regular Day -->
+        <GridColumn Title="Regular Day" HeaderClass="rd-header">
+            <Columns>
+                <GridColumn Field="@nameof(BioManHourModel.RdDays)"      Title="Days"      Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.RdRd)"        Title="RD"        Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.RdTardiness)" Title="Tardiness" Width="80px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.RdOt)"        Title="OT"        Width="70px" DisplayFormat="{0:N2}" />
+            </Columns>
+        </GridColumn>
+
+        <!-- Legal Holiday -->
+        <GridColumn Title="Legal Holiday" HeaderClass="lh-header">
+            <Columns>
+                <GridColumn Field="@nameof(BioManHourModel.LhDays)"      Title="Days"      Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.LhRd)"        Title="RD"        Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.LhTardiness)" Title="Tardiness" Width="80px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.LhOt)"        Title="OT"        Width="70px" DisplayFormat="{0:N2}" />
+            </Columns>
+        </GridColumn>
+
+        <!-- Special Holiday -->
+        <GridColumn Title="Special Holiday" HeaderClass="sh-header">
+            <Columns>
+                <GridColumn Field="@nameof(BioManHourModel.ShDays)"      Title="Days"      Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.ShRd)"        Title="RD"        Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.ShTardiness)" Title="Tardiness" Width="80px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.ShOt)"        Title="OT"        Width="70px" DisplayFormat="{0:N2}" />
+            </Columns>
+        </GridColumn>
+
+        <!-- Double Holiday -->
+        <GridColumn Title="Double Holiday" HeaderClass="dh-header">
+            <Columns>
+                <GridColumn Field="@nameof(BioManHourModel.DhDays)"      Title="Days"      Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.DhRd)"        Title="RD"        Width="70px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.DhTardiness)" Title="Tardiness" Width="80px" DisplayFormat="{0:N2}" />
+                <GridColumn Field="@nameof(BioManHourModel.DhOt)"        Title="OT"        Width="70px" DisplayFormat="{0:N2}" />
+            </Columns>
+        </GridColumn>
+
+    </GridColumns>
+</TelerikGrid>
+
+@code {
+    [CascadingParameter] public V12002Model?  v             { get; set; }
+    [CascadingParameter] public Func<Task>?   NotifyChanged { get; set; }
+}
