@@ -27,6 +27,7 @@ public class AMSController : Controller
         [12003] = "_12003_OTEntry",
         [12004] = "_12004_OBDirectAssignment",
         [12005] = "_12005_PunchManagement",
+        [12006] = "_12006_Sites",
 
     };
 

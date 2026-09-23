@@ -53,12 +53,17 @@ public class BioManHourDataAccess : IBioManHourDataAccess
         return data?.FirstOrDefault();
     }
 
-    // Get list by BioManHourHdrId
-    public async Task<List<BioManHourModel?>?> _02sByHdr(long bioManHourHdrId, string schema, string conn)
+    // Get list by BioManHourHdrId with EmpName
+    public async Task<List<BioManHourModel?>?> _02sByHdr(long bioManHourHdrId, string schema, string opisdb, string conn)
     {
-        string sql = $@"SELECT * FROM {schema}.BioManHour
-                        WHERE BioManHourHdrId = @BioManHourHdrId
-                        ORDER BY EmpNumber";
+        string sql = $@"SELECT bm.*,
+                               CONCAT(TRIM(COALESCE(e.EmpLastNm, '')), ', ',
+                                      TRIM(COALESCE(e.EmpFirstNm, '')), ' ',
+                                      TRIM(COALESCE(e.EmpMidNm, ''))) AS EmpName
+                        FROM {schema}.BioManHour bm
+                        LEFT JOIN {opisdb}.Empmas e ON e.EmpNumber = bm.EmpNumber
+                        WHERE bm.BioManHourHdrId = @BioManHourHdrId
+                        ORDER BY e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm";
         var data = await _sql.FetchData<BioManHourModel?, dynamic>(sql, new { BioManHourHdrId = bioManHourHdrId }, conn);
         return data;
     }
@@ -106,7 +111,7 @@ public interface IBioManHourDataAccess
 {
     Task _01(BioManHourModel model, string schema, string conn);
     Task<BioManHourModel?> _02(long id, string schema, string conn);
-    Task<List<BioManHourModel?>?> _02sByHdr(long bioManHourHdrId, string schema, string conn);
+    Task<List<BioManHourModel?>?> _02sByHdr(long bioManHourHdrId, string schema, string opisdb, string conn);
     Task _03(BioManHourModel model, string schema, string conn);
     Task _04(long id, string schema, string conn);
     Task _04ByHdr(long bioManHourHdrId, string schema, string conn);

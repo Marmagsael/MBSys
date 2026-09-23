@@ -40,12 +40,12 @@
             <div class="row mt-3">
                 <div class="col-12">
                     <label class="form-label fw-bold mb-1">
-                        Preview — @v.ParsedLogs.Count record(s) found within coverage period
+                        Preview — @v.ParsedLogs.Count record(s) found
                     </label>
                     <TelerikGrid Data="@v.ParsedLogs"
                                  Height="350px"
                                  Pageable="true"
-                                 PageSize="20">
+                                 PageSize="25">
                         <GridColumns>
                             <GridColumn Field="@nameof(BiologModel.DeviceNo)"         Title="Device"         Width="100px" />
                             <GridColumn Field="@nameof(BiologModel.BiometricEmpNo)"   Title="Biometric Emp#" Width="120px" />
@@ -113,10 +113,10 @@
 
         try
         {
-            v.ParsedLogs = ParseAttlog(v.AttlogContent);
+            v.ParsedLogs   = ParseAttlog(v.AttlogContent);
             v.Notification = v.ParsedLogs.Count > 0
-                ? ("success", $"{v.ParsedLogs.Count} record(s) found within coverage period.")
-                : ("warning", "No records found within coverage period.");
+                ? ("success", $"{v.ParsedLogs.Count} record(s) found.")
+                : ("warning", "No records found in file.");
         }
         catch (Exception ex)
         {
@@ -129,22 +129,20 @@
 
     private List<BiologModel> ParseAttlog(string content)
     {
-        var result   = new List<BiologModel>();
-        var lines    = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-        var dateFrom = v!.Hdr.CoverageStart == default ? DateTime.MinValue : v.Hdr.CoverageStart.ToDateTime(TimeOnly.MinValue);
-        var dateTo   = v!.Hdr.CoverageEnd == default   ? DateTime.MaxValue : v.Hdr.CoverageEnd.ToDateTime(TimeOnly.MinValue).AddDays(1);
-        var batch    = $"{v.DeviceNo}_{DateTime.Now:yyyyMMdd_HHmmss}";
+        var result = new List<BiologModel>();
+        var lines  = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var batch  = $"{v!.DeviceNo}_{DateTime.Now:yyyyMMdd_HHmmss}";
 
         foreach (var line in lines)
         {
-            var parts = line.Trim().Split('\t');
+            // Format (tab-delimited): EmpNo\tDateTime\tVerifyMode\tAttState\tWorkCode\tReserved
+            var parts = line.Split('\t');
             if (parts.Length < 4) continue;
 
-            if (!DateTime.TryParse(parts[1], out var logDt)) continue;
-            if (logDt < dateFrom || logDt >= dateTo) continue;
+            if (!DateTime.TryParse(parts[1].Trim(), out var logDt)) continue;
 
-            _ = int.TryParse(parts[2], out var attState);
-            _ = int.TryParse(parts[3], out var verifyMode);
+            _ = int.TryParse(parts[2].Trim(), out var verifyMode);
+            _ = int.TryParse(parts[3].Trim(), out var attState);
 
             result.Add(new BiologModel
             {

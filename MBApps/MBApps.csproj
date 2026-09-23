@@ -31,6 +31,7 @@
     <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
     <PackageReference Include="Blazorise" Version="2.3.1" />
     <PackageReference Include="Blazorise.Bootstrap5" Version="2.3.1" />
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.10" />

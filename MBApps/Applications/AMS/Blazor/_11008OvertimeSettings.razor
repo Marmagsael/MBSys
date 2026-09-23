@@ -4,6 +4,7 @@
 @using MBApiLibrary.Modules._11003O
 @using MBApps.Applications.AMS.Vars
 @using MBApps.Applications.AMS.Blazor._11008
+@using MBApps.Applications._00GeneralComponents.BodyComponents
 @using Telerik.Blazor.Components
 
 <TelerikRootComponent>
@@ -36,13 +37,19 @@
                         </div>
                     </div>
 
+                        <!-- Save Changes Button -->
+                        @if(v.Employees.Count > 0)
+                        {
+                            <div class="py-2">
+                                <TelerikButton OnClick="@SaveChanges" ThemeColor="primary">Save Changes</TelerikButton>
+                            </div>
+                        }
+                        
+
                     <!-- Employee OT Settings Grid -->
                     <_11008_OT_Grid />
 
-                    <!-- Save Changes Button -->
-                    <div class="mt-3">
-                        <TelerikButton OnClick="@SaveChanges" ThemeColor="primary">Save Changes</TelerikButton>
-                    </div>
+                    
 
                 </CascadingValue>
             </CascadingValue>
@@ -127,7 +134,7 @@
             {
                 if (emp is not null)
                 {
-                    await _otsettingsDa._01(emp, Uc!.SchemaUserAms!, Uc.Conn!);
+                    await _otsettingsDa._01(emp, Uc!.SchemaUserPis!, Uc.Conn!);
                 }
             }
             v.Notification = ("success", "Changes saved successfully.");

@@ -12,6 +12,17 @@
                          HorizontalPosition="NotificationHorizontalPosition.Center"
                          VerticalPosition="NotificationVerticalPosition.Top" />
 
+    <!-- Remove Employee Confirmation -->
+    <TelerikDialog @bind-Visible="@v.IsRemoveEmpConfirmOpen" Title="Confirm Remove" Width="400px">
+        <DialogContent>
+            <p>Are you sure you want to remove the selected employee(s) from the list?</p>
+        </DialogContent>
+        <DialogButtons>
+            <TelerikButton OnClick="OnConfirmRemove" ThemeColor="error">Yes, Remove</TelerikButton>
+            <TelerikButton OnClick="OnCancelRemove">Cancel</TelerikButton>
+        </DialogButtons>
+    </TelerikDialog>
+
     <div class="card w-100 p-1">
         <BodyHdr pageTitle="Attendance Processing" />
         <div class="card-body p-1 w-100">
@@ -21,9 +32,16 @@
                     <CascadingValue Value="@NotifyChanged">
 
                         <!-- Top Buttons -->
-                        <div class="row mb-2">
+                        <div class="d-flex gap-1 bordered-bottom py-1">
                             <div class="col-auto">
-                                <TelerikButton OnClick="OnSave" ThemeColor="primary">Save</TelerikButton>
+                                <TelerikButton OnClick="OnSave" ThemeColor="primary"
+                                               Enabled="@(v.SelectedPayrollGrpId is not null
+                                                       && v.Hdr.CoverageStart != default
+                                                       && v.Hdr.CoverageEnd != default
+                                                       && v.ManHours.Count > 0
+                                                       && !v.IsBusy)">
+                                    Save
+                                </TelerikButton>
                             </div>
                             <div class="col-auto">
                                 <TelerikButton OnClick="OnPostToPayroll">Post to Payroll</TelerikButton>
@@ -51,26 +69,20 @@
                         </div>
 
                         <!-- Coverage + Load Button -->
-                        <div class="row mb-2 align-items-center border-bottom">
-                            <div class="col-auto">
-                                <label class="form-label fw-bold mb-0">Coverage :</label>
+                        <div class="d-flex gap-2 align-items-center bordered-bottom py-1">
+                            <div class="">
+                                <label class="form-label fw-bold mb-0">Punches Coverage :</label>
                             </div>
                             <div class="col-auto">
                                 <label class="form-label mb-0 me-1">Start</label>
-                                <TelerikDatePicker Value="@v.Hdr.CoverageStart"
-                                                   ValueChanged="@((DateOnly val) => { v.Hdr.CoverageStart = val; })"
-                                                   Width="160px" />
+                                <TelerikDatePicker Value="@v.Hdr.CoverageStart" ValueChanged="@((DateTime val) => { v.Hdr.CoverageStart = val; })" Width="160px" />
                             </div>
                             <div class="col-auto">
                                 <label class="form-label mb-0 me-1 txt-orange">End</label>
-                                <TelerikDatePicker Value="@v.Hdr.CoverageEnd"
-                                                   ValueChanged="@((DateOnly val) => { v.Hdr.CoverageEnd = val; })"
-                                                   Width="160px" />
+                                <TelerikDatePicker Value="@v.Hdr.CoverageEnd" ValueChanged="@((DateTime val) => { v.Hdr.CoverageEnd = val; })" Width="160px" />
                             </div>
                             <div class="col-auto">
-                                <TelerikButton OnClick="OnLoad"
-                                               ThemeColor="info"
-                                               Enabled="@(!v.IsBusy)">
+                                <TelerikButton OnClick="OnLoad" ThemeColor="primary" Enabled="@(!v.IsBusy)">
                                     @(v.IsBusy ? "Loading..." : "Load")
                                 </TelerikButton>
                             </div>
@@ -105,6 +117,11 @@
                         <!-- Load Attendance Modal -->
                         <_12002_LoadAttendanceModal />
 
+                        <!-- Add Employee Modal -->
+                        <_12002_AddEmployeeModal />
+
+                        <_12002_UploadExcelModal />
+
                     </CascadingValue>
                 </CascadingValue>
             </CascadingValue>
@@ -114,7 +131,7 @@
 
 </TelerikRootComponent>
 
-@inject IDA_11003O              _daO
+@inject IDA_11003O               _daO
 @inject IBioManHourHdrDataAccess _hdrDa
 @inject IBioManHourDataAccess    _manHourDa
 
@@ -123,7 +140,6 @@
     private TelerikNotification NotificationRef   { get; set; } = new();
     private V12002Model         v                 { get; set; } = new();
     private bool                _initialized      = false;
-
     private Func<Task>? _notifyChanged;
     private Func<Task> NotifyChanged => _notifyChanged ??= async () =>
     {
@@ -175,7 +191,6 @@
         v.SelectedPayrollGrpId = val;
         v.ManHours             = [];
         v.DailyPunches         = [];
-        v.Hdr                  = new();
         await NotifyChanged.Invoke();
     }
 
@@ -202,26 +217,23 @@
 
         try
         {
-            // Check if BioManHourHdr exists
-            var hdrs = await _hdrDa._02sByPayrollGrp(v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
+            var hdrs     = await _hdrDa._02sByPayrollGrp(v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
             var existing = hdrs.FirstOrDefault(x => x is not null && x.CoverageStart == v.Hdr.CoverageStart);
 
             if (existing is not null)
             {
-                // Fetch existing BioManHour records
                 v.Hdr      = existing;
-                var detail = await _manHourDa._02sByHdr(existing.Id, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
+                var detail = await _manHourDa._02sByHdr(existing.Id, Uc.SchemaUserPis!, Uc.OpisDb!, Uc.Conn!);
                 v.ManHours = detail.Where(x => x is not null).Cast<BioManHourModel>().ToList();
             }
             else
             {
-                // Populate from Deprec
                 v.Hdr.PayrollGrpId = v.SelectedPayrollGrpId.Value;
-                var emps = await _daO._02Deprec_ByFieldId("PayrollgrpId", v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.OpisDb!, Uc.Conn!) ?? [];
-                v.ManHours = emps.Where(x => x is not null).Select(x => new BioManHourModel
+                var emps    = await _daO._02Deprec_ByFieldId("PayrollgrpId", v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.OpisDb!, Uc.Conn!) ?? [];
+                v.ManHours  = emps.Where(x => x is not null).Select(x => new BioManHourModel
                 {
-                    EmpNumber = x!.Empnumber ?? string.Empty,
-                    EmpName   = x.EmpName   ?? string.Empty
+                    EmpNumber = x!.EmpNumber ?? string.Empty,
+                    EmpName   = x.EmpName    ?? string.Empty
                 }).ToList();
             }
 
@@ -236,21 +248,68 @@
         await NotifyChanged.Invoke();
     }
 
-    private async Task OnSave()
+private async Task OnConfirmRemove()
     {
-        // TODO: Save BioManHour
+        var selected = v.ManHours.Where(x => x.IsSelected).ToList();
+        v.ManHours               = v.ManHours.Where(x => !x.IsSelected).ToList();
+        v.IsRemoveEmpConfirmOpen = false;
+        v.Notification           = ("success", $"{selected.Count} employee(s) removed.");
+        await NotifyChanged.Invoke();
+    }
+
+    private async Task OnCancelRemove()
+    {
+        v.IsRemoveEmpConfirmOpen = false;
+        await NotifyChanged.Invoke();
+    }
+
+private async Task OnSave()
+    {
+        if (Uc is null) return;
+
+        v.IsBusy = true;
+        await NotifyChanged.Invoke();
+
+        try
+        {
+            v.Hdr.PayrollGrpId = v.SelectedPayrollGrpId!.Value;
+            await _hdrDa._01(v.Hdr, Uc.SchemaUserPis!, Uc.Conn!);
+
+            var hdrs  = await _hdrDa._02sByPayrollGrp(v.SelectedPayrollGrpId.Value, Uc.SchemaUserPis!, Uc.Conn!) ?? [];
+            var saved = hdrs.FirstOrDefault(x => x is not null && x.CoverageStart == v.Hdr.CoverageStart);
+            if (saved is null)
+            {
+                v.Notification = ("error", "Failed to retrieve saved header.");
+                v.IsBusy = false;
+                await NotifyChanged.Invoke();
+                return;
+            }
+            v.Hdr = saved;
+
+            foreach (var row in v.ManHours)
+            {
+                row.BioManHourHdrId = saved.Id;
+                await _manHourDa._01(row, Uc.SchemaUserPis!, Uc.Conn!);
+            }
+
+            v.Notification = ("success", $"Saved successfully — {v.ManHours.Count} employee(s).");
+        }
+        catch (Exception ex)
+        {
+            v.Notification = ("error", $"Save failed: {ex.Message}");
+        }
+
+        v.IsBusy = false;
         await NotifyChanged.Invoke();
     }
 
     private async Task OnPostToPayroll()
     {
-        // TODO: Post to Payroll
         await NotifyChanged.Invoke();
     }
 
     private async Task OnPrint()
     {
-        // TODO: Print
         await NotifyChanged.Invoke();
     }
 
@@ -268,13 +327,11 @@
 
     private async Task OnProcessData()
     {
-        // TODO: Process Data
         await NotifyChanged.Invoke();
     }
 
     private async Task OnSaveDailyPunches()
     {
-        // TODO: Save Daily Punches
         await NotifyChanged.Invoke();
     }
 }

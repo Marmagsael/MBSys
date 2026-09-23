@@ -3,6 +3,7 @@ using MBApiLibrary.DataAccess._10_Pis.Interface;
 using MBApiLibrary.DataAccess._11_AMS;
 using MBApiLibrary.Modules._11003AME;
 using MBApiLibrary.Modules._11003O;
+using MBApiLibrary.Modules._12006O;
 
 namespace MBApps.StartupConfig.Library;
 
@@ -22,6 +23,9 @@ public static class AMSServices
         services.AddScoped<IDA_11003O, DA_11003O>();
         services.AddScoped<IAms_otsettingsDataAccess, Ams_otsettingsDataAccess>();
         services.AddScoped<IBiologDataAccess, BiologDataAccess>();
+        services.AddScoped<IBioManHourDataAccess, BioManHourDataAccess>();
+        services.AddScoped<IBioManHourHdrDataAccess, BioManHourHdrDataAccess>();
+        services.AddScoped<IDA_12006O, DA_12006O>();
 
         return services;
     }

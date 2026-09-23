@@ -1,5 +1,4 @@
-﻿
-using MBApiLibrary.DataAccess._90_Utils.Interface;
+﻿using MBApiLibrary.DataAccess._90_Utils.Interface;
 
 namespace MBApiLibrary.Modules._11003O;
 public class DA_11003O : IDA_11003O
@@ -31,8 +30,6 @@ public class DA_11003O : IDA_11003O
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
     }
 
-
-
     public async Task<List<M11003_Payrollgrp>?> _02Payrollgrps(string schema, string conn)
     {
         string sql = $@"SELECT Id, Code, ClNumber, Name FROM {schema}.Payrollgrp WHERE Status = 'A' ORDER BY Name";
@@ -42,7 +39,7 @@ public class DA_11003O : IDA_11003O
 
     public async Task<M11003_Payrollgrp?> _02Payrollgrp(int id, string schema, string conn)
     {
-        string sql = $@"SELECT Id, Code, ClNumber, Name FROM {schema}.Payrollgrp  WHERE Id = @Id";
+        string sql = $@"SELECT Id, Code, ClNumber, Name FROM {schema}.Payrollgrp WHERE Id = @Id";
         var data = await _sql.FetchData<M11003_Payrollgrp, dynamic>(sql, new { Id = id }, conn);
         return data?.FirstOrDefault();
     }
@@ -59,7 +56,25 @@ public class DA_11003O : IDA_11003O
                             WHERE d.{fieldName} = @FieldIdValue ORDER BY e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm ";
 
         var data = await _sql.FetchData<M11003_Empmas, dynamic>(sql, new { FieldIdValue = fieldIdValue }, conn);
+        return data ?? [];
+    }
 
+    public async Task<List<M11003_Empmas>?> _02EmpmasByKeyword(string keyword, string pisdb, string opisdb, string conn)
+    {
+        string sql = $@"SELECT COALESCE(e1.SystemId, 0) AS SystemId,
+                               e.EmpNumber,
+                               CONCAT(TRIM(COALESCE(e.EmpLastNm, '')), ', ',
+                                      TRIM(COALESCE(e.EmpFirstNm, '')), ' ',
+                                      TRIM(COALESCE(e.EmpMidNm, ''))) AS EmpName
+                        FROM {opisdb}.Empmas e
+                        LEFT JOIN {pisdb}.empmas e1 ON e1.EmpNumber = e.EmpNumber
+                        WHERE e.EmpNumber   LIKE @Keyword
+                           OR e.EmpLastNm   LIKE @Keyword
+                           OR e.EmpFirstNm  LIKE @Keyword
+                           OR e.EmpMidNm    LIKE @Keyword
+                        ORDER BY e.EmpLastNm, e.EmpFirstNm, e.EmpMidNm";
+
+        var data = await _sql.FetchData<M11003_Empmas, dynamic>(sql, new { Keyword = $"%{keyword}%" }, conn);
         return data ?? [];
     }
 
@@ -87,7 +102,7 @@ public class DA_11003O : IDA_11003O
         var data = await _sql.FetchData<M11003CS_Atttemplate, dynamic>(sql, new { PayrollgrpId = payrollgrpId }, conn);
         return data ?? [];
     }
-    
+
     public async Task _03CS_AtttemplateAtt(M11003CS_Atttemplate atttemplate, string pisdb, string conn)
     {
         string? sql = $@"update {pisdb}.atttemplate set 
@@ -97,6 +112,7 @@ public class DA_11003O : IDA_11003O
                          where empmasId = @Empmasid";
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
     }
+
     public async Task _03CS_AtttemplateAttAdvOnly(M11003CS_Atttemplate atttemplate, string pisdb, string conn)
     {
         string? sql = $@"update {pisdb}.atttemplate set 
@@ -105,23 +121,20 @@ public class DA_11003O : IDA_11003O
                          where empmasId = @Empmasid";
         await _sql.ExecuteCmd<dynamic>(sql, atttemplate, conn);
     }
-    
+
     public async Task _03CS_Atttemplate_CurrentSchedule(int systemid, int attschedweeklyhdrid, string pisdb, string conn)
     {
-        string? sql = $@"update {pisdb}.atttemplate set Attschedweeklyhdrid  = @Attschedweeklyhdrid where empmasId = @Empmasid";
+        string? sql = $@"update {pisdb}.atttemplate set Attschedweeklyhdrid = @Attschedweeklyhdrid where empmasId = @Empmasid";
         await _sql.ExecuteCmd<dynamic>(sql, new { EmpmasId = systemid, Attschedweeklyhdrid = attschedweeklyhdrid }, conn);
     }
-
-    
-
 }
 
 public interface IDA_11003O
 {
-
-    Task _01CS_AtttemplateAtt(M11003CS_Atttemplate atttemplate, string pisdb, string conn);
+    Task                                _01CS_AtttemplateAtt(M11003CS_Atttemplate atttemplate, string pisdb, string conn);
     Task<List<M11003CS_Atttemplate>?>   _02CS_EmplistPerPayrollgrp(int payrollgrpId, string pisdb, string opisdb, string conn);
     Task<List<M11003_Empmas>?>          _02Deprec_ByFieldId(string? fieldName, int? fieldIdValue, string? pisdb, string? opisdb, string? conn);
+    Task<List<M11003_Empmas>?>          _02EmpmasByKeyword(string keyword, string pisdb, string opisdb, string conn);
     Task<M11003_Payrollgrp?>            _02Payrollgrp(int id, string schema, string conn);
     Task<List<M11003_Payrollgrp>?>      _02Payrollgrps(string schema, string conn);
     Task                                _03CS_AtttemplateAtt(M11003CS_Atttemplate atttemplate, string pisdb, string conn);

@@ -13,12 +13,13 @@
           "Blazored.SessionStorage": "2.4.0",
           "Blazorise": "2.3.1",
           "Blazorise.Bootstrap5": "2.3.1",
+          "ClosedXML": "0.105.1",
           "FluentValidation": "12.1.1",
           "MBApiLibrary": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Google": "6.0.10",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "6.0.10",
           "Newtonsoft.Json": "13.0.3",
-          "Radzen.Blazor": "11.3.2",
+          "Radzen.Blazor": "11.4.1",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Telerik.Reporting.AI.Microsoft.Extensions.Abstractions": "20.2.26.812",
           "Telerik.Reporting.OpenXmlRendering": "20.2.26.812",
@@ -145,6 +146,29 @@
           }
         }
       },
+      "ClosedXML/0.105.1": {
+        "dependencies": {
+          "ClosedXML.Parser": "2.0.0",
+          "DocumentFormat.OpenXml": "3.1.1",
+          "ExcelNumberFormat": "1.1.0",
+          "RBush.Signed": "4.0.0",
+          "SixLabors.Fonts": "1.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/ClosedXML.dll": {
+            "assemblyVersion": "0.105.1.0",
+            "fileVersion": "0.105.1.0"
+          }
+        }
+      },
+      "ClosedXML.Parser/2.0.0": {
+        "runtime": {
+          "lib/netstandard2.1/ClosedXML.Parser.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Dapper/2.1.35": {
         "runtime": {
           "lib/net7.0/Dapper.dll": {
@@ -153,14 +177,33 @@
           }
         }
       },
-      "DocumentFormat.OpenXml/2.7.2": {
+      "DocumentFormat.OpenXml/3.1.1": {
         "dependencies": {
-          "System.IO.Packaging": "6.0.1"
+          "DocumentFormat.OpenXml.Framework": "3.1.1"
         },
         "runtime": {
-          "lib/netstandard1.3/DocumentFormat.OpenXml.dll": {
-            "assemblyVersion": "2.7.2.0",
-            "fileVersion": "2.7.2.0"
+          "lib/net8.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.1.1.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml.Framework/3.1.1": {
+        "dependencies": {
+          "System.IO.Packaging": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.Framework.dll": {
+            "assemblyVersion": "3.1.1.0",
+            "fileVersion": "3.1.1.0"
+          }
+        }
+      },
+      "ExcelNumberFormat/1.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/ExcelNumberFormat.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
           }
         }
       },
@@ -1100,15 +1143,15 @@
           }
         }
       },
-      "Radzen.Blazor/11.3.2": {
+      "Radzen.Blazor/11.4.1": {
         "dependencies": {
           "Microsoft.AspNetCore.Components": "8.0.30",
           "Microsoft.AspNetCore.Components.Web": "8.0.30"
         },
         "runtime": {
           "lib/net8.0/Radzen.Blazor.dll": {
-            "assemblyVersion": "11.3.2.0",
-            "fileVersion": "11.3.2.0"
+            "assemblyVersion": "11.4.1.0",
+            "fileVersion": "11.4.1.0"
           }
         },
         "resources": {
@@ -1126,6 +1169,14 @@
           },
           "lib/net8.0/ja/Radzen.Blazor.resources.dll": {
             "locale": "ja"
+          }
+        }
+      },
+      "RBush.Signed/4.0.0": {
+        "runtime": {
+          "lib/net8.0/RBush.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -1166,6 +1217,14 @@
       "SharpToken/2.0.3": {
         "runtime": {
           "lib/net8.0/SharpToken.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SixLabors.Fonts/1.0.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/SixLabors.Fonts.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1582,11 +1641,11 @@
           }
         }
       },
-      "System.IO.Packaging/6.0.1": {
+      "System.IO.Packaging/8.0.1": {
         "runtime": {
-          "lib/net6.0/System.IO.Packaging.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.3524.45918"
+          "lib/net8.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
           }
         }
       },
@@ -1877,7 +1936,7 @@
           "System.Data.SqlClient": "4.8.6",
           "System.Drawing.Common": "8.0.24",
           "System.Formats.Asn1": "9.0.11",
-          "System.IO.Packaging": "6.0.1",
+          "System.IO.Packaging": "8.0.1",
           "System.Security.Cryptography.Pkcs": "9.0.11",
           "System.Security.Permissions": "8.0.0",
           "System.Text.Json": "10.0.4",
@@ -1929,7 +1988,7 @@
       },
       "Telerik.Reporting.OpenXmlRendering/20.2.26.812": {
         "dependencies": {
-          "DocumentFormat.OpenXml": "2.7.2",
+          "DocumentFormat.OpenXml": "3.1.1",
           "Telerik.Reporting": "20.2.26.812"
         },
         "runtime": {
@@ -2094,6 +2153,20 @@
       "path": "bouncycastle.cryptography/2.5.1",
       "hashPath": "bouncycastle.cryptography.2.5.1.nupkg.sha512"
     },
+    "ClosedXML/0.105.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-X1ruIP9h2FBEK7jmO0peq3s6/Zqt5ve5a9f9kn6WUjdsUWvGbQlqxuGLz822xuFLlmnSeAfWFTGeX/tZlmAt+g==",
+      "path": "closedxml/0.105.1",
+      "hashPath": "closedxml.0.105.1.nupkg.sha512"
+    },
+    "ClosedXML.Parser/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ngTqjYreDYNytG1W5d3ewHsw0ukmmrgV7EKnS4/40rXoYZGt07jrBvo+N+GxT49rcageUMUiprV0jYT4nwVBHQ==",
+      "path": "closedxml.parser/2.0.0",
+      "hashPath": "closedxml.parser.2.0.0.nupkg.sha512"
+    },
     "Dapper/2.1.35": {
       "type": "package",
       "serviceable": true,
@@ -2101,12 +2174,26 @@
       "path": "dapper/2.1.35",
       "hashPath": "dapper.2.1.35.nupkg.sha512"
     },
-    "DocumentFormat.OpenXml/2.7.2": {
+    "DocumentFormat.OpenXml/3.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tWT7iu0ab9PNoMTWjv24rt+qnyqvcnPOYs167vPnk4aegAYSAxoUjwNW+VxY8xoLtJntQ/JlWTi7Vt+8TghLlQ==",
-      "path": "documentformat.openxml/2.7.2",
-      "hashPath": "documentformat.openxml.2.7.2.nupkg.sha512"
+      "sha512": "sha512-2z9QBzeTLNNKWM9SaOSDMegfQk/7hDuElOsmF77pKZMkFRP/GHA/W/4yOAQD9kn15N/FsFxHn3QVYkatuZghiA==",
+      "path": "documentformat.openxml/3.1.1",
+      "hashPath": "documentformat.openxml.3.1.1.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml.Framework/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6APEp/ElZV58S/4v8mf4Ke3ONEDORs64MqdD64Z7wWpcHANB9oovQsGIwtqjnKihulOj7T0a6IxHIHOfMqKOng==",
+      "path": "documentformat.openxml.framework/3.1.1",
+      "hashPath": "documentformat.openxml.framework.3.1.1.nupkg.sha512"
+    },
+    "ExcelNumberFormat/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R3BVHPs9O+RkExbZYTGT0+9HLbi8ZrNij1Yziyw6znd3J7P3uoIR07uwTLGOogtz1p6+0sna66eBoXu7tBiVQA==",
+      "path": "excelnumberformat/1.1.0",
+      "hashPath": "excelnumberformat.1.1.0.nupkg.sha512"
     },
     "FastBertTokenizer/1.0.28": {
       "type": "package",
@@ -2549,12 +2636,19 @@
       "path": "openai/2.7.0",
       "hashPath": "openai.2.7.0.nupkg.sha512"
     },
-    "Radzen.Blazor/11.3.2": {
+    "Radzen.Blazor/11.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QtTy0/MZ5QFt50yDprnP2sBzCZWbqXpcYrdTHyX/DzSuOpdPUVw5m/zWzp6ZAdbfaWIAXHJhv7M4pEFCzLideg==",
-      "path": "radzen.blazor/11.3.2",
-      "hashPath": "radzen.blazor.11.3.2.nupkg.sha512"
+      "sha512": "sha512-qLjpvH0QJJFvzAgaDoo45XQ6+AAjrPxlUSk4daxwfTP+RGVV78G41paSE17y5NFaDR5exKHsCF+uhkVgg9xfDw==",
+      "path": "radzen.blazor/11.4.1",
+      "hashPath": "radzen.blazor.11.4.1.nupkg.sha512"
+    },
+    "RBush.Signed/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aP5KQxL5RnFNGW1f0euYVBfCatkLw5iEzMRJcXKq8LWWP4Cp3+qoSq1tDDL2vvJ2rM0ychmVMa2VaEKLS6uX4w==",
+      "path": "rbush.signed/4.0.0",
+      "hashPath": "rbush.signed.4.0.0.nupkg.sha512"
     },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",
@@ -2590,6 +2684,13 @@
       "sha512": "sha512-QFcBRPeLCL0rhW93x8zpTY0ryBk49/s1w4NY/OkyZWIZG9rBNwtwnJJZfu299d4pHM9dLBNB5ua/Y4Fj4c+hCw==",
       "path": "sharptoken/2.0.3",
       "hashPath": "sharptoken.2.0.3.nupkg.sha512"
+    },
+    "SixLabors.Fonts/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LFQsCZlV0xlUyXAOMUo5kkSl+8zAQXXbbdwWchtk0B4o7zotZhQsQOcJUELGHdfPfm/xDAsz6hONAuV25bJaAg==",
+      "path": "sixlabors.fonts/1.0.0",
+      "hashPath": "sixlabors.fonts.1.0.0.nupkg.sha512"
     },
     "SourceGear.sqlite3/3.53.3": {
       "type": "package",
@@ -2710,12 +2811,12 @@
       "path": "system.io.hashing/8.0.0",
       "hashPath": "system.io.hashing.8.0.0.nupkg.sha512"
     },
-    "System.IO.Packaging/6.0.1": {
+    "System.IO.Packaging/8.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uU8v5JFutuypHiG+4E1jJH+pudE2UBJcKMO4O3bwZBTQn0+K3I2YOh21M6TfQy+Jr8fT2zxTxb9bGqnRxnfo4A==",
-      "path": "system.io.packaging/6.0.1",
-      "hashPath": "system.io.packaging.6.0.1.nupkg.sha512"
+      "sha512": "sha512-KYkIOAvPexQOLDxPO2g0BVoWInnQhPpkFzRqvNrNrMhVT6kqhVr0zEb6KCHlptLFukxnZrjuMVAnxK7pOGUYrw==",
+      "path": "system.io.packaging/8.0.1",
+      "hashPath": "system.io.packaging.8.0.1.nupkg.sha512"
     },
     "System.IO.Pipelines/10.0.4": {
       "type": "package",

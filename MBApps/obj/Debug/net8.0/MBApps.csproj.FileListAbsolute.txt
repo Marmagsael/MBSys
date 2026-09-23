@@ -736,3 +736,9 @@ D:\Development\MBSys\MBApps\obj\Debug\net8.0\refint\MBApps.dll
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\MBApps.pdb
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\MBApps.genruntimeconfig.cache
 D:\Development\MBSys\MBApps\obj\Debug\net8.0\ref\MBApps.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\ClosedXML.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\ClosedXML.Parser.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\ExcelNumberFormat.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\RBush.dll
+D:\Development\MBSys\MBApps\bin\Debug\net8.0\SixLabors.Fonts.dll

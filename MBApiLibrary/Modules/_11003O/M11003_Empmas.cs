@@ -7,6 +7,9 @@ public class M11003_Empmas
     public string?  EmpName         { get; set; }
     public int      PayrollgrpId    { get; set; }
     public int      IdDeployment    { get; set; }
-    
+
+    //----------------------
+    public bool     IsSelected      { get; set; } = false; 
+
 }
 

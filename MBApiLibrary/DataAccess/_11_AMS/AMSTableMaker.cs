@@ -33,6 +33,7 @@ public class AMSTableMaker : IAMSTableMaker
             await _01BioManHourHdr(schema, connName);
             await _01BioManHour(schema, connName);
             await _01BioManHourMapping(schema, connName);
+            await _01Sites(schema, connName);
             
 
 
@@ -312,6 +313,33 @@ public class AMSTableMaker : IAMSTableMaker
         await _sql.ExecuteCmd(sql, new { }, connName);
     }
 
+    private async Task _01Sites(string schema, string connName)
+    {
+        var sql = $@"
+        CREATE TABLE IF NOT EXISTS {schema}.Sites (
+            Id              INT             NOT NULL AUTO_INCREMENT,
+            Code            VARCHAR(20)     NOT NULL,
+            Name            VARCHAR(100)    NOT NULL,
+            Address         VARCHAR(255)    NULL,
+            Latitude        DECIMAL(10,8)   NOT NULL,
+            Longitude       DECIMAL(11,8)   NOT NULL,
+            RadiusMeters    INT             NOT NULL DEFAULT 100,
+            Status          CHAR(1)         NOT NULL DEFAULT 'A',
+            PRIMARY KEY (Id),
+            UNIQUE KEY UQ_Sites_Code (Code)
+        );" ;
+        await _sql.ExecuteCmd(sql, new { }, connName);
+
+        sql = $@" CREATE TABLE IF NOT EXISTS {schema}.EmpSites (
+                    Id          INT NOT NULL AUTO_INCREMENT,
+                    EmpmasId    INT NOT NULL,
+                    SiteId      INT NOT NULL,
+                    PRIMARY KEY (Id),
+                    UNIQUE KEY UQ_EmpSites (EmpmasId, SiteId));";  
+
+        await _sql.ExecuteCmd(sql, new { }, connName);
+    }
+
 
 
 
@@ -348,6 +376,7 @@ public class AMSTableMaker : IAMSTableMaker
         }
     }
 }
+
 
 public interface IAMSTableMaker
 {
