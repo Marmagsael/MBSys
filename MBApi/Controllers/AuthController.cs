@@ -1,7 +1,7 @@
-using MBApiLibrary.DataAccess._00_Login;
-using MBApiLibrary.DataAccess._00_Login.Interface;
-using MBApiLibrary.Models._00_Main;
-using MBApiLibrary.Models._90_Utils;
+using HRApiLibrary.DataAccess._00_Login;
+using HRApiLibrary.DataAccess._00_Login.Interface;
+using HRApiLibrary.Models._00_Main;
+using HRApiLibrary.Models._90_Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

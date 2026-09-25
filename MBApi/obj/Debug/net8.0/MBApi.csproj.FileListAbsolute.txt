@@ -48,8 +48,8 @@ D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\runtimes\win-x6
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
-D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\MBApiLibrary.dll
-D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\MBApiLibrary.pdb
+D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\HRApiLibrary.dll
+D:\Development\BoilerTemplate\Claud\MBSys\MBApi\bin\Debug\net8.0\HRApiLibrary.pdb
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\Development\BoilerTemplate\Claud\MBSys\MBApi\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -107,8 +107,8 @@ D:\Development\MBSys\MBApi\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
 D:\Development\MBSys\MBApi\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
 D:\Development\MBSys\MBApi\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\Development\MBSys\MBApi\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
-D:\Development\MBSys\MBApi\bin\Debug\net8.0\MBApiLibrary.dll
-D:\Development\MBSys\MBApi\bin\Debug\net8.0\MBApiLibrary.pdb
+D:\Development\MBSys\MBApi\bin\Debug\net8.0\HRApiLibrary.dll
+D:\Development\MBSys\MBApi\bin\Debug\net8.0\HRApiLibrary.pdb
 D:\Development\MBSys\MBApi\obj\Debug\net8.0\MBApi.csproj.AssemblyReference.cache
 D:\Development\MBSys\MBApi\obj\Debug\net8.0\rpswa.dswa.cache.json
 D:\Development\MBSys\MBApi\obj\Debug\net8.0\MBApi.GeneratedMSBuildEditorConfig.editorconfig

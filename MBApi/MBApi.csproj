@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MBApiLibrary\MBApiLibrary.csproj" />
+    <ProjectReference Include="..\HRApiLibrary\HRApiLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "MBApi/1.0.0": {
         "dependencies": {
-          "MBApiLibrary": "1.0.0",
+          "HRApiLibrary": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
@@ -345,7 +345,7 @@
           }
         }
       },
-      "MBApiLibrary/1.0.0": {
+      "HRApiLibrary/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.35",
           "Microsoft.IdentityModel.Tokens": "8.9.0",
@@ -353,7 +353,7 @@
           "System.IdentityModel.Tokens.Jwt": "8.9.0"
         },
         "runtime": {
-          "MBApiLibrary.dll": {
+          "HRApiLibrary.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -570,7 +570,7 @@
       "path": "zstdsharp.port/0.8.5",
       "hashPath": "zstdsharp.port.0.8.5.nupkg.sha512"
     },
-    "MBApiLibrary/1.0.0": {
+    "HRApiLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

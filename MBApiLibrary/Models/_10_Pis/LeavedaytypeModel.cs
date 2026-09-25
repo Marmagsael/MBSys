@@ -1,7 +1,0 @@
-namespace MBApiLibrary.Models._10_Pis;
-
-public class LeavedaytypeModel
-{
-    public int?     Id      { get; set; }
-    public string?  Name    { get; set; }
-}

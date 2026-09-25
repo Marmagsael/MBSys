@@ -1,20 +1,20 @@
-using MBApiLibrary.DataAccess._00_CT;
-using MBApiLibrary.DataAccess._00_CT.Interfaces;
-using MBApiLibrary.DataAccess._00_Login;
-using MBApiLibrary.DataAccess._00_Login.Interface;
-using MBApiLibrary.DataAccess._00_Main;
-using MBApiLibrary.DataAccess._00_Main.Interface;
-using MBApiLibrary.DataAccess._10_Pis;
-using MBApiLibrary.DataAccess._10_Pis.Attendance;
-using MBApiLibrary.DataAccess._10_Pis.Interface;
-using MBApiLibrary.DataAccess._10_Pis.OPis;
-using MBApiLibrary.DataAccess._20_Pay;
-using MBApiLibrary.DataAccess._20_Pay.DA0605;
-using MBApiLibrary.DataAccess._20_Pay.Interface;
-using MBApiLibrary.DataAccess._20_Pay.OPay;
-using MBApiLibrary.DataAccess._20_Pay.Report;
-using MBApiLibrary.DataAccess._90_Utils;
-using MBApiLibrary.DataAccess._90_Utils.Interface;
+using HRApiLibrary.DataAccess._00_CT;
+using HRApiLibrary.DataAccess._00_CT.Interfaces;
+using HRApiLibrary.DataAccess._00_Login;
+using HRApiLibrary.DataAccess._00_Login.Interface;
+using HRApiLibrary.DataAccess._00_Main;
+using HRApiLibrary.DataAccess._00_Main.Interface;
+using HRApiLibrary.DataAccess._10_Pis;
+using HRApiLibrary.DataAccess._10_Pis.Attendance;
+using HRApiLibrary.DataAccess._10_Pis.Interface;
+using HRApiLibrary.DataAccess._10_Pis.OPis;
+using HRApiLibrary.DataAccess._20_Pay;
+using HRApiLibrary.DataAccess._20_Pay.DA0605;
+using HRApiLibrary.DataAccess._20_Pay.Interface;
+using HRApiLibrary.DataAccess._20_Pay.OPay;
+using HRApiLibrary.DataAccess._20_Pay.Report;
+using HRApiLibrary.DataAccess._90_Utils;
+using HRApiLibrary.DataAccess._90_Utils.Interface;
 
 namespace MBApi.StartupConfig;
 
@@ -61,8 +61,8 @@ public static class ServicesExt
         builder.Services.AddScoped<I_AcctgTableMaker,           _AcctgTableMaker>();
         builder.Services.AddScoped<IPissettingsDataAccess,      PissettingsDataAccess>();
         builder.Services.AddScoped<ISystemuserDataAccess,       SystemuserDataAccess>();
-        builder.Services.AddScoped<IDevdataDataAccess, MBApiLibrary.DataAccess._00_Main.RdevdataDataAccess>();
-        builder.Services.AddScoped<IPenaltyDataAccess, MBApiLibrary.DataAccess._00_Main.RpenaltyDataAccess>();
+        builder.Services.AddScoped<IDevdataDataAccess, HRApiLibrary.DataAccess._00_Main.RdevdataDataAccess>();
+        builder.Services.AddScoped<IPenaltyDataAccess, HRApiLibrary.DataAccess._00_Main.RpenaltyDataAccess>();
 
         // -- PIS --------------------------------------------------------------
         builder.Services.AddScoped<I_10_EmpmasDataAccess,               _10_EmpmasDataAccess>();
@@ -116,15 +116,15 @@ public static class ServicesExt
         builder.Services.AddScoped<IOtreqhistDataAccess,                OtreqhistDataAccess>();
         builder.Services.AddScoped<IParaDataAccess,                     ParaDataAccess>();
         builder.Services.AddScoped<IPositionDataAccess,                 PositionDataAccess>();
-        builder.Services.AddScoped<IRcivstatDataAccess, MBApiLibrary.DataAccess._10_Pis.RcivstatDataAccess>();
-        builder.Services.AddScoped<IRdepapproverDataAccess, MBApiLibrary.DataAccess._10_Pis.RdepapproverDataAccess>();
-        builder.Services.AddScoped<IRdepartmentDataAccess, MBApiLibrary.DataAccess._10_Pis.RdepartmentDataAccess>();
-        builder.Services.AddScoped<IRdepDataAccess, MBApiLibrary.DataAccess._10_Pis.RdepDataAccess>();
-        builder.Services.AddScoped<IRdeploymentDataAccess, MBApiLibrary.DataAccess._10_Pis.RdeploymentDataAccess>();
-        builder.Services.AddScoped<IRdivisionDataAccess, MBApiLibrary.DataAccess._10_Pis.RdivisionDataAccess>();
-        builder.Services.AddScoped<IRempstatDataAccess, MBApiLibrary.DataAccess._10_Pis.RempstatDataAccess>();
-        builder.Services.AddScoped<IRempstat_baseDataAccess, MBApiLibrary.DataAccess._10_Pis.Rempstat_baseDataAccess>();
-        builder.Services.AddScoped<IRsectionDataAccess, MBApiLibrary.DataAccess._10_Pis.RsectionDataAccess>();
+        builder.Services.AddScoped<IRcivstatDataAccess, HRApiLibrary.DataAccess._10_Pis.RcivstatDataAccess>();
+        builder.Services.AddScoped<IRdepapproverDataAccess, HRApiLibrary.DataAccess._10_Pis.RdepapproverDataAccess>();
+        builder.Services.AddScoped<IRdepartmentDataAccess, HRApiLibrary.DataAccess._10_Pis.RdepartmentDataAccess>();
+        builder.Services.AddScoped<IRdepDataAccess, HRApiLibrary.DataAccess._10_Pis.RdepDataAccess>();
+        builder.Services.AddScoped<IRdeploymentDataAccess, HRApiLibrary.DataAccess._10_Pis.RdeploymentDataAccess>();
+        builder.Services.AddScoped<IRdivisionDataAccess, HRApiLibrary.DataAccess._10_Pis.RdivisionDataAccess>();
+        builder.Services.AddScoped<IRempstatDataAccess, HRApiLibrary.DataAccess._10_Pis.RempstatDataAccess>();
+        builder.Services.AddScoped<IRempstat_baseDataAccess, HRApiLibrary.DataAccess._10_Pis.Rempstat_baseDataAccess>();
+        builder.Services.AddScoped<IRsectionDataAccess, HRApiLibrary.DataAccess._10_Pis.RsectionDataAccess>();
         builder.Services.AddScoped<ITrandeploymentapprovalDataAccess,           TrandeploymentapprovalDataAccess>();
         builder.Services.AddScoped<ITrandeploymentapprovalhistoryDataAccess,    TrandeploymentapprovalhistoryDataAccess>();
         builder.Services.AddScoped<ITrandeploymentDataAccess,                   TrandeploymentDataAccess>();
