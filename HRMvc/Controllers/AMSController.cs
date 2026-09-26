@@ -42,25 +42,4 @@ public class AMSController : Controller
         return View($"{ViewPath}{viewName}.cshtml");
     }
 
-    // [HttpGet("{reportCode:int}")]
-    // public IActionResult Report(int reportCode)
-    // {
-    //     Console.WriteLine($"ReportCode: {reportCode}");
-    //     Console.WriteLine($"Dictionary Count: {ReportViews.Count}");
-    //     Console.WriteLine($"Contains 11002: {ReportViews.ContainsKey(11002)}");
-
-    //     foreach (var item in ReportViews)
-    //     {
-    //         Console.WriteLine($"{item.Key} => {item.Value}");
-    //     }
-
-    //     if (!ReportViews.TryGetValue(reportCode, out var viewName))
-    //     {
-    //         return NotFound($"Report code '{reportCode}' was not found.");
-    //     }
-
-    //     return View($"{ViewPath}{viewName}.cshtml");
-    // }
-
-
 }
