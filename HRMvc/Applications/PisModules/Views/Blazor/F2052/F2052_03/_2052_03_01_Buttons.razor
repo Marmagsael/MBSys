@@ -1,0 +1,125 @@
+﻿<!-- ROW 1 -->
+<div class="w-100 d-flex gap-1 px-1 py-1">
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active1" @onclick="(() => SetActive(1))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Personal Data</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active2" @onclick="(() => SetActive(2))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Addresses</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active3" @onclick="(() => SetActive(3))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Deployment</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active4" @onclick="(() => SetActive(4))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Employment History</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active5" @onclick="(() => SetActive(5))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Education</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active6" @onclick="(() => SetActive(6))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Family</small></span>
+        </div>
+    </div>
+</div>
+
+<!-- ROW 2 -->
+<div class="w-100 d-flex gap-2 px-2 py-1" style="border-bottom:1px solid #d9dde2;">
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active7" @onclick="(() => SetActive(7))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Trainings / Seminars</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active8" @onclick="(() => SetActive(8))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>References</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active9" @onclick="(() => SetActive(9))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Insurance</small></span>
+        </div>
+    </div>
+
+    <div class="card  flex-fill text-center h-40p mb-btn mb-btn-gray @active11" @onclick="(() => SetActive(11))">
+        <div class="d-flex gap-1 align-items-center justify-content-center">
+            <span class="fw-semibold"><small>Government</small></span>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    string active1 = "mb-btn-active";
+    string active2 = "";
+    string active3 = "";
+    string active4 = "";
+    string active5 = "";
+    string active6 = "";
+    string active7 = "";
+    string active8 = "";
+    string active9 = "";
+    string active10 = "";
+    string active11 = "";
+    string active12 = "";
+
+    [Parameter]
+    public V2052 V { get; set; } = new();
+
+    [Parameter]
+    public EventCallback ChildAction { get; set; }
+
+    async void SetActive(int no)
+    {
+        active1 = "";
+        active2 = "";
+        active3 = "";
+        active4 = "";
+        active5 = "";
+        active6 = "";
+        active7 = "";
+        active8 = "";
+        active9 = "";
+        active10 = "";
+        active11 = "";
+        active12 = "";
+
+        V.TabNo = no;
+
+        switch (no)
+        {
+            case 1: active1 = "mb-btn-active"; break;
+            case 2: active2 = "mb-btn-active"; break;
+            case 3: active3 = "mb-btn-active"; break;
+            case 4: active4 = "mb-btn-active"; break;
+            case 5: active5 = "mb-btn-active"; break;
+            case 6: active6 = "mb-btn-active"; break;
+            case 7: active7 = "mb-btn-active"; break;
+            case 8: active8 = "mb-btn-active"; break;
+            case 9: active9 = "mb-btn-active"; break;
+            case 10: active10 = "mb-btn-active"; break;
+            case 11: active11 = "mb-btn-active"; break;
+            case 12: active12 = "mb-btn-active"; break;
+            default: break;
+        }
+
+        await ChildAction.InvokeAsync();
+    }
+}

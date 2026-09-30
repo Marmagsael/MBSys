@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[2.1.35, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.18.1, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -181,6 +185,10 @@
             "ClosedXML": {
               "target": "Package",
               "version": "[0.105.1, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[7.*, )"
             },
             "FluentValidation": {
               "target": "Package",

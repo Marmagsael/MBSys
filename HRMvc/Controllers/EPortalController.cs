@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 namespace HRMvc.Controllers;
 
-[Route("EPortal")]
+[Route("12")]
 public class EPortalController : Controller
 {
     private const string ViewPath = "~/Applications/EPortal/Pages/";
@@ -9,7 +9,7 @@ public class EPortalController : Controller
     private static readonly Dictionary<int, string> ReportViews = new()
     {
         // --- 
-        [102] = "_11002_StdWorkingHoursSchedule",
+        [102] = "_12_102_Dashboard",
     };
 
 

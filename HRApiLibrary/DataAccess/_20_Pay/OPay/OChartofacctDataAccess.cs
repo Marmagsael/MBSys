@@ -32,15 +32,9 @@ public class OChartofacctDataAccess : IOChartofacctDataAccess
 
     public async Task<List<GChartofacctModel?>?> _02s(string? acctNumber, string? schema, string? conn)
     {
-        string? sql = $@"select  * 
+        string? sql = $@"select  
 		 from {schema}.Chartofacct where AcctNumber = @AcctNumber";
         var data = await _sql.FetchData<GChartofacctModel?, dynamic>(sql, new { AcctNumber = acctNumber }, conn);
-        return data;
-    }
-    public async Task<List<GChartofacctModel?>?> _02s(string? schema, string? conn)
-    {
-        string? sql = $@"select  * from {schema}.Chartofacct order by AcctNumber ";
-        var data = await _sql.FetchData<GChartofacctModel?, dynamic>(sql, new { }, conn);
         return data;
     }
 
@@ -48,42 +42,42 @@ public class OChartofacctDataAccess : IOChartofacctDataAccess
     public async Task<GChartofacctModel?> _03(GChartofacctModel chartofacct, string? schema, string? conn)
     {
         string? sql = $@"Update {schema}.Chartofacct set 
-							AcctName	 = @AcctName, 
-							AcctType	 = @AcctType, 
-							isTaxable	 = @isTaxable, 
-							isYTDAcct	 = @isYTDAcct, 
-							isTaxExcl	 = @isTaxExcl, 
-							islock		 = @islock, 
+							AcctName = @AcctName, 
+							AcctType = @AcctType, 
+							isTaxable = @isTaxable, 
+							isYTDAcct = @isYTDAcct, 
+							isTaxExcl = @isTaxExcl, 
+							islock = @islock, 
 							ischargeable = @ischargeable, 
 							hasRateOverBasic = @hasRateOverBasic, 
-							isOthers	 = @isOthers, 
-							isFixed		 = @isFixed, 
-							timedMode	 = @timedMode, 
-							shortDesc	 = @shortDesc, 
-							show01		= @show01, 
-							sort		= @sort, 
-							special_	= @special_, 
-							show02		= @show02, 
-							DedSort		= @DedSort, 
-							isTH		= @isTH, 
-							Deferd		= @Deferd, 
-							isOT		= @isOT, 
-							isMealAcct	= @isMealAcct, 
-							formula		= @formula, 
-							OTrate		= @OTrate, 
-							withSSS		= @withSSS, 
-							withPHIC	= @withPHIC, 
+							isOthers = @isOthers, 
+							isFixed = @isFixed, 
+							timedMode = @timedMode, 
+							shortDesc = @shortDesc, 
+							show01 = @show01, 
+							sort = @sort, 
+							special_ = @special_, 
+							show02 = @show02, 
+							DedSort = @DedSort, 
+							isTH = @isTH, 
+							Deferd = @Deferd, 
+							isOT = @isOT, 
+							isMealAcct = @isMealAcct, 
+							formula = @formula, 
+							OTrate = @OTrate, 
+							withSSS = @withSSS, 
+							withPHIC = @withPHIC, 
 							withPagibig = @withPagibig, 
-							isGovAcct	= @isGovAcct, 
+							isGovAcct = @isGovAcct, 
 							isLegalHoliday = @isLegalHoliday, 
-							isExtLoan	= @isExtLoan, 
+							isExtLoan = @isExtLoan, 
 							ExtLoanPercentage = @ExtLoanPercentage, 
-							status_		= @status_, 
-							customRate	= @customRate, 
+							status_ = @status_, 
+							customRate = @customRate, 
 							Taxable_Type = @Taxable_Type, 
-							MWE_Type	= @MWE_Type, 
-							TaxExptAmt	= @TaxExptAmt, 
-							Annualize	= @Annualize 
+							MWE_Type = @MWE_Type, 
+							TaxExptAmt = @TaxExptAmt, 
+							Annualize = @Annualize 
 						where AcctNumber = @AcctNumber;
 					    select  * from {schema}.Chartofacct  where AcctNumber = @AcctNumber ;";
         var data = await _sql.FetchData<GChartofacctModel?, dynamic>(sql, chartofacct, conn);
@@ -100,9 +94,8 @@ public class OChartofacctDataAccess : IOChartofacctDataAccess
 
 public interface IOChartofacctDataAccess
 {
-    Task							_01(GChartofacctModel chartofacct, string? schema, string? conn);
+    Task _01(GChartofacctModel chartofacct, string? schema, string? conn);
     Task<List<GChartofacctModel?>?> _02s(string? acctNumber, string? schema, string? conn);
-    Task<List<GChartofacctModel?>?> _02s(string? schema, string? conn);
-    Task<GChartofacctModel?>		_03(GChartofacctModel chartofacct, string? schema, string? conn);
-    Task							_04(string? acctnumber, string? schema, string? conn);
+    Task<GChartofacctModel?> _03(GChartofacctModel chartofacct, string? schema, string? conn);
+    Task _04(string? acctnumber, string? schema, string? conn);
 }

@@ -1,0 +1,124 @@
+﻿@using HRApiLibrary.DataAccess._20_Pay.Interface
+@using HRMvc.Applications._03Payroll.Views.BlazorPages._00_Utility.Vars
+@using HRMvc.Applications._03Payroll.Views.BlazorPages._06._0600
+@using Microsoft.AspNetCore.Hosting
+@using Telerik.Reporting
+@using Telerik.Reporting.Processing
+
+@inject IPayrollgrpDataAccess _pgrp
+@inject IWebHostEnvironment Env
+
+<h3 class="mb-3">Payroll Register Report</h3>
+
+<div class="d-flex gap-2 mb-3">
+    <select @bind="selectedReport" class="form-select" style="width:250px;">
+        <option value="_03Payroll\Payrollgrp.trdp">Payroll Register</option>
+    </select>
+
+    <button class="btn btn-primary" @onclick="GenerateReport">
+        Generate Report
+    </button>
+    
+</div>
+
+@if (isLoading)
+{
+    <p class="text-info mt-2">Generating report, please wait...</p>
+}
+
+@if (pdfBytes != null)
+{
+    <div style="height:85vh; margin-top:10px;">
+        <iframe src="data:application/pdf;base64,@Convert.ToBase64String(pdfBytes)"
+                style="width:100%;height:100%;border:none;">
+        </iframe>
+    </div>
+}
+
+@code {
+
+    private string selectedReport = "_03Payroll/Payrollgrp.trdp";
+    private bool isLoading;
+    private byte[]? pdfBytes;
+
+    private string? paydb;
+    private string? conn;
+
+    private V0601 V601 = new();
+
+    [Parameter] public UserClaimsModel? UserClaims { get; set; }
+    [Parameter] public V00_Pay V00 { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        V00.UserClaims  = UserClaims;
+        paydb           = UserClaims?.SchemaUserPay;
+        conn            = UserClaims?.Conn;
+
+        if (paydb != null && conn != null)
+        {
+            V601.Payrollgrps = await _pgrp._02Active(paydb, conn);
+        }
+    }
+
+    private async Task GenerateReport()
+    {
+        try
+        {
+            isLoading = true;
+            pdfBytes = null;
+            StateHasChanged();
+
+            // STEP 1: Reload data
+            V601.Payrollgrps = await _pgrp._02Active(paydb!, conn!);
+
+            if (V601.Payrollgrps == null || !V601.Payrollgrps.Any())
+                throw new Exception("No payroll group data found.");
+
+            // STEP 2: Resolve TRDP path
+            var reportPath = Path.Combine(Env.ContentRootPath, "Reports", selectedReport);
+            
+            if (!File.Exists(reportPath))
+                throw new FileNotFoundException(reportPath);
+
+            // STEP 3: Load TRDP
+            Telerik.Reporting.Report report;
+            var packager = new ReportPackager();
+
+            using (var fs = File.OpenRead(reportPath))
+            {
+                report = (Telerik.Reporting.Report)packager.UnpackageDocument(fs);
+            }
+
+            // STEP 4: Set parameters
+            report.ReportParameters["pCompanyName"].Value = "ABC CORPORATION";
+            report.ReportParameters["pPrintedBy"].Value  = UserClaims?.UserName ?? "SYSTEM";
+            report.ReportParameters["pPrintDate"].Value  = DateTime.Now;
+
+            // STEP 5: ObjectDataSource
+            report.DataSource = new ObjectDataSource
+            {
+                DataSource = V601.Payrollgrps
+            };
+
+            // STEP 6: Render PDF
+            var processor = new ReportProcessor();
+            var source = new InstanceReportSource
+            {
+                ReportDocument = report
+            };
+
+            var result = processor.RenderReport("PDF", source, null);
+            pdfBytes = result.DocumentBytes;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[PayrollRegister] {ex}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+}

@@ -3,7 +3,7 @@
 
 @inject UserClaimsContextService    _claimsContext
 @{
-    Layout = "~/Views/Shared/_MainLayout1.cshtml";
+    Layout = "~/Views/Shared/Main/_ReportLayout2.cshtml";
     var uc  = _claimsContext.Build(User);    
     @* ---------------------------------- *@
 }
@@ -11,6 +11,6 @@
 
 <div class="h-100">
 
-     @* @(await Html.RenderComponentAsync<_102PayrollGroupManagement>(RenderMode.ServerPrerendered, new { Uc = uc }))  *@
+     @(await Html.RenderComponentAsync<_102PayrollGroupManagement>(RenderMode.ServerPrerendered, new { Uc = uc })) 
   
 </div>

@@ -1,4 +1,4 @@
-using HRApiLibrary.DataAccess._10_Pis.Interface;
+﻿using HRApiLibrary.DataAccess._10_Pis.Interface;
 using HRApiLibrary.DataAccess._90_Utils.Interface;
 using HRApiLibrary.Models._10_Pis;
 using Org.BouncyCastle.Ocsp;
@@ -293,4 +293,3 @@ public class DeprecDataAccess : IDeprecDataAccess
         return data?.FirstOrDefault();
     }
 }
-

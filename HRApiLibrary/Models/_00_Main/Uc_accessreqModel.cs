@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace HRApiLibrary.Models._00_Main;
 

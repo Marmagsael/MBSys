@@ -366,4 +366,3 @@ public interface IAttreqhdrDataAccess
     Task                        _03PartiallyApprove(AttreqhdrModel arh, string? empNumber, string? schema, string? conn); 
     Task<AttreqhdrModel?>       _04(int? id, string? schema, string? conn);
 }
-

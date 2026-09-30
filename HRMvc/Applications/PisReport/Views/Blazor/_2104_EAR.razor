@@ -1,0 +1,120 @@
+﻿@using HRApiLibrary.DataAccess._10_Pis.OPis
+@using HRApiLibrary.DataAccess._20_Pay.Report
+@using HRMvc.Applications.PisReport.Vars
+@using HRMvc.Applications.PisReport.Views.Blazor._2104
+
+<_00BT HdrCaption="Employee Age Report" Rv="@Rv" >
+    <Details>
+        <div class="p-0"> 
+            <div class="card-header">
+                <div class="d-flex ">
+                    <_01DDClient Clients="@Rv.Clients" ChildAction="ClientChanged" />
+                    <span @onclick="FetchData"> <div class="p-2 ms-2 card mb-cbtn mb-cbtn-gray"> Fetch Data </div> </span> 
+                    @if(v2104.RepDtls.Count > 0) 
+                        { <span @onclick="CreateReport"> <div class="p-2 ms-1 card mb-cbtn mb-cbtn-blue"> Create Report </div> </span>}
+                     
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <_2104_Dtl V2104="@v2104.RepDtls" /> 
+        </div>
+
+    </Details>
+</_00BT>
+
+@inject IOClientDataAccess      _client; 
+@inject IOPisReportDataAccess   _pisRep; 
+
+
+@code {
+
+    [Parameter] public UserClaimsModel  Uc      {get; set; } = new(); 
+    [Parameter] public V00_RepVars      Rv      {get; set; } = new(); 
+
+    V2104Model v2104 = new();
+    bool _loaded = false;
+
+
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (_loaded) return;
+        if (string.IsNullOrEmpty(Uc?.OpisDb) || string.IsNullOrEmpty(Uc?.Conn)) return;
+
+        var res = await _client._02ByStatuss("Active", Uc.OpisDb!, Uc.Conn!); 
+        Rv.Clients = []; 
+        Rv.Clients.Add(new() { ClNumber="-", ClName="Select All----" });
+        if(res.Count > 0 ) { 
+            foreach(var r in res){ Rv.Clients.Add(r??new()); } 
+            Rv.ClNumber="-"; 
+        }; 
+        _loaded = true;
+
+    }
+
+    protected override void OnInitialized()
+    {
+        Rv.RelativePath = "Reports/_02HR/_2104_EAR.trdp";
+        Rv.RefreshToken = 2104000; 
+        Rv.MCaption     = "Employee Age Report"; 
+    }
+
+    void ClientChanged(string? clno) {
+        Rv.ClNumber = clno; 
+        v2104.RepDtls = [] ; 
+    }
+
+    int? ctr = 0; 
+    private async Task FetchData()
+    {
+        var res = await _pisRep._02Empmas_By_Clnumbers(Rv.ClNumber, Uc.OpisDb!, Uc.Conn!); 
+        v2104.RepDtls = []; 
+
+        if(res.Count > 0) {
+            var today = DateTime.Today; // compute once
+            foreach(var r in res){
+                R2104Model v = new() { EmpNumber=r.EmpNumber, EmpBirth=r.EmpBirth, EmpName = r.EmpName, EmpStatus=r.EmpStatus }; 
+                
+                if (v.EmpBirth != null)
+                {
+                    var birth = v.EmpBirth.Value;
+                    int? years = today.Year - birth.Year;
+                    int? months = today.Month - birth.Month;
+
+                    if (today.Day < birth.Day) months--;
+                    if (months < 0) { years--; months += 12; }
+
+                    v.Age = years + (months / 12.0);
+                } else { v.Age = null; }
+
+                v2104.RepDtls.Add(v); 
+            }   
+        }
+    }
+
+    private void CreateReport()
+    {
+        ctr++;        
+        Rv.ReportData   = v2104.RepDtls; 
+        Rv.ReportParams = []; 
+        
+        Rv.ReportParams["CoName"] = "123"; 
+        Rv.ReportParams["RunDate"] = DateTime.Now; 
+        Rv.ReportParams["ReportTitle"] = "Report Title"; 
+        Rv.ReportParams["ClientName"] = "ClientName"; 
+        Rv.ReportParams["CoAddress"] = "Co Address "; 
+
+
+        Rv.ShowModal    = true; 
+        
+
+
+        
+    }
+
+
+}
+ 

@@ -1,0 +1,31 @@
+﻿@using HRMvc.Applications._12EmployeeProfile.Blazor._12_103._12_103_InsuranceTab
+<div class="card w-100">
+    <_12_102_Cardhdr caption="Insurance" />
+
+    <_12_103_Insurance_Tabs TabChanged="TabChanged"></_12_103_Insurance_Tabs>
+
+    <div class="">
+        @if (tab == 1)
+        {
+            <_12_103_Life V12_103="V12_103" />
+        }
+        @if (tab == 2)
+        {
+            <_12_103_Accident V12_103="V12_103" />
+        }
+       
+    </div>
+
+
+</div>
+
+@code {
+    [Parameter] public V12_103? V12_103 { get; set; } = new();
+
+    int? tab = 1;
+    void TabChanged(int val)
+    {
+        tab = val;
+
+    }
+}

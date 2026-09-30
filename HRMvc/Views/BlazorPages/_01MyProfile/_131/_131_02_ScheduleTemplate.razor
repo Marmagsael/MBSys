@@ -1,0 +1,89 @@
+﻿@using HRMvc.Views.BlazorPages.Vars
+@using HRMvc.Views.BlazorPages._01MyProfile._131._131_02
+
+<ul class="list-group mt-2">
+    <li class="list-group-item active" aria-current="true">My IN/OUT Template</li>
+    <li class="list-group-item">
+        <div class="d-flex gap-3">
+            <div class="w-150p p-1 bordered-bottom text-center">Attendance Type</div>
+            <div class="w-100 fw-semibold p-1 bordered-bottom  bg-secondary bg-opacity-10">@V.AttTemplate?.Attendancetype</div>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div class="d-flex gap-3">
+            <div class="w-150p p-1 bordered-bottom text-center">Punch Schedules</div>
+            <div class="row w-100 bordered p-2">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule 
+                        DayName="Monday" 
+                        DutyType="@V.AttTemplate?.D2_dutytype"
+                        Duration="@V.AttTemplate?.D2_hrslength"
+                        In="@V.AttTemplate?.D2_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Tuesday"
+                        DutyType="@V.AttTemplate?.D3_dutytype"
+                        Duration="@V.AttTemplate?.D3_hrslength"
+                        In="@V.AttTemplate?.D3_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Wednesday"
+                        DutyType="@V.AttTemplate?.D4_dutytype"
+                        Duration="@V.AttTemplate?.D4_hrslength"
+                        In="@V.AttTemplate?.D4_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Thursday"
+                        DutyType="@V.AttTemplate?.D5_dutytype"
+                        Duration="@V.AttTemplate?.D5_hrslength"
+                        In="@V.AttTemplate?.D5_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Friday"
+                        DutyType="@V.AttTemplate?.D6_dutytype"
+                        Duration="@V.AttTemplate?.D6_hrslength"
+                        In="@V.AttTemplate?.D6_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Saturday"
+                        DutyType="@V.AttTemplate?.D7_dutytype"
+                        Duration="@V.AttTemplate?.D7_hrslength"
+                        In="@V.AttTemplate?.D7_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <_131_02_01_Schedule
+                        DayName="Sunday"
+                        DutyType="@V.AttTemplate?.D1_dutytype"
+                        Duration="@V.AttTemplate?.D1_hrslength"
+                        In="@V.AttTemplate?.D1_in"
+                        AttType="@V.AttTemplate?.AttendancetypeId"/>
+                </div>
+                
+                
+            </div>
+        </div>
+    </li>
+
+</ul>
+
+
+
+
+
+
+
+
+@code {
+    [Parameter] public V131 V { get; set; } = new(); 
+}

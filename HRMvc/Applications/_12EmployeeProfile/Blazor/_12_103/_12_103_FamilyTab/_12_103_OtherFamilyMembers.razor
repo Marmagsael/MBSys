@@ -1,0 +1,39 @@
+﻿@using HRApiLibrary.Models._10_Pis.OPis
+
+<div class="p-2 pt-0">
+    <div class="card overflow-auto">
+        <div class="card-header">Other Family Members</div>
+        <div class="card-body p-0">
+
+            <div class="d-flex fw-bold border-bottom bg-light py-2">
+                <div class="w-20 bordered-right ps-3">Relation</div>
+                <div class="w-60 bordered-right ps-3">Name</div>
+                <div class="w-20 text-center">Birth</div>
+            </div>
+           
+
+            @if (V12_103.OFamilys.Any())
+            {
+                @foreach (var p in V12_103?.OFamilys ?? [])
+                {
+                    <div class="d-flex border-bottom py-2">
+                        <div class="w-20 bordered-right ps-3">@p.Relation</div>
+                        <div class="w-60 bordered-right ps-3">@p.Name</div>
+                        <div class="w-20 text-center">@p.Birth?.ToString("MMMM dd,yyyy")</div>
+                    </div>
+                }
+            }
+
+            else
+            {
+                <div class="d-flex align-items-center justify-content-center py-2 text-muted">
+                    No records to display.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public V12_103? V12_103 { get; set; } = new();
+}

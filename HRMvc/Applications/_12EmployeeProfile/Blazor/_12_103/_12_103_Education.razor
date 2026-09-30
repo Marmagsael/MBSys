@@ -1,0 +1,54 @@
+﻿@{
+    var educateRef = new Dictionary<string, string>
+    {
+        { "E", "Elementary"    },
+        { "H", "High School"   },
+        { "C", "College"       },
+        { "V", "Vocational"    },
+        { "P", "Post Graduate" },
+        { "M", "Master"        },
+        { "D", "Doctorate"     }
+    };
+}
+<div class="card w-100">
+    <_12_102_Cardhdr caption="Educational Background" />
+    <div class="p-2">
+        <div class="card p-0">
+            <div class="d-flex fw-bold border-bottom bg-light py-2">
+                <div class="w-20 bordered-right ps-3">Level</div>
+                <div class="w-40 bordered-right ps-3">School</div>
+                <div class="w-20 text-center bordered-right">Year</div>
+                <div class="w-20 bordered-right ps-3">Course</div>
+                <div class="w-20 ps-3">Remarks</div>
+            </div>
+            <div class="card-body p-0">
+              
+
+                @if (V12_103.OEductates.Any())
+                {
+                    @foreach (var s in V12_103?.OEductates)
+                    {
+                        <div class="d-flex border-bottom py-2">
+                            <div class="w-20 bordered-right ps-3">@(educateRef.GetValueOrDefault(s.Code ?? "", ""))</div>
+                            <div class="w-40 bordered-right ps-3">@s.School</div>
+                            <div class="w-20 text-center bordered-right">@s.From_ - @s.To_</div>
+                            <div class="w-20 bordered-right ps-3">@s.Course</div>
+                            <div class="w-20 ps-3">@s.Level</div>
+                        </div>
+                    }
+                }
+
+                else
+                {
+                    <div class="d-flex align-items-center justify-content-center py-2 text-muted">
+                        No records to display.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public V12_103? V12_103 { get; set; } = new();
+}

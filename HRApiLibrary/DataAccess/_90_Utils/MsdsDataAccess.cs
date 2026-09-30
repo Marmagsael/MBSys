@@ -1,9 +1,12 @@
-using HRApiLibrary.DataAccess._10_Pis.Interface;
+﻿using HRApiLibrary.DataAccess._10_Pis.Interface;
 using HRApiLibrary.DataAccess._90_Utils.Interface;
 using HRApiLibrary.Models._10_Pis;
 using HRApiLibrary.Models._20_Pay;
 using HRApiLibrary.Models._20_Pay.M0605;
 using HRApiLibrary.Models._90_Utils;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 using System;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -19,6 +22,185 @@ namespace HRApiLibrary.DataAccess._90_Utils;
 
 public class MsdsDataAccess : IMsdsDataAccess
 {
+
+
+    public async Task SendEmail(EmailModel email)
+    {
+
+
+        var message = new MimeMessage();
+        // Sender's email 
+        message.From.Add(new MailboxAddress("MSDS", email?.SenderEmail!));
+        //message.ReplyTo.Add(new MailboxAddress(hrName, hrEmail));
+
+
+        // Recipient's email 
+        message.To.Add(MailboxAddress.Parse(email?.RecipientEmail!));
+        message.Subject = email?.Subject!;
+        var bodyBuilder = new BodyBuilder { };
+
+
+        switch (email.Type)
+        {
+            case "Profile Request":
+                bodyBuilder = new BodyBuilder
+                {
+
+                    HtmlBody = $@"
+                        <html>
+                            <body style='margin: 0; padding: 40px; background-color: #f4f4f4; font-family: Roboto-Regular,Helvetica,Arial, sans-serif; font-size:13px; line-height:20px; color: #333;'>
+                                <div style='max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);'>
+                                    <div style='text-align: center; margin-bottom: 20px;'>
+                                        <img src='LOGO' alt='Company Logo' style='height: 60px;' />
+                                    </div>
+                                    <h2>Profile Link Request</h2>
+                                    <p>Hi {email.RecipientName},</p>
+                                    <p><strong>{email.CompanyName}</strong> has invited you to link your profile to their company account.</p>
+                                    <p>By granting access, you authorize {email.CompanyName} to view and use your personal information for the purpose of integrating and maintaining your official HR records within the {email.CompanyName} system.</p>
+                                    <div style='text-align: center; margin: 30px 0;'>
+                                        <a href='https://localhost:7065/00' style='background-color: #047959; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px;'>Link My Profile</a>
+                                    </div>
+                                    <p>  If you did not expect this request, you may deny access or  <a href='mailto:{email.SenderEmail}' >contact HR</a>  to have your email removed.</p>
+                                    <p>Thank you,<br />MSDS</p>
+                                </div>
+                            </body>
+                        </html>",
+                    TextBody = $@"
+                            Profile Link Request
+
+                            Hi {email.RecipientName},
+
+                            {email.CompanyName} has invited you to link your profile to their company account.
+
+                            By granting access, you authorize {email.CompanyName} to view and use your personal information for the purpose of integrating and maintaining your official HR records within the {email.CompanyName} system.
+
+                            To link your profile, click the button below:
+                            https://localhost:7065/00
+
+                            If you did not expect this request, you may deny access or contact HR to have your email removed.
+
+                            Thank you,
+                            MSDS"
+
+
+                };
+                break;
+
+            case "Profile Approved":
+
+                var allowedModules = new List<string>();
+                if (email.Modules?.Info == 1) allowedModules.Add("Info");
+                if (email.Modules?.PersonalData == 1) allowedModules.Add("Personal Data");
+                if (email.Modules?.Address == 1) allowedModules.Add("Address");
+                if (email.Modules?.Education == 1) allowedModules.Add("Education");
+                if (email.Modules?.Family == 1) allowedModules.Add("Family");
+                if (email.Modules?.References == 1) allowedModules.Add("References");
+                if (email.Modules?.Employment ==1 ) allowedModules.Add("Employment");
+                if (email.Modules?.Trainings == 1) allowedModules.Add("Trainings");
+
+                string? moduleChecklistHtml = string.Join("", allowedModules.Select(m =>
+                    $"<li style='margin-bottom: 8px; display: flex; align-items: center;'><span style='font-size: 18px; margin-right: 8px;'>✅</span>{m}</li>"));
+
+                string? moduleChecklistText = string.Join("\n", allowedModules.Select(m => $"[✔] {m}"));
+
+                bodyBuilder = new BodyBuilder
+                {
+                    HtmlBody = $@"
+                                <html>
+                                     <body style='margin: 0; padding: 40px; background-color: #f4f4f4; font-family: Roboto-Regular,Helvetica,Arial, sans-serif; font-size:13px; line-height:20px; color: #333;'>
+
+                                        <div style='max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);'>
+                                            <div style='text-align: center; margin-bottom: 20px;'>
+                                                <img src='LOGO' alt='Company Logo' style='height: 60px;' />
+                                            </div>
+                                            <h2>Profile Link Approved</h2>
+                                            <p>Hi {email.RecipientName},</p>
+                                            <p>This is to confirm that <strong>{email.SenderName}</strong> has approved your request to link his/her profile to <strong>{email.CompanyName}</strong>.</p>
+                                            <p>As part of this approval, the following modules have been made accessible to your company account:</p>
+                                            {(allowedModules.Count > 0 ? $@"
+                                        
+                                            <ul style='list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;'>
+                                                {moduleChecklistHtml}
+                                            </ul>" : "<p>No modules were granted access at this time.</p>")}
+                                            
+                                            <p>Thank you,<br />MSDS</p>
+                                        </div>
+                                    </body>
+                                </html>",
+
+                TextBody = $@"
+                            Profile Link Approved
+
+                            Hi {email.RecipientName},
+
+                            This is to confirm that {email.SenderName} has approved your request to link his/her profile to {email.CompanyName}.
+
+                            As part of this approval, the following modules have been made accessible to your company account:
+                            {(allowedModules.Count > 0 ? $"\n{moduleChecklistText}" : "\nNo modules were granted access at this time.")}
+
+                            
+
+                            Thank you,
+                            MSDS"
+                    };
+                break;
+
+
+            case "Profile Denied":
+                bodyBuilder = new BodyBuilder
+                {
+                    HtmlBody = $@"
+                        <html>
+                             <body style='margin: 0; padding: 40px; background-color: #f4f4f4; font-family: Roboto-Regular,Helvetica,Arial, sans-serif; font-size:13px; line-height:20px; color: #333;'>
+                                <div style='max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);'>
+                                    <div style='text-align: center; margin-bottom: 20px;'>
+                                        <img src='LOGO' alt='Company Logo' style='height: 60px;' />
+                                    </div>
+                                    <h2>Profile Link Request Denied</h2>
+                                    <p>Hi {email.RecipientName},</p>
+                                    <p>We regret to inform you that <strong>{email.SenderName}</strong> has declined your request to link his/her profile to <strong>{email.CompanyName}</strong>.</p>
+                                    <p>This means the profile will remain unlinked and no access to personal or employment data will be granted at this time.</p>
+                                    <p>If you believe this decision was made in error or would like to follow up, you may send another request.</p>
+                                    <p>Thank you,<br />MSDS</p>
+                                </div>
+                            </body>
+                        </html>",
+
+                    TextBody = $@"
+                        Profile Link Request Denied
+
+                        Hi {email.RecipientName},
+
+                        We regret to inform you that {email.SenderName} has declined your request to link his/her profile to {email.CompanyName}.
+
+                        This means the profile will remain unlinked and no access to personal or employment data will be granted at this time.
+
+                        If you believe this decision was made in error or would like to follow up, you may send another request.
+
+                        Thank you,
+                        MSDS"
+                    };
+                break;
+
+
+            default:
+                throw new InvalidOperationException("Unknown email type.");
+        }
+
+
+
+
+        message.Body = bodyBuilder.ToMessageBody();
+
+        using var client = new SmtpClient();
+        await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+
+        //Central Account 
+        await client.AuthenticateAsync("judithlorrenreyes@gmail.com", "evicyxbgnvjypwpy");
+        await client.SendAsync(message);
+        await client.DisconnectAsync(true);
+    }
+
 
     public Object ObjectMapper(Object src, Object des)
     {
@@ -495,7 +677,6 @@ public class MsdsDataAccess : IMsdsDataAccess
 
 
 }
-
 
 
 

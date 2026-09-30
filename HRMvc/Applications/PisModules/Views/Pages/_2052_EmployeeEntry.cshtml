@@ -1,0 +1,22 @@
+@using HRMvc.Applications.PisModules.Views.Blazor.NonExclusive
+
+@inject UserClaimsContextService _claimsContext
+@{
+    Layout = "~/Views/Shared/Main/_ReportLayout2.cshtml";
+    var uc = _claimsContext.Build(User);
+}
+
+<div>
+
+    @if(uc.IsExclusiveCompany == "true")
+    {
+    
+        @(await Html.RenderComponentAsync<_2052_EmployeeEntry>(RenderMode.ServerPrerendered, new { Uc = uc }))
+
+    }
+    else
+    {
+        @(await Html.RenderComponentAsync<NE_2052_EmployeeEntry>(RenderMode.ServerPrerendered, new { Uc = uc }))
+
+    }
+</div>
