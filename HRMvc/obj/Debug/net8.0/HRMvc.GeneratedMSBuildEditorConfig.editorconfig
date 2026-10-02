@@ -487,6 +487,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEFNU1xQYWdlc1xfNTAyX1BheXJvbGxFbnRyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Development/MBSys/hrmvc/Applications/EPortal/Pages/_12_102_Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXEVQb3J0YWxcUGFnZXNcXzEyXzEwMl9EYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MBSys/hrmvc/Applications/Menus/Pages/_1000_Menus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXBwbGljYXRpb25zXE1lbnVzXFBhZ2VzXF8xMDAwX01lbnVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -613,6 +617,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Development/MBSys/hrmvc/Views/Shared/ReportLayout/_ReportLeftMenuMainParentDtl.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFJlcG9ydExheW91dFxfUmVwb3J0TGVmdE1lbnVNYWluUGFyZW50RHRsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MBSys/hrmvc/Views/Shared/_EPortalLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FUG9ydGFsTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Development/MBSys/hrmvc/Views/Shared/_MainLayout.cshtml]
