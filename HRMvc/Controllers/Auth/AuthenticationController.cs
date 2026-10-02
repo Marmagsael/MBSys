@@ -27,7 +27,7 @@ public class AuthenticationController : Controller
     private readonly I_00UsersAccess _userAccess;
     private readonly I_90_001_MySqlDataAccess _mysql;
     private readonly I_00MainDA _mainDA;
-
+    private readonly I_10_EmpmasDataAccess _empmasDA;
     private readonly I_10_EmpmasDataAccess _empmas;
     private readonly IEmpmasInternalDataAccess _empmasInternal;
 
@@ -47,6 +47,7 @@ public class AuthenticationController : Controller
                                     I_00UsersAccess userAccess,
                                     I_90_001_MySqlDataAccess mysql,
                                     I_00MainDA mainDA,
+                                    I_10_EmpmasDataAccess empmasDA, 
                                     I_09_02_VarsGlobal vars,
                                     ClaimsAccess claimsAccess,
                                     I_00MainPisTblMakerAccess mainPisTblMaker,
@@ -61,6 +62,7 @@ public class AuthenticationController : Controller
         _userAccess = userAccess;
         _mysql = mysql;
         _mainDA = mainDA;
+        _empmasDA = empmasDA; 
         _vars = vars;
         _claimsAccess = claimsAccess;
         _mainPisTblMaker = mainPisTblMaker;
@@ -358,9 +360,8 @@ public class AuthenticationController : Controller
         {
             string isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value;
 
+            // 1). Validate credentials
             UsersModel? user = await _mainDA._02UsersLoginLoginName(login.EmpNumber, login.Password);
-            Console.WriteLine(@$"EmpNumber : {login.EmpNumber} ** Password : {login.Password}");
-
 
             if (user == null)
             {
@@ -370,11 +371,19 @@ public class AuthenticationController : Controller
             }
 
 
+            // 2). -- Get User Company -------------------------------------------------------
+            var conn    = _config.GetSection("Schema:DefConn").Value.ToString();
+            var schema  = _config.GetSection("Schema:Main").Value.ToString();
+            var uc      = await _02UserCompany(user, schema, conn);
 
-            // -- Get User Company -------------------------------------------------------
-            var conn = _config.GetSection("Schema:DefConn").Value.ToString();
-            var schema = _config.GetSection("Schema:Main").Value.ToString();
-            var uc = await _02UserCompany(user, schema, conn);
+            var domainUsers = await _empmasDA._02BySystemIdList(user.Id ?? 0, uc.PisSchema, conn) ?? [];
+            // Console.WriteLine($@"Count {domainUsers.Count} ** user.Id : {user.Id}");
+            if (domainUsers.Count > 0)
+            {
+                var dUser = domainUsers.FirstOrDefault() ?? new();
+                user.Empnumber = dUser.EmpNumber ?? "";
+                // Console.WriteLine($@"========> dUser.EmpNumber {dUser.EmpNumber} ");
+            }
 
             // Create Schema and Tables --------------------------------------------------
             _01SchemaAndTables(uc?.PisSchema, conn);
@@ -506,8 +515,7 @@ public class AuthenticationController : Controller
 
         var empmasId = User.Claims.Where(c => c.Type == "UserId").FirstOrDefault()?.Value;
         var empId = int.Parse(empmasId!);
-        //string? defCompanyId    = User.Claims.Where(c => c.Type == "DefCompayId").FirstOrDefault()?.Value;
-        //int defCoId = int.Parse(defCompanyId!);
+        
         UsersModel? user = await _mainDA._02UsersById(empId, schema, conn);
         user!.DefaultCoId = userCompanyId;
 
@@ -725,9 +733,10 @@ public class AuthenticationController : Controller
 
 
 
-        var loginName = user.LoginName ?? "-1";
-        var defCoId = user.DefaultCoId.ToString() ?? "0";
-        var isExclusiveCompany = _config.GetSection("CompanyInfo:Exclusive").Value;
+        var loginName           = user.LoginName ?? "-1";
+        var defCoId             = user.DefaultCoId.ToString() ?? "0";
+        var isExclusiveCompany  = _config.GetSection("CompanyInfo:Exclusive").Value;
+        var connNoDb            = _config.GetSection("ConnectionStrings:MySqlConnNoDb").Value;
 
         if (isExclusiveCompany == "true")
         {
@@ -740,7 +749,7 @@ public class AuthenticationController : Controller
             new("UserId",               userId),
             new("UserName",             loginName),
             new("Email",                email??""),
-            new("DefCompayId",          defCoId),
+            new("DefCompanyId",         defCoId),
             new("PisSchema",            pisSchema ?? ""),
             new("PaySchema",            paySchema ?? ""),
             new("AcctgSchema",          acctgSchema ?? ""),
@@ -748,6 +757,7 @@ public class AuthenticationController : Controller
             new("AmsSchema",            amsSchema ?? ""),
             new("CoName",               coName ?? ""),
             new("Conn",                 conn  ?? "MySql"),
+            new("ConnNoDb",             connNoDb  ?? ""),
 
             new("EmpmasId",             empmasId  ?? "0"),
             new("Empnumber",            empnumber  ?? "00000"),
@@ -815,24 +825,40 @@ public class AuthenticationController : Controller
             coName = userCo?.CompanyName ?? "-";
         }
 
-        var loginName = user.LoginName ?? "-1";
-        var isExclusiveCompany = _config.GetSection("CompanyInfo:Exclusive").Value;
-
+        
+        var loginName           = user.LoginName ?? "-1";
+        var isExclusiveCompany  = _config.GetSection("CompanyInfo:Exclusive").Value;
+        var connNoDb            = _config.GetSection("ConnectionStrings:MySqlConnNoDb").Value;
+        var empnumber           = user.LoginName ?? "00000";
+        var empmasId            = User.FindFirst("EmpmasId")?.Value ?? string.Empty;
+        var oldPis              = User.FindFirst("OldPis")?.Value ?? string.Empty;
+        var oldPay              = User.FindFirst("OldPay")?.Value ?? string.Empty;
+        var exclusiveCompany    = User.FindFirst("exclusiveCompany")?.Value ?? string.Empty;
+        
         await HttpContext.SignOutAsync();
 
         var claims = new List<Claim>
         {
             new("UserId",               userId),
-            new("UserName",             loginName ?? ""),
-            new("Email",                email     ?? "-"),
-            new("DefCompayId",          defCoId   ?? ""),
+            new("UserName",             loginName),
+            new("Email",                email??""),
+            new("DefCompanyId",         defCoId),
             new("PisSchema",            pisSchema ?? ""),
             new("PaySchema",            paySchema ?? ""),
+            new("AcctgSchema",          acctgSchema ?? ""),
             new("ApplicantSchema",      appSchema ?? ""),
             new("AmsSchema",            amsSchema ?? ""),
             new("CoName",               coName ?? ""),
-            new("Conn",                 conn ?? "MySql"),
-            new("IsExclusiveCompany",   isExclusiveCompany)
+            new("Conn",                 conn  ?? "MySql"),
+            new("ConnNoDb",             connNoDb  ?? ""),
+
+            new("EmpmasId",             empmasId  ?? "0"),
+            new("Empnumber",            empnumber  ?? "00000"),
+            new("OldPis",               oldPis  ?? "secpis"),
+            new("OldPay",               oldPay  ?? "pay"),
+
+            new("IsExclusiveCompany",   isExclusiveCompany),
+            new("ExclusiveCompany",    exclusiveCompany) // For GSIA
         };
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

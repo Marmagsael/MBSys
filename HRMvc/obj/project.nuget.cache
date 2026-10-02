@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d8DBM/97czU=",
+  "dgSpecHash": "1xreW8jbwWg=",
   "success": true,
-  "projectFilePath": "D:\\Development\\MBSys\\hrmvc\\HRMvc.csproj",
+  "projectFilePath": "D:\\Development\\MBSys\\HRMvc\\HRMvc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marma\\.nuget\\packages\\azure.ai.openai\\2.7.0-beta.2\\azure.ai.openai.2.7.0-beta.2.nupkg.sha512",
     "C:\\Users\\marma\\.nuget\\packages\\azure.core\\1.50.0\\azure.core.1.50.0.nupkg.sha512",
