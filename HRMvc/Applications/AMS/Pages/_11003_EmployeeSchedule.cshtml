@@ -6,7 +6,8 @@
 
 @inject UserClaimsContextService    _claimsContext
 @{
-    Layout = "~/Views/Shared/_MainLayout1.cshtml";
+    @* Layout = "~/Views/Shared/_MainLayout1.cshtml"; *@
+    Layout = "~/Views/Shared/_AMSLayout.cshtml";
     var uc = PayClaimsHelper.UserToClaims(User);     
     @* ---------------------------------- *@
 }

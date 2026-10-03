@@ -1,313 +1,429 @@
 using HRApiLibrary.DataAccess._00_Main;
 using HRApiLibrary.DataAccess._00_Main.Interface;
+using HRApiLibrary.DataAccess._10_Pis.Interface;
+using HRApiLibrary.DataAccess._10_Pis.OPis;
 using HRApiLibrary.DataAccess._20_Pay.Interface;
 using HRApiLibrary.DataAccess._90_Utils.Interface;
 using HRApiLibrary.Models._00_Main;
 using HRApiLibrary.Models._00_MainPis;
+using HRApiLibrary.Models._10_Pis;
+using HRMvc.DataAccess.Main;
 using HRMvc.Models.Authentication;
+using HRMvc.Models.Main;
+using HRMvc.Models.Main.LoginSignUp;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System.Security.Claims;
 
-namespace HRMvc.Controllers.Auth;
+namespace HRMvc.Controllers.Main;
 
 public class AuthenticationController : Controller
 {
-    private readonly IConfiguration             _config;
-    private readonly I_00UsersAccess            _userAccess;
-    private readonly I_90_001_MySqlDataAccess   _mysql;
-    private readonly I_00MainDA                 _mainDA;
-    private readonly I_00MainPisAccess          _mainPis;
-    private readonly I_00MainPisTblMakerAccess  _mainPisTblMaker;
-    private readonly I_20_002_PayTblMaker       _payTblMaker;
-    private readonly I_00UserscompanyDataAccess _userCompany;
-    private readonly I_AcctgTableMaker          _acctg;
+    private readonly IConfiguration _config;
+    private readonly I_00UsersAccess _userAccess;
+    private readonly I_90_001_MySqlDataAccess _mysql;
+    private readonly I_00MainDA _mainDA;
+    private readonly I_10_EmpmasDataAccess _empmasDA;
+    private readonly I_10_EmpmasDataAccess _empmas;
+    private readonly IEmpmasInternalDataAccess _empmasInternal;
 
-    public AuthenticationController(
-        IConfiguration              config,
-        I_00UsersAccess             userAccess,
-        I_90_001_MySqlDataAccess    mysql,
-        I_00MainDA                  mainDA,
-        I_00MainPisAccess           mainPis,
-        I_00MainPisTblMakerAccess   mainPisTblMaker,
-        I_20_002_PayTblMaker        payTblMaker,
-        I_00UserscompanyDataAccess  userCompany,
-        I_AcctgTableMaker           acctg)
+    private readonly ClaimsAccess _claimsAccess;
+    private readonly I_09_02_VarsGlobal _vars;
+    private readonly I_00MainPisTblMakerAccess _mainPisTblMaker;
+    private readonly I_20_002_PayTblMaker _payTblMaker;
+    private readonly I_00UserscompanyDataAccess _userCompany;
+    private readonly I_AcctgTableMaker _acctg;
+    private readonly IOEmpmasDataAccess _oldEmpmas;
+
+
+
+
+
+    public AuthenticationController(IConfiguration config,
+                                    I_00UsersAccess userAccess,
+                                    I_90_001_MySqlDataAccess mysql,
+                                    I_00MainDA mainDA,
+                                    I_10_EmpmasDataAccess empmasDA, 
+                                    I_09_02_VarsGlobal vars,
+                                    ClaimsAccess claimsAccess,
+                                    I_00MainPisTblMakerAccess mainPisTblMaker,
+                                    I_10_EmpmasDataAccess empmas,
+                                    IEmpmasInternalDataAccess empmasInternal,
+                                    I_20_002_PayTblMaker payTblMaker,
+                                    I_00UserscompanyDataAccess userCompany,
+                                    I_AcctgTableMaker acctg,
+                                    IOEmpmasDataAccess oldEmpmas)
     {
-        _config          = config;
-        _userAccess      = userAccess;
-        _mysql           = mysql;
-        _mainDA          = mainDA;
-        _mainPis         = mainPis;
+        _config = config;
+        _userAccess = userAccess;
+        _mysql = mysql;
+        _mainDA = mainDA;
+        _empmasDA = empmasDA; 
+        _vars = vars;
+        _claimsAccess = claimsAccess;
         _mainPisTblMaker = mainPisTblMaker;
-        _payTblMaker     = payTblMaker;
-        _userCompany     = userCompany;
-        _acctg           = acctg;
+        _empmas = empmas;
+        _empmasInternal = empmasInternal;
+        _payTblMaker = payTblMaker;
+        _userCompany = userCompany;
+        _acctg = acctg;
+        _oldEmpmas = oldEmpmas;
+
     }
 
 
-    // ==================================================================================
-    // GET
-    // ==================================================================================
 
+    // **********************************************************************************************
+    // --- Get Methods -----------------------------------------------------------------------------
+    // **********************************************************************************************
+
+    // -- 00 ---------------------------
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+
+    // -- 01 ---------------------------
     [AllowAnonymous]
     [HttpGet("login")]
     public IActionResult Login()
     {
-        LoadLoginViewData();
+        ViewData["Exclusive"] = _config.GetSection("CompanyInfo:Exclusive").Value;
+        ViewData["CoName"] = _config.GetSection("CompanyInfo:CompanyName").Value;
         return View();
     }
 
+    // -- 02 ---------------------------
     [AllowAnonymous]
     [HttpGet("register")]
     public IActionResult Register()
     {
-        LoadLoginViewData();
+        ViewData["Exclusive"] = _config.GetSection("CompanyInfo:Exclusive").Value;
+        ViewData["CoName"] = _config.GetSection("CompanyInfo:CompanyName").Value;
         return View();
     }
 
-    [HttpGet("logout")]
-    public async Task<IActionResult> Logout()
+
+
+
+    // -- 03 ---------------------------
+    [AllowAnonymous]
+    [HttpGet("registerOrdinary")]
+    public IActionResult RegisterOrdinary()
     {
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        return RedirectToAction("Login");
+        ViewData["Exclusive"] = _config.GetSection("CompanyInfo:Exclusive").Value;
+        ViewData["CoName"] = _config.GetSection("CompanyInfo:CompanyName").Value;
+        return View();
     }
 
 
-    // ==================================================================================
-    // POST — Login
-    // ==================================================================================
 
+    // **********************************************************************************************
+    // --- Post Methods -----------------------------------------------------------------------------
+    // **********************************************************************************************
+
+    // -- 03.01 -------------------------------------------------------------------------
     [AllowAnonymous]
-    [HttpPost("login")]
-    public async Task<IActionResult> LoginPost(LoginUiModel input)
+    [HttpPost("registerOrdinary")]
+    public async Task<IActionResult> RegisterOrdinarySave(RegisterOrdinaryUiModel input)
     {
-        LoadLoginViewData();
-        ViewData["ErrorMsg"] = string.Empty;
 
-        if (!ModelState.IsValid)
+        var inputData = input;
+
+        await CheckUser(input); // ==> 03.01.01
+
+        if (input.withError)
         {
-            ViewData["ErrorMsg"] = "Please fill in all required fields.";
-            return View("Login", input);
+            return View("RegisterOrdinary");
         }
-
-        try
+        else
         {
-            var conn        = _config.GetSection("Schema:DefConn").Value ?? "MySqlConn";
-            var schema      = _config.GetSection("Schema:Main").Value ?? "Main";
-            var isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
+            await LoadCreateUserCompanyData(); // ==> 03.02 (Postback Action)
 
-            // 1). Validate credentials
-            UsersModel? user = await _mainDA._02UsersLoginLoginName(input.LoginName, input.Password, schema, conn);
-
-            if (user is null)
+            CreateUserCompanyUiModel userCompany = new()
             {
-                ViewData["ErrorMsg"] = "Invalid username or password.";
-                return View("Login", input);
-            }
+                LoginName = input.Username,
+                Password = input.Password,
+                Email = input.Email
+            };
 
+            ViewData["input"] = inputData;
+            return View("SignupCreateUserCompany", userCompany); //== 3.01.02 
 
-            // 2). Get User Company
-            UserCompanyModel? uc = await _GetUserCompany(user, schema, conn);
-            if (uc is not null)
-            {
-                if(uc.OldPis.Length > 0)
-                {
-                    //var res = await
-                }
-            }
-
-            // 3). Create schema/tables if needed
-            _CreateSchemaAndTables(uc?.PisSchema, conn);
-
-            // 4). Build claims & sign in
-            await CreateClaims(user, uc);
-
-            // 5). Create company-level tables
-            await CreateCompany(user, uc, conn);
-
-            return RedirectToAction("Index", "Home");
         }
-        catch (MySqlException)
-        {
-            ViewData["ErrorMsg"] = "Cannot reach the server. Please try again shortly.";
-            return View("Login", input);
-        }
-        catch (Exception)
-        {
-            ViewData["ErrorMsg"] = "Something went wrong. Please try again.";
-            return View("Login", input);
-        }
+
+
+
+
     }
 
 
-    // ==================================================================================
-    // POST — Register (simple user creation, no company)
-    // ==================================================================================
-
+    // -- 03.02 -------------------------------------------------------------------------
     [AllowAnonymous]
-    [HttpPost("register")]
-    public async Task<IActionResult> RegisterPost(RegisterUiModel input)
+    [HttpPost("signupCreateUserCompanySave")]
+    public async Task<IActionResult> SignupCreateUserCompanySave(CreateUserCompanyUiModel model)
     {
-        LoadLoginViewData();
+        string conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        string schema = _config.GetSection("Schema:Main").Value.ToString();
         ViewData["ErrorMsg"] = string.Empty;
 
-        if (!ModelState.IsValid)
+        // 1). Create User -------------------------------------------------------------------
+        UsersModel? user = await _01User(model, schema, conn); // -- 03.02.01
+        if (user == null)
         {
-            ViewData["ErrorMsg"] = "Please fill in all required fields.";
-            return View("Register", input);
+            ViewData["ErrorMsg"] = "Error Creating user!";
+            return View("SignupCreateUserCompany", model);
+            // === To Create Error Signing Page ================================
+
         }
-
-        var conn = _config.GetSection("Schema:DefConn").Value ?? "MySqlConn";
-        var schema = _config.GetSection("Schema:Main").Value ?? "Main";
-
-        // Check duplicate username
-        var existingUser = await _userAccess._02ByLoginName(input.LoginName, schema, conn);
-        if (existingUser != null)
+        if (user.DefaultCoId != 0)
         {
-            ViewData["ErrorMsg"] = "Username already exists.";
-            return View("Register", input);
+            ViewData["ErrorMsg"] = "User Already Exists.";
+            return View("SignupCreateUserCompany", model);
+            // === To Create Error Signing Page ================================
         }
+        model.UserId = user.Id;
 
-        // Check duplicate email
-        var existingEmail = await _userAccess._02ByEmail(input.Email, schema, conn);
-        if (existingEmail != null)
-        {
-            ViewData["ErrorMsg"] = "Email already exists.";
-            return View("Register", input);
-        }
+        // 2). Create User Company --------------------------------------------------------
+        UserCompanyModel? userCompany = await _01userCompany(model, schema, conn); // -- 03.02.02
 
-        // Create user
-        var domain = _config.GetSection("Schema:Domain").Value ?? string.Empty;
-        UsersModel newUser = new()
+        // 3). Create Company User  --------------------------------------------------------
+        CompanyUsersModel? companyUser = await _01companyUser(userCompany!, schema, conn);  // -- 03.02.03
+
+        // 4). Create Schema and Tables  --------------------------------------------------------
+        _01SchemaAndTables(userCompany?.PisSchema, conn);  // -- 03.02.04
+
+        // 5). Create Cookies  --------------------------------------------------------
+        UserCompanyModel? uc = await _02UserCompany(user, schema, conn);
+        await CreateClaims(user, uc); //-- 02.04 
+        await CreateCompany(user, uc, conn);
+
+        // 6). Save User to Own PIS schema --------------------------------------------
+        EmpmasInternalModel empmasInternal = new()
         {
-            LoginName = input.LoginName,
-            Password = input.Password,
-            Email = input.Email,
+            Id = user.Id,
+            SystemId = 0,
+            EmpNumber = "",
+            EmpLastNm = model.EmpLastNm,
+            EmpFirstNm = model.EmpFirstNm,
+            EmpMidNm = model.EmpMidNm,
+            Suffix = model.Suffix,
+            EmpAlias = model.EmpAlias
+        };
+
+        _01EmpmasInternal(empmasInternal, userCompany?.PisSchema, conn);
+
+        user.DefaultCoId = userCompany!.Id;
+        await _userAccess._03(user.Id, user);
+
+        return Redirect("main/my-profile/my-201-records");
+
+
+
+    }
+
+
+
+    // -- 3.02.01 ----------------------------------------------------------------
+    private async Task<UsersModel?> _01User(CreateUserCompanyUiModel model, string schema, string conn)
+    {
+        string domain = string.Empty;
+        if (_config.GetSection("Schema:Domain").Value != null) domain = _config.GetSection("Schema:Domain").Value;
+
+        UsersModel? user = new()
+        {
+            LoginName = model.LoginName,
+            Password = model.Password,
+            Email = model.Email,
             Domain = domain,
             UserType = 1,
             Status = "A",
             DefaultCoId = 0
         };
+        UsersModel? userCreated = await _userAccess._01(user, schema, conn);
 
-        UsersModel? created = await _userAccess._01(newUser, schema, conn);
-        if (created is null)
+        // --- Create MainPis.Empmas ----------------------------------------------------------
+        if (userCreated != null)
         {
-            ViewData["ErrorMsg"] = "Error creating user. Please try again.";
-            return View("Register", input);
+            EmpmasModel empmas = new()
+            {
+                Id = userCreated.Id!,
+                EmpLastNm = model.EmpLastNm,
+                EmpFirstNm = model.EmpFirstNm,
+                EmpMidNm = model.EmpMidNm,
+                Suffix = model.Suffix,
+                EmpAlias = model.EmpAlias
+            };
+            string mainPisSchema = _config.GetSection("Schema:MainPis").Value;
+            await _empmas._01Empmas(empmas, mainPisSchema, conn);
+
         }
 
-        // Create MainPis.Empmas record
-        var mainPisSchema = _config.GetSection("Schema:MainPis").Value ?? "MainPis";
-        EmpmasModel empmas = new()
-        {
-            Id          = created.Id,
-            EmpLastNm   = input.EmpLastNm,
-            EmpFirstNm  = input.EmpFirstNm,
-            EmpMidNm    = input.EmpMidNm,
-            Suffix      = input.Suffix,
-            EmpAlias    = input.EmpAlias
-        };
-        await _mainPis._01Empmas(empmas, mainPisSchema, conn);
 
-        // Sign in directly after register
-        UserCompanyModel? uc = await _GetUserCompany(created, schema, conn);
-        await CreateClaims(created, uc);
 
-        return RedirectToAction("Index", "Home");
+
+        return userCreated;
+
     }
 
-
-    // ==================================================================================
-    // Change Company (switch active company)
-    // ==================================================================================
-
-    [HttpGet("changingclaims/{userCompanyId}")]
-    public async Task<IActionResult> ChangeCompany(int userCompanyId)
+    // -- 3.02.02 ----------------------------------------------------------------
+    private async Task<UserCompanyModel?> _01userCompany(CreateUserCompanyUiModel model, string schema, string conn)
     {
-        var conn = _config.GetSection("Schema:DefConn").Value ?? "MySqlConn";
-        var schema = _config.GetSection("Schema:Main").Value ?? "Main";
-
-        var userIdStr = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
-        if (!int.TryParse(userIdStr, out int userId))
-            return RedirectToAction("Login");
-
-        UsersModel? user = await _mainDA._02UsersById(userId, schema, conn);
-        if (user is null) return RedirectToAction("Login");
-
-        user.DefaultCoId = userCompanyId;
-        await _mainDA._03Users(userCompanyId, user, schema, conn);
-
-        UserCompanyModel? uc = await _GetUserCompany(user, schema, conn);
-        _CreateSchemaAndTables(uc?.PisSchema, conn);
-        await CreateClaims(user, uc);
-        await CreateCompany(user, uc, conn);
-
-        return RedirectToAction("Index", "Home");
-    }
-
-
-    // ==================================================================================
-    // Claims Builder
-    // ==================================================================================
-
-    public async Task CreateClaims(UsersModel user, UserCompanyModel? uc)
-    {
-        var userId          = user.Id.ToString() ?? "0";
-        var defCoId         = user.DefaultCoId.ToString() ?? "0";
-
-        var prefix          = $"U{userId}C{uc?.Id ?? 1}";
-        var pisSchema       = uc?.PisSchema ?? prefix + "Pis";
-        var paySchema       = uc?.PaySchema ?? prefix + "Pay";
-        var acctgSchema     = prefix + "Acctg";
-        var appSchema       = uc?.ApplicantSchema ?? prefix + "App";
-        var amsSchema       = uc?.AmsSchema ?? prefix + "Ams";
-        var coName          = uc?.CompanyName ?? string.Empty;
-
-        var schemaMain      = _config.GetSection("Schema:Main").Value ?? "Main";
-        var schemaMainPis   = _config.GetSection("Schema:MainPis").Value ?? "MainPis";
-        var isExclusive     = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
-        var conn            = user.Domain ?? "MySqlConn";
-
-        await HttpContext.SignOutAsync();
-
-        var claims = new List<Claim>
+        UserCompanyModel userCompany = new UserCompanyModel
         {
-            new("UserId",             userId),
-            new("EmpmasId",           "0"),
-            new("UserName",           user.LoginName  ?? string.Empty),
-            new("Email",              user.Email      ?? string.Empty),
-            new("DefCompanyId",       defCoId),
-            new("SchemaMain",         schemaMain),
-            new("SchemaMainPis",      schemaMainPis),
-            new("SchemaUserPis",      pisSchema),
-            new("SchemaUserPay",      paySchema),
-            new("SchemaUserAms",      amsSchema),
-            new("SchemaUserAcctg",    acctgSchema),
-            new("SchemaUserApp",      appSchema),
-            new("CoName",             coName),
-            new("OempNumber",         user.Empnumber  ?? string.Empty),
-            new("OpisDb",             uc.OldPis       ?? string.Empty),
-            new("OpayDb",             uc.OldPay       ?? string.Empty),
-            new("Conn",               conn),
-            new("ConnNoDb",           "MySqlConnNoDb"),
-            new("ConnPay",            conn),
-            new("ConnPis",            conn),
-            new("ConnAcctg",          conn),
-            new("IsExclusiveCompany", isExclusive)
+            OwnerId = model.UserId,
+            CompanySName = model.CompanySName,
+            CompanyName = model.CompanyName,
+            CountryId = model.CountryId,
+            RegionId = model.RegionId,
+            CityId = model.CityId,
+            Zipcode = model.Zipcode,
+            CurrencyId = model.CurrencyId,
+            AmsSchema = "Default",
+            ApplicantSchema = "Default",
+            PisSchema = "Default",
+            PaySchema = "Default"
         };
-        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
-        await HttpContext.SignInAsync(claimPrincipal);
+
+        UserCompanyModel? uc = await _mainDA._01UserCompany(userCompany, schema, conn);
+        if (uc?.PaySchema == "Default")
+        {
+            var prefix = @$"U{uc.OwnerId.ToString().Trim()}C{uc.Id.ToString().Trim()}";
+            uc.AmsSchema = $"{prefix}Ams";
+            uc.ApplicantSchema = $"{prefix}App";
+            uc.PisSchema = $"{prefix}Pis";
+            uc.PaySchema = $"{prefix}Pay";
+
+            UserCompanyModel? ucUpdated = await _mainDA._03UserCompany(uc.Id, uc, schema, conn);
+            return ucUpdated;
+
+        }
+        return uc;
+    }
+
+    // -- 3.02.03 ----------------------------------------------------------------
+    private async Task<CompanyUsersModel?> _01companyUser(UserCompanyModel userCompany, string schema, string conn)
+    {
+        CompanyUsersModel cu = new CompanyUsersModel
+        {
+            UserId = userCompany.OwnerId,
+            CompanyId = userCompany.Id,
+            Status = "A",
+            CompanyUserTypeId = 4
+
+        };
+
+        CompanyUsersModel? cuNew = await _mainDA._01CompanyUsers(cu, schema, conn);
+        return cuNew;
+
+    }
+
+    // -- 3.02.04 ----------------------------------------------------------------
+    private void _01SchemaAndTables(string? schema, string conn)
+    {
+        if (schema != null || schema != "Default")
+        {
+            _mainPisTblMaker._01MainPisTableInternal(schema!, conn);
+            _mainPisTblMaker._01MainPisTable(schema!, conn);
+        }
+    }
+
+    // -- 3.02.05 ----------------------------------------------------------------
+    private async void _01EmpmasInternal(EmpmasInternalModel? empmas, string? pisSchema, string conn)
+    {
+        if (empmas != null)
+        {
+            if (pisSchema != null)
+            {
+                await _empmas._01EmpmasInternal(empmas, pisSchema, conn);
+            }
+        }
     }
 
 
-    // ==================================================================================
-    // Private Helpers
-    // ==================================================================================
+
+
+    //**********************************************************************************************
+    // -- Login ------------------------------------------------------------------------------------
+
+    // -- 10.00 ------------------------------------------------------------------------------------
+    [AllowAnonymous]
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginUiModel login)
+    {
+        try
+        {
+            string isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value;
+
+            // 1). Validate credentials
+            UsersModel? user = await _mainDA._02UsersLoginLoginName(login.EmpNumber, login.Password);
+
+            Console.WriteLine($"login.EmpNumber, login.Password : {login.EmpNumber} ** {login.Password}");
+
+            if (user == null)
+            {
+                LoadLoginViewData();
+                ViewData["ErrorMsg"] = "Invalid username / password.";
+                return View("Login", login);
+            }
+
+
+            // 2). -- Get User Company -------------------------------------------------------
+            var conn    = _config.GetSection("Schema:DefConn").Value.ToString();
+            var schema  = _config.GetSection("Schema:Main").Value.ToString();
+            var uc      = await _02UserCompany(user, schema, conn);
+
+            var domainUsers = await _empmasDA._02BySystemIdList(user.Id ?? 0, uc.PisSchema, conn) ?? [];
+            // Console.WriteLine($@"Count {domainUsers.Count} ** user.Id : {user.Id}");
+            if (domainUsers.Count > 0)
+            {
+                var dUser = domainUsers.FirstOrDefault() ?? new();
+                user.Empnumber = dUser.EmpNumber ?? "";
+                // Console.WriteLine($@"========> dUser.EmpNumber {dUser.EmpNumber} ");
+            }
+
+            // Create Schema and Tables --------------------------------------------------
+            _01SchemaAndTables(uc?.PisSchema, conn);
+
+            if (isExclusive == "true")
+            {
+                uc.ExclusiveCompany = login.CompanyId;
+            }
+
+            await CreateClaims(user, uc);
+            await CreateCompany(user, uc, conn);
+
+            HttpContext.Session.SetString("OldPis", uc.OldPis ?? "");
+            HttpContext.Session.SetString("OldPay", uc.OldPay ?? "");
+
+            if (uc.OldPis.Length <= 0) return Redirect("~/13");
+
+            var empmas = await _oldEmpmas._02ByEmail(user.Email ?? "00000", uc.OldPis, conn ?? "");
+            if (empmas.Count > 0)
+                HttpContext.Session.SetString("EmpNumber", empmas.First().EmpNumber ?? "00000");
+
+            return Redirect("12/102");
+        }
+        catch (MySqlException ex)
+        {
+            LoadLoginViewData();
+            ViewData["ErrorMsg"] = "Cannot reach the server right now. Please try again shortly.";
+            Console.WriteLine(ex);
+            return View("Login", login);
+        }
+        catch (Exception ex)
+        {
+            LoadLoginViewData();
+            ViewData["ErrorMsg"] = "Something went wrong. Please try again.";
+            return View("Login", login);
+        }
+    }
+
 
     private void LoadLoginViewData()
     {
@@ -315,61 +431,441 @@ public class AuthenticationController : Controller
         ViewData["Exclusive"] = _config.GetSection("CompanyInfo:Exclusive").Value;
     }
 
-    private async Task<UserCompanyModel?> _GetUserCompany(UsersModel user, string schema, string conn)
+
+    [HttpGet("changingclaims/{link}/{userid}")]
+    public async Task<IActionResult> ChangingClaims(string link, string userid)
     {
-        var isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value ?? "false";
-        UserCompanyModel? uc;
+        //ViewData["CoName"] = _config.GetSection("CompanyInfo:CompanyName").Value;
 
-        if (isExclusive == "true")
-        {
-            var defaultCoId = _config.GetSection("CompanyInfo:DefaultCoId").Value ?? "1";
-            uc = await _mainDA._02UserCompany(int.Parse(defaultCoId), schema, conn);
-        }
-        else if (user.DefaultCoId == 0)
-        {
-            var list = await _mainDA._02UserCompanyPerOwnerId(user.Id, schema, conn);
-            uc = list.FirstOrDefault();
-        }
-        else
-        {
-            uc = await _mainDA._02UserCompany(user.DefaultCoId, schema, conn);
-        }
+        var uid = int.Parse(userid);
+        var user = await _mainDA._02UsersById(uid);
+        var uc = await _mainDA._02UserCompany(user?.DefaultCoId ?? 0);
 
-        return uc;
-    }
+        await CreateClaims(user ?? new UsersModel() { Id = 0 }, uc);
+        HttpContext.Session.Clear();
 
-    private void _CreateSchemaAndTables(string? pisSchema, string conn)
-    {
-        if (!string.IsNullOrEmpty(pisSchema) && pisSchema != "Default")
-        {
-            _mainPisTblMaker._01MainPisTableInternal(pisSchema, conn);
-            _mainPisTblMaker._01MainPisTable(pisSchema, conn);
-        }
+        HttpContext.Session.SetString("OldPis", uc.OldPis ?? "");
+        HttpContext.Session.SetString("OldPay", uc.OldPay ?? "");
+        HttpContext.Session.SetString("EmpNumber", "00000");
+
+        if (uc.OldPis.Length <= 0) return Redirect("~/13");
+
+        var conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        var empmas = await _oldEmpmas._02ByEmail(user.Email ?? "00000", uc.OldPis, conn ?? "");
+        if (empmas.Count > 0) HttpContext.Session.SetString("EmpNumber", empmas.First().EmpNumber ?? "00000");
+
+
+        return Redirect("~/13");
+
+        //return Content($"user id : {uc?.CompanyName} ** link {link}");
+
     }
 
     private async Task CreateCompany(UsersModel user, UserCompanyModel? uc, string conn)
     {
-        var userId = user.Id?.ToString().Trim() ?? "0";
-        var coId = user.DefaultCoId ?? 0;
-        var userDb = "U" + userId;
+
+
+        var userId = user.Id;
+        var coId = user.DefaultCoId;
+        var userDb = "U" + userId.ToString().Trim();
 
         await _mainPisTblMaker._01UserTable(userDb, conn);
 
+
         if (coId > 1)
         {
-            var prefix = userDb + "C" + coId;
-            var pisDb = prefix + "Pis";
-            var payDb = prefix + "Pay";
-            var acctgDb = prefix + "Acctg";
 
-            await _mainPisTblMaker._01MainPisTableInternal(pisDb, conn);
-            await _payTblMaker._01(payDb);
+            var prefix = userDb + "C" + coId.ToString();
+            var pisdb = prefix + "pis";
+            var paydb = prefix + "pay";
+            var acctgdb = prefix + "acctg";
 
-            var userCo = await _userCompany._02(coId, "Main", conn);
-            if (userCo?.CountryId == 2)
-                await _payTblMaker._01PH(payDb);
 
-            await _acctg.AccountingTableMaker(acctgDb, conn);
+            await _mainPisTblMaker._01MainPisTableInternal(pisdb, conn);
+
+            await _payTblMaker._01(paydb);
+            var x = await _userCompany._02(coId, "Main", conn!);
+            if (x?.CountryId == 2) await _payTblMaker._01PH(paydb);
+
+            await _acctg.AccountingTableMaker(acctgdb, conn);
+
+
         }
+
+
+        //await _mainPisTblMaker._01(uc.PisSchema, conn); 
+
+
+    }
+
+
+
+    //**********************************************************************************************
+    // -- Left Menu ------------------------------------------------------------------------------------
+
+    // -- 20.00 ------------------------------------------------------------------------------------
+    public async Task<IActionResult> _200ChangeCompany(int userCompanyId)
+    {
+
+        var conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        var schema = _config.GetSection("Schema:Main").Value.ToString();
+
+        if (userCompanyId == -1)
+        {
+            return RedirectToAction("_202RegisterNewCompany");
+        }
+
+        var empmasId = User.Claims.Where(c => c.Type == "UserId").FirstOrDefault()?.Value;
+        var empId = int.Parse(empmasId!);
+        
+        UsersModel? user = await _mainDA._02UsersById(empId, schema, conn);
+        user!.DefaultCoId = userCompanyId;
+
+        await _mainDA._03Users(userCompanyId, user, schema, conn);
+
+        UserCompanyModel? uc = await _02UserCompany(user, schema, conn);
+        await CreateClaims(user, uc);
+
+        if (userCompanyId <= 0)
+            return Redirect("~/main/my-profile/my-201-records");
+        return Redirect("~/main/company-records/personnel-information");
+
+    }
+
+    public IActionResult _201PersonalProfile()
+    {
+        return View();
+    }
+
+    public IActionResult _202RegisterNewCompany()
+    {
+        return View();
+    }
+
+    // -- Left Menu ------------------------------------------------------------------------------------
+    //**********************************************************************************************
+
+
+
+    // **********************************************************************************************
+    // --- Process Methods --------------------------------------------------------------------------
+    // **********************************************************************************************
+
+    // -- 3.01.01 ----------------------------------------------------------------
+    private async Task<IActionResult> CheckUser(RegisterOrdinaryUiModel input)
+    {
+        UsersModel? userName = await _userAccess._02ByLoginName(input.Username);
+        ViewData["errUserMsg"] = "";
+        ViewData["errEmailMsg"] = "";
+
+        input.errUserMsg = string.Empty;
+        input.errEmailMsg = string.Empty;
+        input.withError = false;
+
+        if (userName != null)
+        {
+            ViewData["errUserMsg"] = "Username already exists.";
+            input.errUserMsg = "Username already exists.";
+            input.withError = true;
+        }
+        ;
+
+        var emailAdd = await _userAccess._02ByEmail(input.Email);
+        if (emailAdd != null)
+        {
+            ViewData["errEmailMsg"] = "Email already exists.";
+            input.errEmailMsg = "Email already exists.";
+            input.withError = true;
+        }
+
+        ViewData["input"] = input;
+        return View("RegisterOrdinary", input);
+    }
+
+    // -- 3.01.02 ----------------------------------------------------------------
+    private async Task<IActionResult> LoadCreateUserCompanyData()
+    {
+        string conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        string schema = _config.GetSection("Schema:Main").Value.ToString();
+
+        ViewData["CoName"] = _config.GetSection("CompanyInfo:CompanyName").Value;
+
+        //-- Country -----------------------------------------------
+        string sql = $@"SELECT c.* FROM {schema}.Country c order by Name";
+        IEnumerable<CountryUiModel> country = await _mysql.FetchData<CountryUiModel, dynamic>(sql, new { }, conn);
+
+        //-- Currency -----------------------------------------------
+        sql = $@"SELECT c.* FROM {schema}.Currency c order by Name";
+        IEnumerable<CurrencyUiModel> currency = await _mysql.FetchData<CurrencyUiModel, dynamic>(sql, new { }, conn);
+
+
+        CreateUserCompanyUiModel userCompany = new CreateUserCompanyUiModel();
+        ViewData["country"] = country;
+        ViewData["currency"] = currency;
+
+        return View("RegisterOrdinary");
+
+    }
+
+    // -- 10.00.01 ---------------------------------------------------------------
+    private async Task<UserCompanyModel?> _02UserCompany(UsersModel user, string schema, string conn)
+    {
+
+        UserCompanyModel? uc = new();
+        string isExclusive = _config.GetSection("CompanyInfo:Exclusive").Value;
+
+        if (isExclusive == "true")
+        {
+            // -- Naka exclusive ang use sa server ng company -------------------------
+            string userCompanyId = _config.GetSection("CompanyInfo:DefaultCoId").Value;
+            uc = await _mainDA._02UserCompany(Int32.Parse(userCompanyId), schema, conn);
+        }
+        else
+        {
+            if (user.DefaultCoId == 0)
+            {
+                //  -- Walang naka assign na company 
+                var res = await _mainDA._02UserCompanyPerOwnerId(user.Id);
+                uc = res.FirstOrDefault();
+            }
+            else
+            {
+                // -- Fetch assign company to user --------------------------------
+                uc = await _mainDA._02UserCompany(user.DefaultCoId, schema, conn);
+            }
+        }
+
+        // --- Fetch Assigned Old Pis and Old Pay ------------------------------------------------------
+        if (user.DefaultCoId > 0)
+        {
+            var res = await _mainDA._02UserCompany(user.DefaultCoId, schema, conn);
+            if (uc.OldPis != null && uc.OldPis != "") uc.OldPis = res?.OldPis ?? "";
+            if (uc.OldPay != null && uc.OldPay != "") uc.OldPay = res?.OldPay ?? "";
+        }
+
+        return uc;
+
+    }
+
+
+
+
+
+
+
+
+
+    // **********************************************************************************************
+    // --- API Internal Library  --------------------------------------------------------------------
+    // **********************************************************************************************
+    [AllowAnonymous]
+    [HttpGet("_02Country")]
+    public async Task<List<CountryModel?>> _02Country()
+    {
+        string conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        string schema = _config.GetSection("Schema:Main").Value.ToString();
+        List<CountryModel?> country = await _mainDA._02CountryList(schema, conn);
+
+        return country;
+    }
+
+
+    //-- 02.02 --- Region per country   
+    [AllowAnonymous]
+    [HttpGet("_02ProvinceStateByCountryId/{countryId}")]
+    public async Task<List<ProvinceStateModel?>> _02ProvinceStateByCountryId(int countryId)
+    {
+        string conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        string schema = _config.GetSection("Schema:Main").Value.ToString();
+        List<ProvinceStateModel?> region = await _mainDA._02ProvinceStatePerCountry(countryId, schema, conn);
+
+        return region;
+    }
+
+
+    //-- 02.03 --- City per region  
+    [AllowAnonymous]
+    [HttpGet("_02CityByRegionId/{regionId}")]
+    public async Task<List<CityModel?>> _02CityByRegionId(int regionId)
+    {
+        string conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        string schema = _config.GetSection("Schema:Main").Value.ToString();
+
+        List<CityModel?> city = await _mainDA._02CityPerRegion(regionId, schema, conn);
+        return city;
+    }
+
+    public async Task CreateClaims(UsersModel user, UserCompanyModel? uc)
+    {
+        var userId = user.Id.ToString();
+        var empmasId = string.Empty;
+        var prefix = "U" + userId.Trim() + "C1";
+
+        var pisSchema = prefix + "Pis";
+        var paySchema = prefix + "Pay";
+        var acctgSchema = prefix + "Acctg";
+        var appSchema = prefix + "App";
+        var amsSchema = prefix + "Ams";
+        var coName = uc?.CompanyName ?? "-";
+        var email = user.Email;
+
+        var empnumber = user.LoginName ?? "00000";
+        var oldPis = uc?.OldPis ?? "";
+        var oldPay = uc?.OldPay ?? "";
+        var exclusiveCompany = uc?.ExclusiveCompany ?? "";
+
+        var conn = user.Domain;
+        var res = await _empmasInternal._02BySystemIds(user?.Id ?? 00, uc?.PisSchema ?? "", conn ?? "");
+
+        if (res.Count > 0)
+        {
+            empnumber = res.First().EmpNumber ?? "00000";
+            empmasId = res.First().Id.ToString() ?? "0";
+        }
+
+        if (!string.IsNullOrEmpty(user.DefaultCoId.ToString()) && user.DefaultCoId != 0)
+        {
+            prefix = "U" + userId + "C" + uc?.Id.ToString().Trim() ?? "0";
+            pisSchema = uc?.PisSchema;
+            paySchema = uc?.PaySchema;
+            acctgSchema = prefix + "Acctg";
+            appSchema = uc?.ApplicantSchema;
+            amsSchema = uc?.AmsSchema;
+        }
+
+
+
+        var loginName           = user.LoginName ?? "-1";
+        var defCoId             = user.DefaultCoId.ToString() ?? "0";
+        var isExclusiveCompany  = _config.GetSection("CompanyInfo:Exclusive").Value;
+        var connNoDb            = _config.GetSection("ConnectionStrings:MySqlConnNoDb").Value;
+
+        if (isExclusiveCompany == "true")
+        {
+            // conn = exclusiveCompany;
+        }
+
+
+        var claims = new List<Claim>
+        {
+            new("UserId",               userId),
+            new("UserName",             loginName),
+            new("Email",                email??""),
+            new("DefCompanyId",         defCoId),
+            new("PisSchema",            pisSchema ?? ""),
+            new("PaySchema",            paySchema ?? ""),
+            new("AcctgSchema",          acctgSchema ?? ""),
+            new("ApplicantSchema",      appSchema ?? ""),
+            new("AmsSchema",            amsSchema ?? ""),
+            new("CoName",               coName ?? ""),
+            new("Conn",                 conn  ?? "MySql"),
+            new("ConnNoDb",             connNoDb  ?? ""),
+
+            new("EmpmasId",             empmasId  ?? "0"),
+            new("Empnumber",            empnumber  ?? "00000"),
+            new("OldPis",               oldPis  ?? "secpis"),
+            new("OldPay",               oldPay  ?? "pay"),
+
+            new("IsExclusiveCompany",   isExclusiveCompany),
+            new("ExclusiveCompany",    exclusiveCompany) // For GSIA
+        };
+
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+        await HttpContext.SignInAsync(claimPrincipal);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("_02Currency")]
+    public async Task<List<CurrencyModel>> _02CurrencyList()
+    {
+        var conn = _config.GetSection("Schema:DefConn").Value.ToString();
+        var schema = _config.GetSection("Schema:Main").Value.ToString();
+
+        var sql = $"SELECT * FROM {schema}.`Currency` order by Code";
+        var currency = await _mysql.FetchData<CurrencyModel, dynamic>(sql, new { }, conn);
+
+        return currency;
+
+    }
+
+    //-- 02.04 --- Claims 
+
+    //-- 02.04 --- Claims 
+    public async Task CreateClaims(UsersModel user)
+    {
+
+        var userId = user.Id.ToString() ?? "0"; ;
+        var prefix = "U" + userId.Trim() + "C1";
+
+        var pisSchema = prefix + "Pis";
+        var paySchema = prefix + "Pay";
+        var acctgSchema = prefix + "Acctg";
+        var appSchema = prefix + "App";
+        var amsSchema = prefix + "Ams";
+        var conn = user.Domain;
+        var defCoId = "0";
+        var email = user.Email ?? "-";
+
+        var resUc = await _mainDA._02UserCompanyPerOwnerId(user.Id);
+        var coName = resUc.FirstOrDefault()?.CompanyName ?? "Undefined Company";
+
+        var currUser = await _mainDA._02UsersById(user.Id);
+        defCoId = currUser?.DefaultCoId.ToString().Trim() ?? "0";
+        if (currUser?.DefaultCoId > 0)
+        {
+            var userCo = await _mainDA._02UserCompany(currUser.DefaultCoId);
+            var ownerId = userCo?.OwnerId.ToString().Trim() ?? "0";
+
+            prefix = "U" + ownerId + "C" + userCo?.Id ?? "0";
+
+            pisSchema = prefix + "Pis";
+            paySchema = prefix + "Pay";
+            acctgSchema = prefix + "Acctg";
+            appSchema = prefix + "App";
+            amsSchema = prefix + "Ams";
+            coName = userCo?.CompanyName ?? "-";
+        }
+
+        
+        var loginName           = user.LoginName ?? "-1";
+        var isExclusiveCompany  = _config.GetSection("CompanyInfo:Exclusive").Value;
+        var connNoDb            = _config.GetSection("ConnectionStrings:MySqlConnNoDb").Value;
+        var empnumber           = user.LoginName ?? "00000";
+        var empmasId            = User.FindFirst("EmpmasId")?.Value ?? string.Empty;
+        var oldPis              = User.FindFirst("OldPis")?.Value ?? string.Empty;
+        var oldPay              = User.FindFirst("OldPay")?.Value ?? string.Empty;
+        var exclusiveCompany    = User.FindFirst("exclusiveCompany")?.Value ?? string.Empty;
+        
+        await HttpContext.SignOutAsync();
+
+        var claims = new List<Claim>
+        {
+            new("UserId",               userId),
+            new("UserName",             loginName),
+            new("Email",                email??""),
+            new("DefCompanyId",         defCoId),
+            new("PisSchema",            pisSchema ?? ""),
+            new("PaySchema",            paySchema ?? ""),
+            new("AcctgSchema",          acctgSchema ?? ""),
+            new("ApplicantSchema",      appSchema ?? ""),
+            new("AmsSchema",            amsSchema ?? ""),
+            new("CoName",               coName ?? ""),
+            new("Conn",                 conn  ?? "MySql"),
+            new("ConnNoDb",             connNoDb  ?? ""),
+
+            new("EmpmasId",             empmasId  ?? "0"),
+            new("Empnumber",            empnumber  ?? "00000"),
+            new("OldPis",               oldPis  ?? "secpis"),
+            new("OldPay",               oldPay  ?? "pay"),
+
+            new("IsExclusiveCompany",   isExclusiveCompany),
+            new("ExclusiveCompany",    exclusiveCompany) // For GSIA
+        };
+
+        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+        await HttpContext.SignInAsync(claimPrincipal);
+
     }
 }

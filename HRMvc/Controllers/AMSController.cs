@@ -10,6 +10,7 @@ public class AMSController : Controller
     // GET
     private static readonly Dictionary<int, string> ReportViews = new()
     {
+        [11000] = "_11000_AMS_Home_Page",
         // Settings 
         [11002]  = "_11002_StdWorkingHoursSchedule",
         [11003]  = "_11003_EmployeeSchedule",

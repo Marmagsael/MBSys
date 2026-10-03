@@ -4,6 +4,7 @@ using HRApiLibrary.DataAccess._10_Pis;
 using HRApiLibrary.DataAccess._10_Pis.Interface;
 using HRApiLibrary.DataAccess._10_Pis.OPis;
 using HRApiLibrary.DataAccess._20_Pay.OPay;
+using HRMvc.DataAccess.Main; 
 using Microsoft.AspNetCore.DataProtection;
 using Radzen;
 
@@ -32,11 +33,20 @@ public static class _00000OtherServices
         services.AddScoped<IEmpmasInternalDataAccess, EmpmasInternalDataAccess>();
         services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();
         services.AddScoped<IAttpunches1DataAccess, Attpunches1DataAccess>();
+        services.AddScoped<I_10_EmpmasDataAccess, _10_EmpmasDataAccess>();
+        services.AddScoped<IOEmpmasDataAccess, OEmpmasDataAccess>();
+        services.AddScoped<IOEmpportalDataAccess, OEmpportalDataAccess>();
+        services.AddScoped<IOTbltrandtlDataAccess, OTbltrandtlDataAccess>();
+        services.AddScoped<IAttdailyDataAccess, AttdailyDataAccess>();
+        services.AddScoped<ClaimsAccess>();
+        services.AddScoped<L12_102>();
+        services.AddScoped<UserClaimsContextService>();
 
         // --- Payrol ------------------------------------------------
         services.AddScoped<IODeprecDataAccess, ODeprecDataAccess>();      
         services.AddScoped<IOChartofacctDataAccess, OChartofacctDataAccess>();
         services.AddScoped<IOPayrollgrpDataAccess, OPayrollgrpDataAccess>();
+        services.AddScoped<IOLoansDataAccess, OLoansDataAccess>();
         
         services.AddScoped<I_00MainDataMakerAccess, _00MainDataMakerAccess>();
         

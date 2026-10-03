@@ -1636,7 +1636,7 @@
           }
         }
       },
-      "Radzen.Blazor/11.4.3": {
+      "Radzen.Blazor/11.5.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Components": "8.0.0",
@@ -6151,10 +6151,10 @@
         "openai.nuspec"
       ]
     },
-    "Radzen.Blazor/11.4.3": {
-      "sha512": "rdoweJZpn8gMy1c0pftVZ9fqY0rvUkWHb35YIVi9uhb0uME3CSbqwcFwQz/BjB9iFYcr1KjSPYv54BtbM96APA==",
+    "Radzen.Blazor/11.5.1": {
+      "sha512": "1grwHjm04KGvp9bwE+0ZPa/cCGepxi058eGza+NRMZxuTJeEc+PuQge7gvxxzjWk/VtkxrUxuaYVF8igEpHMSQ==",
       "type": "package",
-      "path": "radzen.blazor/11.4.3",
+      "path": "radzen.blazor/11.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6187,7 +6187,7 @@
         "lib/net9.0/fr/Radzen.Blazor.resources.dll",
         "lib/net9.0/it/Radzen.Blazor.resources.dll",
         "lib/net9.0/ja/Radzen.Blazor.resources.dll",
-        "radzen.blazor.11.4.3.nupkg.sha512",
+        "radzen.blazor.11.5.1.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/Radzen.Blazor.min.js",
@@ -10739,11 +10739,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Development\\MBSys\\hrmvc\\HRMvc.csproj",
+      "projectUniqueName": "D:\\Development\\MBSys\\HRMvc\\HRMvc.csproj",
       "projectName": "HRMvc",
-      "projectPath": "D:\\Development\\MBSys\\hrmvc\\HRMvc.csproj",
+      "projectPath": "D:\\Development\\MBSys\\HRMvc\\HRMvc.csproj",
       "packagesPath": "C:\\Users\\marma\\.nuget\\packages\\",
-      "outputPath": "D:\\Development\\MBSys\\hrmvc\\obj\\",
+      "outputPath": "D:\\Development\\MBSys\\HRMvc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -2543,11 +2543,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Development\\MBSys\\MBApi\\MBApi.csproj",
-      "projectName": "MBApi",
-      "projectPath": "D:\\Development\\MBSys\\MBApi\\MBApi.csproj",
+      "projectUniqueName": "D:\\Development\\MBSys\\HRApi\\HRApi.csproj",
+      "projectName": "HRApi",
+      "projectPath": "D:\\Development\\MBSys\\HRApi\\HRApi.csproj",
       "packagesPath": "C:\\Users\\marma\\.nuget\\packages\\",
-      "outputPath": "D:\\Development\\MBSys\\MBApi\\obj\\",
+      "outputPath": "D:\\Development\\MBSys\\HRApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

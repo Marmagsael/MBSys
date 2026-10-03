@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="HRApi/HRApi.csproj" />
+  <Project Path="HRApiLibrary/HRApiLibrary.csproj" />
+  <Project Path="HRMvc/HRMvc.csproj" />
+</Solution>

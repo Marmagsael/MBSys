@@ -2480,7 +2480,7 @@ public class _00MainPisTblMakerAccess : I_00MainPisTblMakerAccess
                             LeavegrpId              INTEGER UNSIGNED DEFAULT 0,
                             PayrollgrpId            INTEGER UNSIGNED DEFAULT 0,
                             EmploymentTypeId        INTEGER UNSIGNED DEFAULT 0,
-                            EmpStatusId             INTEGER UNSIGNED DEFAULT 1,
+                            EmpStatusId             INTEGER UNSIGNED DEFAULT 15,
                             DHired                  DATE,
                             DRegularization         DATE,
                             DTraineeStart           DATE,

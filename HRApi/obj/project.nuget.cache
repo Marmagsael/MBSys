@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aoFa5KClnMg=",
+  "dgSpecHash": "gCeYR4wXdog=",
   "success": true,
-  "projectFilePath": "D:\\Development\\MBSys\\MBApi\\MBApi.csproj",
+  "projectFilePath": "D:\\Development\\MBSys\\HRApi\\HRApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marma\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "C:\\Users\\marma\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
